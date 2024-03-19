@@ -8,19 +8,19 @@ package br.unipar.clinica2.model;
  *
  * @author vinid
  */
-public class médico  extends Pessoa {
+public class Medico  extends Pessoa {
      private int CRM;
      private Especialidade Especialidade;
 
-    public médico() {
+    public Medico() {
     }
 
-    public médico(int CRM, Especialidade Especialidade) {
+    public Medico(int CRM, Especialidade Especialidade) {
         this.CRM = CRM;
         this.Especialidade = Especialidade;
     }
 
-    public médico(int CRM, Especialidade Especialidade, int id, String nome, String email, String telefone, Endereco endereco) {
+    public Medico(int CRM, Especialidade Especialidade, int id, String nome, String email, String telefone, Endereco endereco) {
         super(id, nome, email, telefone, endereco);
         this.CRM = CRM;
         this.Especialidade = Especialidade;
