@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @WebService
 public interface EspecialidadeWebService {
      @WebMethod
-    ArrayList<Especialidade> findMedico(String nome);
+    ArrayList<Especialidade> findEspecialidade(String nome);
     
     @WebMethod
     ArrayList<Especialidade> listAll();

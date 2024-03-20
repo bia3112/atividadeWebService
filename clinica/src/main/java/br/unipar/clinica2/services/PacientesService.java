@@ -29,13 +29,13 @@ public class PacientesService {
     }
     
     public Paciente insert(Paciente paciente) throws SQLException{
-        
-     
-    }
-    
-    public Paciente update(Paciente paciente) throws SQLException  {
         PacienteRepository pacienteRepository = new PacienteRepository();
-        return pacienteRepository.update(Paciente);
+        return pacienteRepository.insert(paciente);
+     }
+    
+    public Paciente atualizar(Paciente paciente) {
+        PacienteRepository pacienteRepository = new PacienteRepository();
+        return pacienteRepository.atualizar(paciente);
     }
     
     public void delete(int id) throws SQLException{

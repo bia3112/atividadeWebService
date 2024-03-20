@@ -5,7 +5,7 @@
 package br.unipar.clinica2.Repository;
 
 import br.unipar.clinica2.model.Pessoa;
-import jakarta.jms.ConnectionFactory;
+import br.unipar.clinica2.ws.infrainstructure.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,12 +27,13 @@ public class PessoaRepository {
         
         try {
             conn = new ConnectionFactory().getConnection();
-            ps = conn.preparedStatement(query, Statement.RETURN_GENERATED_KEYS);
+          
             
             
         }finally {
             
         }
+         return null;
         
     }
 
