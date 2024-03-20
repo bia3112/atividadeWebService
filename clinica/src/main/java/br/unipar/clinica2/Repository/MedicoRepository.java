@@ -92,7 +92,7 @@ public class MedicoRepository {
                 conn.close();
             }
         }
-        retunr 
+       
 
     }
    public void update(Medico medico) throws SQLException {

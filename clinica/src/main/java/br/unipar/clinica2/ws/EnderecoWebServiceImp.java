@@ -8,7 +8,10 @@ import br.unipar.clinica2.interfaces.EnderecoWebService;
 import br.unipar.clinica2.model.Endereco;
 import br.unipar.clinica2.services.EnderecoService;
 import jakarta.jws.WebService;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,27 +21,42 @@ import java.util.ArrayList;
 public class EnderecoWebServiceImp implements EnderecoWebService{
 
     @Override
-    public Endereco inserir(Endereco endereco) {
+    public Endereco inserir(Endereco endereco)  {
         EnderecoService enderecoService = new EnderecoService();
-        return enderecoService.inserir(endereco);
+        try {
+            return enderecoService.inserir(endereco);
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return endereco;
     }
 
     @Override
     public ArrayList<Endereco> listAll() {
          EnderecoService enderecoService = new EnderecoService();
-        return enderecoService.listAll();
+        try {
+            return enderecoService.listAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public Endereco atualizar(Endereco endereco) {
         EnderecoService enderecoService = new EnderecoService();
-        return enderecoService.atualizar(endereco);
+        try {
+            return enderecoService.atualizar(endereco);
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return endereco;
     }
 
     @Override
     public void deletar(int id) {
-        EnderecoService enderecoService = new EnderecoService();
-        enderecoService.deletar(id);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+   
     
 }

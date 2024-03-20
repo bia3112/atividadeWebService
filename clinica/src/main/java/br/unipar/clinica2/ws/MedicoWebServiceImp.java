@@ -7,14 +7,15 @@ package br.unipar.clinica2.ws;
 import br.unipar.clinica2.interfaces.MedicoWebService1;
 import br.unipar.clinica2.model.Medico;
 import br.unipar.clinica2.services.MedicoService;
+import jakarta.jws.WebService;
 import java.util.ArrayList;
 
 /**
  *
  * @author vinicius.duarte
  */
- @WebService(endpointInterface = "br.unipar.clinica2.interfaces.MedicoWebService1")
-public class MedicoWebServiceImp implements MedicoWebService1 {
+@WebService(endpointInterface = "br.unipar.clinica2.interfaces.MedicoWebService1")
+public class MedicoWebServiceImp  {
 
     @Override
     public Medico insert(Medico medico) {

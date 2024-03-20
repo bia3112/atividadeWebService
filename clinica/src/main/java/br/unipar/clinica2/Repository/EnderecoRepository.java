@@ -28,7 +28,7 @@ public class EnderecoRepository {
 
     private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
      
-    public List<Endereco> findAll() throws SQLException {
+    public List<Endereco> listAll() throws SQLException {
         ArrayList<Endereco> retorno = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -67,7 +67,7 @@ public class EnderecoRepository {
 
         return retorno;
     }
-       public void insert(Endereco endereco) throws SQLException {
+       public void inserir(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;

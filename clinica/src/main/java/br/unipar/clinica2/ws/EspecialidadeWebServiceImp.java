@@ -8,7 +8,11 @@ package br.unipar.clinica2.ws;
 import br.unipar.clinica2.interfaces.EspecialidadeWebService;
 import br.unipar.clinica2.model.Especialidade;
 import br.unipar.clinica2.services.EspecialidadeService;
+import jakarta.jws.WebService;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,7 +25,12 @@ public class EspecialidadeWebServiceImp  implements EspecialidadeWebService{
     @Override
     public Especialidade inserir(Especialidade especialidade) {
         EspecialidadeService especialidadeService = new EspecialidadeService() {};
-        return especialidadeService.inserir(especialidade);
+        try {
+            return especialidadeService.inserir(especialidade);
+        } catch (SQLException ex) {
+            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return especialidade;
     }
 
     @Override
