@@ -15,19 +15,23 @@ public class PessoaService {
 
     public Pessoa inserir(Pessoa pessoa) {
         PessoaRepository pessoaRepository = new PessoaRepository();
-        
+        return pessoaRepository.insert(pessoa);
     }
 
     public ArrayList<Pessoa> listAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PessoaRepository pessoaRepository = new PessoaRepository();
+        ArrayList<Pessoa> retorno = pessoaRepository.listAll();
+        return retorno;
     }
 
     public Pessoa atualizar(Pessoa pessoa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PessoaRepository pessoaRepository = new PessoaRepository();
+        return pessoaRepository.atualizar(pessoa);
     }
 
     public void deletar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PessoaRepository pessoaRepository = new PessoaRepository();
+        pessoaRepository.deletar(id);
     }
     
 }
