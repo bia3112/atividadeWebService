@@ -10,10 +10,30 @@ package br.unipar.clinica2.model;
  */
 public class Endereco {
     
+    private int id;
     private String logradouro;
     private int numero;
     private String complemento;
     private String bairro;
+
+    public Endereco() {
+    }
+
+    public Endereco(int id, String logradouro, int numero, String complemento, String bairro) {
+        this.id = id;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getLogradouro() {
         return logradouro;
@@ -46,5 +66,6 @@ public class Endereco {
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
+
     
 }

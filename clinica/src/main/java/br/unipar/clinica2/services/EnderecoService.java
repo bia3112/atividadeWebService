@@ -4,8 +4,11 @@
  */
 package br.unipar.clinica2.services;
 
+import br.unipar.clinica2.Repository.EnderecoRepository;
 import br.unipar.clinica2.model.Endereco;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,25 +16,30 @@ import java.util.ArrayList;
  */
 public class EnderecoService {
 
-    public Endereco inserir(Endereco endereco) {
+    public Endereco inserir(Endereco endereco) throws SQLException {
+       
         EnderecoRepository enderecoRepository = new EnderecoRepository();
-        return enderecoRepository.inserir(endereco);
+        enderecoRepository.inserir(endereco);
+        return endereco;
     }
 
-    public ArrayList<Endereco> listAll() {
-        EnderecoRepository enderecoRepository = new EnderecoRepository();
-        ArrayList<Endereco> retorno = enderecoRepository.listAll();
-        return retorno;
+    public ArrayList<Endereco> listAll() throws SQLException {
+         EnderecoRepository enderecoRepository = new EnderecoRepository();
+        List<Endereco> resultado = enderecoRepository.listAll();
+
+        return (ArrayList<Endereco>) resultado;
     }
 
-    public Endereco atualizar(Endereco endereco) {
+    public Endereco atualizar(Endereco endereco) throws SQLException {
         EnderecoRepository enderecoRepository = new EnderecoRepository();
-        return enderecoRepository.atualizar(endereco);
+        enderecoRepository.update(endereco);
+        return endereco;
+        
     }
 
-    public void deletar(int id) {
+    public void deletar(String logradouro) throws SQLException {
         EnderecoRepository enderecoRepository = new EnderecoRepository();
-        enderecoRepository.deletar(id);
+        enderecoRepository.delete(logradouro);
     }
     
 }
