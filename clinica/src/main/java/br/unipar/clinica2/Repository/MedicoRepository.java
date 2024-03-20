@@ -30,6 +30,7 @@ public class MedicoRepository {
     private static final String DELETE_BY_ID = "DELETE FROM MEDICO WHERE CRM = ?";
 
     private static final String UPDATE = "UPDATE MEDICO SET CRM = ?, ESPECIALIDADE_ID = ?, PESSOA_ID = ? WHERE CRM = ?";
+    
    public List<Medico> findAll() throws SQLException {
         ArrayList<Medico> retorno = new ArrayList<>();
         Connection conn = null;
@@ -67,7 +68,7 @@ public class MedicoRepository {
 
         return retorno;
     }
-   public void insert(Medico medico) throws SQLException {
+   public void inserir(Medico medico) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;

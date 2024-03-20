@@ -24,13 +24,6 @@ public interface MedicoWebService1 {
     ArrayList<Medico> listAll();
     
     @WebMethod
-    Medico findById(int id);
-    
-    @WebMethod
-    String logar(@WebParam(header = true)String login,
-                @WebParam(header = true)String senha);
-    
-    @WebMethod
     Medico inserir(Medico medico);
     
     @WebMethod

@@ -14,9 +14,9 @@ import java.util.ArrayList;
  * @author vinicius.duarte
  */
 public class MedicoService {
-     public void insert(Medico medico) throws SQLException {
+     public void inserir(Medico medico) throws SQLException {
         MedicoRepository medicoRepository = new MedicoRepository();
-        return medicoRepository.insert(medico);
+        return medicoRepository.inserir(medico);
     }
 
     public ArrayList<Medico> findAll() {

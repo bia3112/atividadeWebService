@@ -18,7 +18,7 @@ import java.util.List;
  * @author vinicius.duarte
  */
 public class EspecialidadeRepository {
-     private static final String INSERT = "INSERT INTO ESPECIALIDADE(NOME) VALUES(?)";
+     private static final String INSERIR = "INSERT INTO ESPECIALIDADE(NOME) VALUES(?)";
 
     private static final String FIND_ALL = "SELECT NOME FROM ESPECIALIDADE ";
 
@@ -65,7 +65,7 @@ public class EspecialidadeRepository {
 
         return retorno;
     }
-     public void insert(Especialidade especialidade) throws SQLException {
+     public void inserir(Especialidade especialidade) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -75,7 +75,7 @@ public class EspecialidadeRepository {
             
             conn = new ConnectionFactory().getConnection();
             
-            pstmt = conn.prepareStatement(INSERT);
+            pstmt = conn.prepareStatement(INSERIR);
             pstmt.setString(1, especialidade.getNome());
 
             pstmt.executeUpdate();

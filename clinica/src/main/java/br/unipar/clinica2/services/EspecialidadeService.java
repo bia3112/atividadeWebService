@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class EspecialidadeService {
       public Especialidade inserir(Especialidade especialidade) throws SQLException {
         EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-        return especialidadeRepository.insert(especialidade);
+        return especialidadeRepository.inserir(especialidade);
     }
 
     public ArrayList<Especialidade> listAll() {
