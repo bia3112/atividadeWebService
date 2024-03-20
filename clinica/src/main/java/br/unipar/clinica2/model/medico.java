@@ -43,10 +43,5 @@ public class Medico  extends Pessoa {
     public void setEspecialidade(Especialidade Especialidade) {
         this.Especialidade = Especialidade;
     }
-     
-  
-    
-     
-
     
 }

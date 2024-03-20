@@ -4,7 +4,7 @@
  */
 package br.unipar.clinica2.Repository;
 
-import br.unipar.clinica2.model.Especialidade;
+import br.unipar.clinica2.model.Endereco;
 import br.unipar.clinica2.ws.infrainstructure.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,19 +17,19 @@ import java.util.List;
  *
  * @author vinicius.duarte
  */
-public class EspecialidadeRepository {
-     private static final String INSERT = "INSERT INTO ESPECIALIDADE(NOME) VALUES(?)";
+public class EnderecoRepository {
+    private static final String INSERT = "INSERT INTO ENDERECO(LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO) VALUES(?, ?, ?, ?)";
 
-    private static final String FIND_ALL = "SELECT NOME FROM ESPECIALIDADE ";
+    private static final String FIND_ALL = "SELECT LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO FROM ENDERECO ";
 
-    private static final String FIND_BY_ID = "SELECT NOME FROM ESPECIALIDADE WHERE NOME = ? ";
+    private static final String FIND_BY_ID = "SELECT LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO FROM ENDERECO WHERE LOGRADOURO = ? ";
 
-    private static final String DELETE_BY_ID = "DELETE FROM ESPECIALIDADE WHERE NOME = ?";
+    private static final String DELETE_BY_ID = "DELETE FROM ENDERECO WHERE LOGRADOURO = ?";
 
-    private static final String UPDATE = "UPDATE ESPECIALIDADE SET NOME = ? WHERE NOME = ?";
-    
-     public List<Especialidade> findAll() throws SQLException {
-        ArrayList<Especialidade> retorno = new ArrayList<>();
+    private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
+     
+    public List<Endereco> findAll() throws SQLException {
+        ArrayList<Endereco> retorno = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -43,10 +43,12 @@ public class EspecialidadeRepository {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Especialidade especialidade = new Especialidade();
-                especialidade.setNome(rs.getString("NOME"));
-                
-                retorno.add(especialidade);
+                Endereco endereco = new Endereco();
+                endereco.setLogradouro(rs.getString("LOGRADOURO"));
+                endereco.setNumero(rs.getInt("NUMERO"));
+                endereco.setComplemento(rs.getString("COMPLEMENTO"));
+                endereco.setBairro(rs.getString("BAIRRO"));
+                retorno.add(endereco);
             }
         } finally {
 
@@ -65,7 +67,7 @@ public class EspecialidadeRepository {
 
         return retorno;
     }
-     public void insert(Especialidade especialidade) throws SQLException {
+       public void insert(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -76,7 +78,12 @@ public class EspecialidadeRepository {
             conn = new ConnectionFactory().getConnection();
             
             pstmt = conn.prepareStatement(INSERT);
-            pstmt.setString(1, especialidade.getNome());
+            
+            pstmt.setString(1, endereco.getLogradouro());
+            pstmt.setInt(2, endereco.getNumero());
+            pstmt.setString(3, endereco.getComplemento());
+            pstmt.setString(4, endereco.getBairro());
+          
 
             pstmt.executeUpdate();
         } finally {
@@ -90,7 +97,7 @@ public class EspecialidadeRepository {
         }
 
     }
-      public void update(Especialidade especialidade) throws SQLException {
+      public void update(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -100,7 +107,12 @@ public class EspecialidadeRepository {
              conn = new ConnectionFactory().getConnection();
            
             pstmt = conn.prepareStatement(UPDATE);
-           pstmt.setString(1, especialidade.getNome());
+
+           pstmt.setString(1, endereco.getLogradouro());
+            pstmt.setInt(2, endereco.getNumero());
+            pstmt.setString(3, endereco.getComplemento());
+            pstmt.setString(4, endereco.getBairro());
+
             pstmt.executeUpdate();
 
         } finally {
@@ -114,7 +126,7 @@ public class EspecialidadeRepository {
         }
 
     }
-       public void delete(String nome) throws SQLException {
+      public void delete(String logaduro) throws SQLException {
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -123,7 +135,7 @@ public class EspecialidadeRepository {
            conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETE_BY_ID);
 
-            pstmt.setString(1, nome);
+            pstmt.setString(1, logaduro);
 
             pstmt.executeUpdate();
 
@@ -137,26 +149,29 @@ public class EspecialidadeRepository {
             }
         }
     }
-         public Especialidade findById(String nome) throws SQLException {
+          public Endereco findById(String logaduro) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        Especialidade retorno = null;
+        Endereco retorno = null;
 
         try {
             
-            conn = new ConnectionFactory().getConnection();
+             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(FIND_BY_ID);
 
-            pstmt.setString(1, nome);
+            pstmt.setString(1, logaduro);
 
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                retorno = new Especialidade();
-                retorno.setNome(rs.getString("nome"));
-   
+                retorno = new Endereco();
+                retorno.setLogradouro(rs.getString("LOGRADOURO"));
+                retorno.setNumero(rs.getInt("NUMERO"));
+                retorno.setComplemento(rs.getString("COMPLEMENTO"));
+                retorno.setBairro(rs.getString("BAIRRO"));
+               
             }
         } finally {
 
@@ -174,7 +189,3 @@ public class EspecialidadeRepository {
         return retorno;
     }
 }
-
-
-    
-

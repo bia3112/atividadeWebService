@@ -18,7 +18,7 @@ public class MedicoWebServiceImp implements MedicoWebService1 {
 
     @Override
     public Medico inserir(Medico medico) {
-        MedicoService medicoService = new MedicoService();
+       MedicoService medicoService = new MedicoService();
         return medicoService.inserir(medico);
     }
 

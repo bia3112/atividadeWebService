@@ -6,6 +6,7 @@ package br.unipar.clinica2.services;
 
 import br.unipar.clinica2.Repository.EspecialidadeRepository;
 import br.unipar.clinica2.model.Especialidade;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * @author vinicius.duarte
  */
 public class EspecialidadeService {
-      public Especialidade inserir(Especialidade especialidade) {
+      public Especialidade inserir(Especialidade especialidade) throws SQLException {
         EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
         return especialidadeRepository.insert(especialidade);
     }

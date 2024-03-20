@@ -6,6 +6,7 @@ package br.unipar.clinica2.services;
 
 import br.unipar.clinica2.Repository.MedicoRepository;
 import br.unipar.clinica2.model.Medico;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * @author vinicius.duarte
  */
 public class MedicoService {
-     public Medico inserir(Medico medico) {
+     public Medico inserir(Medico medico) throws SQLException {
         MedicoRepository medicoRepository = new MedicoRepository();
         return medicoRepository.insert(medico);
     }
