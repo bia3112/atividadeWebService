@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.services;
 
+import br.unipar.clinica2.Repository.PessoaRepository;
 import br.unipar.clinica2.model.Pessoa;
 import java.util.ArrayList;
 
