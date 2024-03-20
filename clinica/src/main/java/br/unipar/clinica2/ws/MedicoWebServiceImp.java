@@ -17,15 +17,15 @@ import java.util.ArrayList;
 public class MedicoWebServiceImp implements MedicoWebService1 {
 
     @Override
-    public Medico inserir(Medico medico) {
+    public Medico insert(Medico medico) {
        MedicoService medicoService = new MedicoService();
-        return medicoService.inserir(medico);
+        return medicoService.insert(medico);
     }
 
     @Override
-    public ArrayList<Medico> listAll() {
+    public ArrayList<Medico> findAll() {
          MedicoService medicoService = new MedicoService();
-         return medicoService.listAll();
+         return medicoService.findAll();
     }
 
     @Override
