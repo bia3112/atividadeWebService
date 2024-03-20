@@ -6,6 +6,7 @@ package br.unipar.clinica2.ws;
 
 import br.unipar.clinica2.interfaces.PessoaWebService;
 import br.unipar.clinica2.model.Pessoa;
+import br.unipar.clinica2.services.PessoaService;
 import jakarta.jws.WebService;
 import java.util.ArrayList;
 
@@ -19,22 +20,26 @@ public class PessoaWebServiceImp implements PessoaWebService {
 
     @Override
     public Pessoa inserir(Pessoa pessoa) {
-        
+        PessoaService pessoaService = new PessoaService();
+        return pessoaService.inserir(pessoa);
     }
 
     @Override
     public ArrayList<Pessoa> listAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         PessoaService pessoaService = new PessoaService();
+         return pessoaService.listAll();
     }
 
     @Override
     public Pessoa atualizar(Pessoa pessoa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PessoaService pessoaService = new PessoaService();
+        return pessoaService.atualizar(pessoa);
     }
 
     @Override
     public void deletar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PessoaService pessoaService = new PessoaService();
+        pessoaService.deletar(id);
     }
     
 }
