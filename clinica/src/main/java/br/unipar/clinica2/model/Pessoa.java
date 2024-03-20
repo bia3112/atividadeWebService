@@ -8,7 +8,7 @@ package br.unipar.clinica2.model;
  *
  * @author Beatr
  */
-public class Pessoa{
+public abstract class Pessoa{
     
     private int id;
     private String nome;
