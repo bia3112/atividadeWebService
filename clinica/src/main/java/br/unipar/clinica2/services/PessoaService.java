@@ -5,6 +5,7 @@
 package br.unipar.clinica2.services;
 
 import br.unipar.clinica2.model.Pessoa;
+import br.unipar.clinica2.repositories.PessoaRepository;
 import java.util.ArrayList;
 
 /**
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 public class PessoaService {
 
     public Pessoa inserir(Pessoa pessoa) {
-        PessoaRepository pessoaRepository = new PessoaRepository();
-        
+       throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
 
     public ArrayList<Pessoa> listAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
