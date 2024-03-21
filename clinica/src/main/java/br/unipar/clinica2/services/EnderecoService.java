@@ -8,7 +8,6 @@ import br.unipar.clinica2.Repository.EnderecoRepository;
 import br.unipar.clinica2.model.Endereco;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -24,10 +23,9 @@ public class EnderecoService {
     }
 
     public ArrayList<Endereco> listAll() throws SQLException {
-         EnderecoRepository enderecoRepository = new EnderecoRepository();
-        List<Endereco> resultado = enderecoRepository.listAll();
-
-        return (ArrayList<Endereco>) resultado;
+        EnderecoRepository enderecoRepository = new EnderecoRepository();
+        ArrayList<Endereco> retorno = enderecoRepository.listAll();
+        return retorno;
     }
 
     public Endereco atualizar(Endereco endereco) throws SQLException {

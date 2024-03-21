@@ -7,6 +7,7 @@ package br.unipar.clinica2.ws;
 import jakarta.jws.WebService;
 import br.unipar.clinica2.interfaces.PacienteWebService;
 import br.unipar.clinica2.model.Paciente;
+import br.unipar.clinica2.services.PacienteService;
 import java.util.ArrayList;
 
 /**
@@ -17,33 +18,27 @@ import java.util.ArrayList;
 public class PacienteWerServicelmp implements PacienteWebService{
 
     @Override
-    public ArrayList<Paciente> findMedico(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public ArrayList<Paciente> listAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Paciente findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PacienteService pacienteService = new PacienteService();
+        return pacienteService.listAll();
     }
 
     @Override
     public Paciente inserir(Paciente paciente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PacienteService pacienteService = new PacienteService();
+        return pacienteService.inserir(paciente);
     }
 
     @Override
     public Paciente atualizar(Paciente paciente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PacienteService pacienteService = new PacienteService();
+        return pacienteService.atualizar(paciente);
     }
 
     @Override
     public void deletar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        PacienteService pacienteService = new PacienteService();
+        return pacienteService.deletar(id);
     }
     
 }

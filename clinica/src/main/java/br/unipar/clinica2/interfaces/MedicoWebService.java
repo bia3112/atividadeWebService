@@ -4,28 +4,28 @@
  */
 package br.unipar.clinica2.interfaces;
 
-import br.unipar.clinica2.model.Pessoa;
+import br.unipar.clinica2.model.Medico;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import java.util.ArrayList;
 
 /**
  *
- * @author Beatr
+ * @author vinid
  */
 @WebService
-public interface PessoaWebService {
+public interface MedicoWebService {
     
     @WebMethod
-    Pessoa inserir (Pessoa pessoa);
+    Medico inserir(Medico medico);
     
     @WebMethod
-    ArrayList<Pessoa> listAll();
+    ArrayList<Medico> listAll();
     
     @WebMethod
-    Pessoa atualizar(Pessoa pessoa);
+    Medico atualizar(Medico medico);
     
-    @WebMethod
+    @WebMethod 
     void deletar(int id);
-
+    
 }

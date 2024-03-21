@@ -15,18 +15,13 @@ import java.util.ArrayList;
  */
 @WebService
 public interface EspecialidadeWebService {
-     @WebMethod
-    ArrayList<Especialidade> findEspecialidade(String nome);
-    
-    @WebMethod
-    ArrayList<Especialidade> listAll();
-    
-    @WebMethod
-    Especialidade findById(int id);
     
     @WebMethod
     Especialidade inserir(Especialidade especialidade);
     
+    @WebMethod
+    ArrayList<Especialidade> listAll();
+
     @WebMethod
     Especialidade atualizar(Especialidade especialidade);
     

@@ -50,15 +50,5 @@ public class EspecialidadeWebServiceImp  implements EspecialidadeWebService{
         EspecialidadeService especialidadeService = new EspecialidadeService();
         especialidadeService.deletar(id);
     }
-
-    @Override
-    public ArrayList<Especialidade> findEspecialidade(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Especialidade findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
 }

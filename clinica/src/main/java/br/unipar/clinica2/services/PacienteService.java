@@ -13,21 +13,14 @@ import java.util.ArrayList;
  *
  * @author vinid
  */
-public class PacientesService {
+public class PacienteService {
+    
      public ArrayList<Paciente> listAll()throws SQLException{
         PacienteRepository pacienteRepository = new PacienteRepository();
-        return pacienteRepository.listAll();
+        ArrayList<Paciente> retorno = pacienteRepository.listAll();
+        return retorno;
     }
-    
-    public Paciente findById(int id)throws SQLException {
-        PacienteRepository pacienteRepository = new PacienteRepository();
-        return pacienteRepository.findById(id);
-    }
-    public ArrayList<Paciente> findPaciente(String nome) throws SQLException{
-        PacienteRepository pacienteRepository = new PacienteRepository();
-        return pacienteRepository.findPaciente(nome);
-    }
-    
+
     public Paciente insert(Paciente paciente) throws SQLException{
         PacienteRepository pacienteRepository = new PacienteRepository();
         return pacienteRepository.insert(paciente);

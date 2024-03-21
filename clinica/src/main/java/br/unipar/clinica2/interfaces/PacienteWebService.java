@@ -15,17 +15,12 @@ import java.util.ArrayList;
  */
 @WebService
 public interface PacienteWebService {
-     @WebMethod
-    ArrayList<Paciente> findMedico(String nome);
+
+    @WebMethod
+    Paciente inserir(Paciente paciente);
     
     @WebMethod
     ArrayList<Paciente> listAll();
-    
-    @WebMethod
-    Paciente findById(int id);
-    
-    @WebMethod
-    Paciente inserir(Paciente paciente);
     
     @WebMethod
     Paciente atualizar(Paciente paciente);

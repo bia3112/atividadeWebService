@@ -4,49 +4,43 @@
  */
 package br.unipar.clinica2.ws;
 
-import br.unipar.clinica2.interfaces.MedicoWebService1;
 import br.unipar.clinica2.model.Medico;
 import br.unipar.clinica2.services.MedicoService;
 import jakarta.jws.WebService;
 import java.util.ArrayList;
+import br.unipar.clinica2.interfaces.MedicoWebService;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author vinicius.duarte
  */
-@WebService(endpointInterface = "br.unipar.clinica2.interfaces.MedicoWebService1")
-public class MedicoWebServiceImp  implements MedicoWebService1 {
+@WebService(endpointInterface = "br.unipar.clinica2.interfaces.MedicoWebService")
+public class MedicoWebServiceImp  implements MedicoWebService {
 
     @Override
-    public ArrayList<Medico> findMedico(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Medico inserir(Medico medico) {
+        try {
+            MedicoService medicoService = new MedicoService();
+            return medicoService.inserir(medico);
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public ArrayList<Medico> listAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Medico findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public String logar(String login, String senha) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Medico inserir(Medico medico) {
-        MedicoService medicoService = new MedicoService();
-        return medicoService.inserir(medico);
-        return medico;
+       MedicoService medicoService = new MedicoService();
+        return medicoService.listAll(); 
     }
 
     @Override
     public Medico atualizar(Medico medico) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       MedicoService medicoService = new MedicoService();
+        return medicoService.atualizar(medico);  
     }
 
     @Override
@@ -54,37 +48,5 @@ public class MedicoWebServiceImp  implements MedicoWebService1 {
         MedicoService medicoService = new MedicoService();
         medicoService.deletar(id);
     }
-
-    
-    
-
-//
-//    @Override
-//    public Medico atualizar(Medico medico) {
-//        MedicoService medicoService = new MedicoService();
-//        return medicoService.atualizar(medico);
-//    }
-/
-//
-//    @Override
-//    public ArrayList<Medico> findMedico(String nome) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
-//
-//    @Override
-//    public Medico findById(int id) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
-//
-//    @Override
-//    public String logar(String login, String senha) {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
-//
-//    @Override
-//    public ArrayList<Medico> listAll() {
-//        MedicoService medicoService = new MedicoService();
-//         return medicoService.listAll();
-//    }
     
 }
