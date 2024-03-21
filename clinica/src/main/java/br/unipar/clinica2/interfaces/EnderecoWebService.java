@@ -28,5 +28,7 @@ public interface EnderecoWebService {
     @WebMethod
     void deletar(int id);
     
-    
+    @WebMethod
+    Endereco findById(int id);
+ 
 }

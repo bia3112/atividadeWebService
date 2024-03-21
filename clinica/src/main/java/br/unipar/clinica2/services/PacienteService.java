@@ -21,20 +21,26 @@ public class PacienteService {
         return retorno;
     }
 
-    public Paciente insert(Paciente paciente) throws SQLException{
+    public Paciente inserir(Paciente paciente) throws SQLException{
         PacienteRepository pacienteRepository = new PacienteRepository();
-        return pacienteRepository.insert(paciente);
+        pacienteRepository.inserir(paciente);
+        return paciente;
      }
     
-    public Paciente atualizar(Paciente paciente) {
+    public Paciente atualizar(Paciente paciente) throws SQLException {
         PacienteRepository pacienteRepository = new PacienteRepository();
-        return pacienteRepository.atualizar(paciente);
+        pacienteRepository.atualizar(paciente);
+        return paciente;
     }
     
-    public void delete(int id) throws SQLException{
+    public void deletar(int id) throws SQLException{
         PacienteRepository pacienteRepository = new PacienteRepository();
-        pacienteRepository.delete(id);
+        pacienteRepository.deletar(id);
+    }
+    
+    public Paciente findById(int id) throws SQLException {
+        PacienteRepository pacienteRepository = new PacienteRepository();
+        return pacienteRepository.findById(id);
     }
 
-    
 }

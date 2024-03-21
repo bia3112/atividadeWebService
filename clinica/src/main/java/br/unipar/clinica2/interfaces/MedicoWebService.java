@@ -28,4 +28,6 @@ public interface MedicoWebService {
     @WebMethod 
     void deletar(int id);
     
+    @WebMethod
+    Medico findById(int id);
 }

@@ -28,4 +28,7 @@ public interface EspecialidadeWebService {
     @WebMethod 
     void deletar(int id);
     
+    @WebMethod
+    Especialidade findById(int id);
+    
 }

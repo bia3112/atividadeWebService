@@ -15,8 +15,8 @@ public class Paciente extends Pessoa {
     public Paciente() {
     }
 
-    public Paciente(int id, String nome, String email, String telefone, Endereco endereco, String CPF) {
-        super(id, nome, email, telefone, endereco, CPF);
+    public Paciente(int id, String nome, String email, String telefone, Endereco endereco, String cpf) {
+        super(id, nome, email, telefone, endereco, cpf);
           
     }
 

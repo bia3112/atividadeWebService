@@ -35,20 +35,45 @@ public class EspecialidadeWebServiceImp  implements EspecialidadeWebService{
 
     @Override
     public ArrayList<Especialidade> listAll() {
-         EspecialidadeService especialidadeWebService = new EspecialidadeService();
-         return especialidadeWebService.listAll();
+        try {
+            EspecialidadeService especialidadeWebService = new EspecialidadeService();
+            return especialidadeWebService.listAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public Especialidade atualizar(Especialidade especialidade) {
-        EspecialidadeService especialidadeService = new EspecialidadeService();
-        return especialidadeService.atualizar(especialidade);
+        try {
+            EspecialidadeService especialidadeService = new EspecialidadeService();
+            return especialidadeService.atualizar(especialidade);
+        } catch (SQLException ex) {
+            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public void deletar(int id) {
-        EspecialidadeService especialidadeService = new EspecialidadeService();
-        especialidadeService.deletar(id);
+        try {
+            EspecialidadeService especialidadeService = new EspecialidadeService();
+            especialidadeService.deletar(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public Especialidade findById(int id) {
+        try {
+            EspecialidadeService especialidadeService = new EspecialidadeService();
+            return especialidadeService.findById(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }

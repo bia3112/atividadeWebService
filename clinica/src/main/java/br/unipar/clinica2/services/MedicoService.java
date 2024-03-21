@@ -21,19 +21,25 @@ public class MedicoService {
         return medico;
     }
 
-    public ArrayList<Medico> listAll() {
+    public ArrayList<Medico> listAll() throws SQLException {
         MedicoRepository medicoRepository = new MedicoRepository();
         ArrayList<Medico> retorno = medicoRepository.listAll();
         return retorno;
     }
 
-    public Medico atualizar(Medico medico) {
+    public Medico atualizar(Medico medico) throws SQLException{
         MedicoRepository medicoRepository = new MedicoRepository();
-        return medicoRepository.atualizar(medico);
+        medicoRepository.atualizar(medico);
+        return medico;
     }
 
-    public void deletar(int id) {
+    public void deletar(int id) throws SQLException{
         MedicoRepository medicoRepository = new MedicoRepository();
         medicoRepository.deletar(id);
+    }
+    
+    public Medico findById(int id) throws SQLException {
+        MedicoRepository medicoRepository = new MedicoRepository();
+        return medicoRepository.findById(id);
     }
 }

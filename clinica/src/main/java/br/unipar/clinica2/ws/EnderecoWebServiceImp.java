@@ -21,18 +21,6 @@ import java.util.logging.Logger;
 public class EnderecoWebServiceImp implements EnderecoWebService{
 
     @Override
-    public Endereco inserir(String logradouro) throws SQLException  {
-         EnderecoService enderecoService = new EnderecoService();
-        return enderecoService.inserir(logradouro);
-    }
-
-    @Override
-        public ArrayList<Endereco> listAll(String logradouro) {
-        EnderecoService enderecoService = new EnderecoService();
-        return enderecoService.listAll(logradouro);
-    }
-
-    @Override
     public Endereco atualizar(Endereco endereco) {
         EnderecoService enderecoService = new EnderecoService();
         try {
@@ -45,8 +33,44 @@ public class EnderecoWebServiceImp implements EnderecoWebService{
 
     @Override
     public void deletar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            EnderecoService enderecoService = new EnderecoService();
+            enderecoService.deletar(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public Endereco inserir(Endereco endereco) {
+        try {
+            EnderecoService enderecoService = new EnderecoService();
+            return enderecoService.inserir(endereco);
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Endereco> listAll() {
+        try {
+            EnderecoService enderecoService = new EnderecoService();
+            return enderecoService.listAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
    
-    
+    @Override
+    public Endereco findById(int id) {
+        try {
+            EnderecoService enderecoService = new EnderecoService();
+            return enderecoService.findById(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

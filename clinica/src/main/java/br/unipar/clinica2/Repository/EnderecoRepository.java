@@ -11,13 +11,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author vinicius.duarte
  */
 public class EnderecoRepository {
+    
     private static final String INSERT = "INSERT INTO ENDERECO(LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO) VALUES(?, ?, ?, ?)";
 
     private static final String FIND_ALL = "SELECT LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO FROM ENDERECO ";
@@ -28,7 +28,9 @@ public class EnderecoRepository {
 
     private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
      
-    public List<Endereco> listAll() throws SQLException {
+    
+    public ArrayList<Endereco> listAll() throws SQLException {
+        
         ArrayList<Endereco> retorno = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -37,9 +39,7 @@ public class EnderecoRepository {
         try {
             
             conn = new ConnectionFactory().getConnection();
-
             pstmt = conn.prepareStatement(FIND_ALL);
-
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -55,39 +55,34 @@ public class EnderecoRepository {
             if (rs != null) {
                 rs.close();
             }
-
             if (conn != null) {
                 conn.close();
             }
-
             if (pstmt != null) {
                 pstmt.close();
             }
         }
-
         return retorno;
     }
+    
        public void inserir(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
 
         try {
             
             conn = new ConnectionFactory().getConnection();
-            
             pstmt = conn.prepareStatement(INSERT);
             
             pstmt.setString(1, endereco.getLogradouro());
             pstmt.setInt(2, endereco.getNumero());
             pstmt.setString(3, endereco.getComplemento());
             pstmt.setString(4, endereco.getBairro());
-          
 
             pstmt.executeUpdate();
+            
         } finally {
-
             if (pstmt != null) {
                 pstmt.close();
             }
@@ -97,18 +92,17 @@ public class EnderecoRepository {
         }
 
     }
-      public void update(Endereco endereco) throws SQLException {
+      public void atualizar(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
 
         try {
             
-             conn = new ConnectionFactory().getConnection();
-           
+            conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(UPDATE);
 
-           pstmt.setString(1, endereco.getLogradouro());
+            pstmt.setString(1, endereco.getLogradouro());
             pstmt.setInt(2, endereco.getNumero());
             pstmt.setString(3, endereco.getComplemento());
             pstmt.setString(4, endereco.getBairro());
@@ -116,7 +110,6 @@ public class EnderecoRepository {
             pstmt.executeUpdate();
 
         } finally {
-
             if (pstmt != null) {
                 pstmt.close();
             }
@@ -126,21 +119,18 @@ public class EnderecoRepository {
         }
 
     }
-      public void delete(String logaduro) throws SQLException {
+      public void deletar(int id) throws SQLException {
+          
         Connection conn = null;
         PreparedStatement pstmt = null;
 
         try {
-
-           conn = new ConnectionFactory().getConnection();
+            conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETE_BY_ID);
-
-            pstmt.setString(1, logaduro);
-
+            pstmt.setInt(1, id);
             pstmt.executeUpdate();
 
         } finally {
-
             if (pstmt != null) {
                 pstmt.close();
             }
@@ -149,7 +139,8 @@ public class EnderecoRepository {
             }
         }
     }
-          public Endereco findById(String logaduro) throws SQLException {
+     
+    public Endereco findById(int id) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -158,27 +149,27 @@ public class EnderecoRepository {
 
         try {
             
-             conn = new ConnectionFactory().getConnection();
+            conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(FIND_BY_ID);
 
-            pstmt.setString(1, logaduro);
+            pstmt.setInt(1, id);
 
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 retorno = new Endereco();
+                retorno.setId(rs.getInt("ID"));
                 retorno.setLogradouro(rs.getString("LOGRADOURO"));
                 retorno.setNumero(rs.getInt("NUMERO"));
                 retorno.setComplemento(rs.getString("COMPLEMENTO"));
                 retorno.setBairro(rs.getString("BAIRRO"));
                
             }
+            
         } finally {
-
             if (rs != null) {
                 rs.close();
             }
-
             if (pstmt != null) {
                 pstmt.close();
             }
@@ -188,4 +179,6 @@ public class EnderecoRepository {
         }
         return retorno;
     }
+      
+      
 }

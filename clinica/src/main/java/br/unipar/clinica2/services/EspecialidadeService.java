@@ -21,21 +21,25 @@ public class EspecialidadeService {
         return especialidade;
     }
 
-    public ArrayList<Especialidade> listAll() {
+    public ArrayList<Especialidade> listAll() throws SQLException {
         EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
         ArrayList<Especialidade> retorno = especialidadeRepository.listAll();
         return retorno;
     }
 
-    public Especialidade atualizar(Especialidade especialidade) {
+    public Especialidade atualizar(Especialidade especialidade) throws SQLException {
         EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-        return especialidadeRepository.atualizar(especialidade);
+        especialidadeRepository.atualizar(especialidade);
+        return especialidade;
     }
 
-    public void deletar(int id) {
+    public void deletar(int id) throws SQLException {
         EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
         especialidadeRepository.deletar(id);
     }
     
-    
+    public Especialidade findById(int id) throws SQLException {
+        EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
+        return especialidadeRepository.findById(id);
+    }
 }

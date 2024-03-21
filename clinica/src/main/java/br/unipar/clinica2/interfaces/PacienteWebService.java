@@ -28,4 +28,7 @@ public interface PacienteWebService {
     @WebMethod 
     void deletar(int id);
     
+    @WebMethod
+    Paciente findById(int id);
+    
 }

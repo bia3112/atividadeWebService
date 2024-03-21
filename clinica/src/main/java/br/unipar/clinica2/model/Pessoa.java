@@ -15,18 +15,18 @@ public abstract class Pessoa{
     private String email;
     private String telefone;
     private Endereco endereco;
-    private String CPF;
+    private String cpf;
 
     public Pessoa() {
     }
 
-    public Pessoa(int id, String nome, String email, String telefone, Endereco endereco, String CPF) {
+    public Pessoa(int id, String nome, String email, String telefone, Endereco endereco, String cpf) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.CPF = CPF;
+        this.cpf = cpf;
     }
 
     public int getId() {
@@ -69,12 +69,12 @@ public abstract class Pessoa{
         this.endereco = endereco;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
     
 

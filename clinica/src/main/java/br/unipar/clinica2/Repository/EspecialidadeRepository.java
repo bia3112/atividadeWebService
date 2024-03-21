@@ -11,24 +11,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author vinicius.duarte
  */
 public class EspecialidadeRepository {
-     private static final String INSERIR = "INSERT INTO ESPECIALIDADE(NOME) VALUES(?)";
-
-    private static final String FIND_ALL = "SELECT NOME FROM ESPECIALIDADE ";
-
-    private static final String FIND_BY_ID = "SELECT NOME FROM ESPECIALIDADE WHERE NOME = ? ";
-
-    private static final String DELETE_BY_ID = "DELETE FROM ESPECIALIDADE WHERE NOME = ?";
-
-    private static final String UPDATE = "UPDATE ESPECIALIDADE SET NOME = ? WHERE NOME = ?";
     
-     public List<Especialidade> findAll() throws SQLException {
+    private static final String INSERIR = "INSERT INTO ESPECIALIDADE(NOME) VALUES(?)";
+
+    private static final String LIST_ALL = "SELECT NOME FROM ESPECIALIDADE ";
+
+    private static final String DELETAR = "DELETE FROM ESPECIALIDADE WHERE NOME = ?";
+
+    private static final String ATUALIZAR = "UPDATE ESPECIALIDADE SET NOME = ? WHERE NOME = ?";
+    
+    private static final String FIND_BY_ID = "SELECT FROM ESPECIALIDADE WHERE ID = ?";
+    
+    
+    public ArrayList<Especialidade> listAll() throws SQLException {
+         
         ArrayList<Especialidade> retorno = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -37,9 +39,8 @@ public class EspecialidadeRepository {
         try {
             
             conn = new ConnectionFactory().getConnection();
-
-            pstmt = conn.prepareStatement(FIND_ALL);
-
+            pstmt = conn.prepareStatement(LIST_ALL);
+            
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
@@ -49,15 +50,12 @@ public class EspecialidadeRepository {
                 retorno.add(especialidade);
             }
         } finally {
-
             if (rs != null) {
                 rs.close();
             }
-
             if (conn != null) {
                 conn.close();
             }
-
             if (pstmt != null) {
                 pstmt.close();
             }
@@ -65,11 +63,11 @@ public class EspecialidadeRepository {
 
         return retorno;
     }
-     public void inserir(Especialidade especialidade) throws SQLException {
+     
+    public void inserir(Especialidade especialidade) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
 
         try {
             
@@ -79,8 +77,8 @@ public class EspecialidadeRepository {
             pstmt.setString(1, especialidade.getNome());
 
             pstmt.executeUpdate();
-        } finally {
 
+        } finally {
             if (pstmt != null) {
                 pstmt.close();
             }
@@ -88,23 +86,22 @@ public class EspecialidadeRepository {
                 conn.close();
             }
         }
-
     }
-      public void update(Especialidade especialidade) throws SQLException {
+     
+    public void atualizar(Especialidade especialidade) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
 
         try {
             
-             conn = new ConnectionFactory().getConnection();
-           
-            pstmt = conn.prepareStatement(UPDATE);
-           pstmt.setString(1, especialidade.getNome());
+            conn = new ConnectionFactory().getConnection();
+            pstmt = conn.prepareStatement(ATUALIZAR);
+            pstmt.setString(1, especialidade.getNome());
+            
             pstmt.executeUpdate();
 
         } finally {
-
             if (pstmt != null) {
                 pstmt.close();
             }
@@ -112,23 +109,21 @@ public class EspecialidadeRepository {
                 conn.close();
             }
         }
-
     }
-       public void delete(String nome) throws SQLException {
+      
+    public void deletar(int id) throws SQLException {
         Connection conn = null;
         PreparedStatement pstmt = null;
 
         try {
 
-           conn = new ConnectionFactory().getConnection();
-            pstmt = conn.prepareStatement(DELETE_BY_ID);
-
-            pstmt.setString(1, nome);
+            conn = new ConnectionFactory().getConnection();
+            pstmt = conn.prepareStatement(DELETAR);
+            pstmt.setInt(1, id);
 
             pstmt.executeUpdate();
 
         } finally {
-
             if (pstmt != null) {
                 pstmt.close();
             }
@@ -137,7 +132,8 @@ public class EspecialidadeRepository {
             }
         }
     }
-         public Especialidade findById(String nome) throws SQLException {
+
+    public Especialidade findById(int id) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -146,24 +142,24 @@ public class EspecialidadeRepository {
 
         try {
             
-            conn = new ConnectionFactory().getConnection();
+             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(FIND_BY_ID);
 
-            pstmt.setString(1, nome);
+            pstmt.setInt(1, id);
 
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 retorno = new Especialidade();
-                retorno.setNome(rs.getString("nome"));
-   
+                retorno.setId(rs.getInt("ID"));
+                retorno.setNome(rs.getString("NOME")); 
+               
             }
+            
         } finally {
-
             if (rs != null) {
                 rs.close();
             }
-
             if (pstmt != null) {
                 pstmt.close();
             }

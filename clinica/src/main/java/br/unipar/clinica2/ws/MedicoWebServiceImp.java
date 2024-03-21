@@ -33,20 +33,45 @@ public class MedicoWebServiceImp  implements MedicoWebService {
 
     @Override
     public ArrayList<Medico> listAll() {
-       MedicoService medicoService = new MedicoService();
-        return medicoService.listAll(); 
+        try {
+            MedicoService medicoService = new MedicoService(); 
+            return medicoService.listAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public Medico atualizar(Medico medico) {
-       MedicoService medicoService = new MedicoService();
-        return medicoService.atualizar(medico);  
+        try {
+            MedicoService medicoService = new MedicoService();  
+            return medicoService.atualizar(medico);
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public void deletar(int id) {
-        MedicoService medicoService = new MedicoService();
-        medicoService.deletar(id);
+        try {
+            MedicoService medicoService = new MedicoService();
+            medicoService.deletar(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public Medico findById(int id) {
+        try {
+            MedicoService medicoService = new MedicoService();
+            return medicoService.findById(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 }
