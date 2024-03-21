@@ -21,25 +21,15 @@ import java.util.logging.Logger;
 public class EnderecoWebServiceImp implements EnderecoWebService{
 
     @Override
-    public Endereco inserir(Endereco endereco)  {
-        EnderecoService enderecoService = new EnderecoService();
-        try {
-            return enderecoService.inserir(endereco);
-        } catch (SQLException ex) {
-            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return endereco;
+    public Endereco inserir(String logradouro) throws SQLException  {
+         EnderecoService enderecoService = new EnderecoService();
+        return enderecoService.inserir(logradouro);
     }
 
     @Override
-    public ArrayList<Endereco> listAll() {
-         EnderecoService enderecoService = new EnderecoService();
-        try {
-            return enderecoService.listAll();
-        } catch (SQLException ex) {
-            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        public ArrayList<Endereco> listAll(String logradouro) {
+        EnderecoService enderecoService = new EnderecoService();
+        return enderecoService.listAll(logradouro);
     }
 
     @Override

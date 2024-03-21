@@ -22,11 +22,16 @@ public class EnderecoService {
         return endereco;
     }
 
-    public ArrayList<Endereco> listAll() throws SQLException {
-        EnderecoRepository enderecoRepository = new EnderecoRepository();
-        ArrayList<Endereco> retorno = enderecoRepository.listAll();
-        return retorno;
-    }
+//    public ArrayList<Endereco> listAll() throws SQLException {
+//<<<<<<< HEAD
+//        EnderecoRepository enderecoRepository = new EnderecoRepository();
+//        ArrayList<Endereco> retorno = enderecoRepository.listAll();
+//        return retorno;
+//=======
+//         EnderecoService enderecoService = new EnderecoService();
+//        return enderecoService.listAll();
+//>>>>>>> 50241eb058ed048c700c8a2fd875e63f62849f91
+//    }
 
     public Endereco atualizar(Endereco endereco) throws SQLException {
         EnderecoRepository enderecoRepository = new EnderecoRepository();
