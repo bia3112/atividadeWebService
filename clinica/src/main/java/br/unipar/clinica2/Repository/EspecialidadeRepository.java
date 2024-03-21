@@ -64,7 +64,7 @@ public class EspecialidadeRepository {
         return retorno;
     }
      
-    public void inserir(Especialidade especialidade) throws SQLException {
+    public Especialidade inserir(Especialidade especialidade) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -86,9 +86,10 @@ public class EspecialidadeRepository {
                 conn.close();
             }
         }
+        return especialidade;
     }
      
-    public void atualizar(Especialidade especialidade) throws SQLException {
+    public Especialidade atualizar(Especialidade especialidade) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -109,6 +110,7 @@ public class EspecialidadeRepository {
                 conn.close();
             }
         }
+        return especialidade;
     }
       
     public void deletar(int id) throws SQLException {

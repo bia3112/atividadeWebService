@@ -68,7 +68,7 @@ public class PacienteRepository {
         return retorno;
     }
     
-    public void inserir(Paciente paciente) throws SQLException {
+    public Paciente inserir(Paciente paciente) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -95,9 +95,10 @@ public class PacienteRepository {
                 conn.close();
             }
         }
+       return paciente;
     }
     
-    public void atualizar(Paciente paciente) throws SQLException {
+    public Paciente atualizar(Paciente paciente) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -124,6 +125,7 @@ public class PacienteRepository {
                 conn.close();
             }
         }
+        return paciente;
     }
     
     public void deletar(int id) throws SQLException {

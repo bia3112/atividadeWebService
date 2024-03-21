@@ -66,7 +66,8 @@ public class MedicoRepository {
 
         return retorno;
     }
-   public void inserir(Medico medico) throws SQLException {
+    
+   public Medico inserir(Medico medico) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -90,10 +91,13 @@ public class MedicoRepository {
                 conn.close();
             }
         }
-       
-
+        
+        return medico;
+        
     }
-   public void atualizar(Medico medico) throws SQLException {
+   
+   
+   public Medico atualizar(Medico medico) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -119,8 +123,10 @@ public class MedicoRepository {
                 conn.close();
             }
         }
+        return medico;
 
     }
+   
      public void deletar(int id) throws SQLException {
          
         Connection conn = null;
@@ -142,6 +148,7 @@ public class MedicoRepository {
                 conn.close();
             }
         }
+
     }
    public Medico findById(int id) throws SQLException {
 

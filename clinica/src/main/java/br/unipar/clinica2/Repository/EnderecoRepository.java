@@ -65,7 +65,7 @@ public class EnderecoRepository {
         return retorno;
     }
     
-       public void inserir(Endereco endereco) throws SQLException {
+       public Endereco inserir(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -90,9 +90,10 @@ public class EnderecoRepository {
                 conn.close();
             }
         }
-
+        return endereco;
     }
-      public void atualizar(Endereco endereco) throws SQLException {
+       
+      public Endereco atualizar(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -117,6 +118,7 @@ public class EnderecoRepository {
                 conn.close();
             }
         }
+        return endereco;
 
     }
       public void deletar(int id) throws SQLException {
