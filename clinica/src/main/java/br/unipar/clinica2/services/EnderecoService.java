@@ -24,10 +24,8 @@ public class EnderecoService {
     }
 
     public ArrayList<Endereco> listAll() throws SQLException {
-         EnderecoRepository enderecoRepository = new EnderecoRepository();
-        List<Endereco> resultado = enderecoRepository.listAll();
-
-        return (ArrayList<Endereco>) resultado;
+         EnderecoService enderecoService = new EnderecoService();
+        return enderecoService.listAll();
     }
 
     public Endereco atualizar(Endereco endereco) throws SQLException {
