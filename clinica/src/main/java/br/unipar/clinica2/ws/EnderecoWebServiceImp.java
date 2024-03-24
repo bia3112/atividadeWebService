@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.ws;
 
+import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.interfaces.EnderecoWebService;
 import br.unipar.clinica2.model.Endereco;
 import br.unipar.clinica2.services.EnderecoService;
@@ -42,14 +43,9 @@ public class EnderecoWebServiceImp implements EnderecoWebService{
     }
 
     @Override
-    public Endereco inserir(Endereco endereco) {
-        try {
+    public Endereco inserir(Endereco endereco) throws ValidacaoException {
             EnderecoService enderecoService = new EnderecoService();
             return enderecoService.inserir(endereco);
-        } catch (SQLException ex) {
-            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 
     @Override

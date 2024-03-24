@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.interfaces;
 
+import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.model.Endereco;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public interface EnderecoWebService {
     
     @WebMethod
-    Endereco inserir(Endereco endereco);
+    Endereco inserir(Endereco endereco) throws ValidacaoException;
     
     @WebMethod
     ArrayList<Endereco> listAll();
