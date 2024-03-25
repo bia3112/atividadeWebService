@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class MedicoWebServiceImp  implements MedicoWebService {
 
     @Override
-    public Medico inserir(Medico medico) throws ValidacaoException, CampoPreenchidoException{
+    public Medico inserir(Medico medico) throws ValidacaoException, CampoPreenchidoException {
         MedicoService medicoService = new MedicoService();
         return medicoService.inserir(medico);
     }

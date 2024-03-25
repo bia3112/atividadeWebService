@@ -4,6 +4,8 @@
  */
 package br.unipar.clinica2.services;
 
+import br.unipar.clinica2.Exception.CampoPreenchidoException;
+import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.Repository.EspecialidadeRepository;
 import br.unipar.clinica2.model.Especialidade;
 import java.sql.SQLException;
@@ -15,10 +17,22 @@ import java.util.ArrayList;
  */
 public class EspecialidadeService {
     
-      public Especialidade inserir(Especialidade especialidade) throws SQLException{
-        EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-        especialidadeRepository.inserir(especialidade);
-        return especialidade;
+      public Especialidade inserir(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException{
+          
+        if(especialidade.getNome().length() <= 8) {
+            throw new ValidacaoException("Nome deve possuir"
+                    + " mais de 8 caracteres.");
+        }
+        if(especialidade.getNome() == null) {
+            throw new CampoPreenchidoException("nome");
+        }
+          
+        try {
+            EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
+            return especialidadeRepository.inserir(especialidade);
+        } catch (SQLException ex) {
+            throw new ValidacaoException("Erro Interno de Servidor");
+        }
     }
 
     public ArrayList<Especialidade> listAll() throws SQLException {
@@ -27,19 +41,44 @@ public class EspecialidadeService {
         return retorno;
     }
 
-    public Especialidade atualizar(Especialidade especialidade) throws SQLException {
-        EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-        especialidadeRepository.atualizar(especialidade);
-        return especialidade;
+    public Especialidade atualizar(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
+        
+        if(especialidade.getNome().length() <= 8) {
+            throw new ValidacaoException("Nome deve possuir"
+                    + " mais de 8 caracteres.");
+        }
+        if(especialidade.getNome() == null) {
+            throw new CampoPreenchidoException("nome");
+        }
+        
+        try {
+            EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
+            return especialidadeRepository.atualizar(especialidade);
+        } catch (SQLException ex) {
+            throw new ValidacaoException("Erro Interno de Servidor");
+        }
     }
 
-    public void deletar(int id) throws SQLException {
-        EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-        especialidadeRepository.deletar(id);
+    public void deletar(int id) throws ValidacaoException {
+        try {
+            EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
+            especialidadeRepository.deletar(id);
+        } catch (SQLException ex) {
+            throw new ValidacaoException("Erro Interno de Servidor");
+        }
     }
     
-    public Especialidade findById(int id) throws SQLException {
-        EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-        return especialidadeRepository.findById(id);
+    public Especialidade findById(int id) throws ValidacaoException, CampoPreenchidoException {
+        
+        if(id <= 0) {
+            throw new ValidacaoException("Número de caracteres inválido.");
+        }
+        
+        try {
+            EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
+            return especialidadeRepository.findById(id);
+        } catch (SQLException ex) {
+            throw new ValidacaoException("Erro Interno de Servidor");
+        }
     }
 }

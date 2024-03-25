@@ -5,6 +5,8 @@
 package br.unipar.clinica2.ws;
 
 
+import br.unipar.clinica2.Exception.CampoPreenchidoException;
+import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.interfaces.EspecialidadeWebService;
 import br.unipar.clinica2.model.Especialidade;
 import br.unipar.clinica2.services.EspecialidadeService;
@@ -23,14 +25,9 @@ import java.util.logging.Logger;
 public class EspecialidadeWebServiceImp  implements EspecialidadeWebService{
     
     @Override
-    public Especialidade inserir(Especialidade especialidade) {
+    public Especialidade inserir(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
         EspecialidadeService especialidadeService = new EspecialidadeService() {};
-        try {
-            return especialidadeService.inserir(especialidade);
-        } catch (SQLException ex) {
-            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return especialidade;
+        return especialidadeService.inserir(especialidade);
     }
 
     @Override
@@ -45,35 +42,21 @@ public class EspecialidadeWebServiceImp  implements EspecialidadeWebService{
     }
 
     @Override
-    public Especialidade atualizar(Especialidade especialidade) {
-        try {
-            EspecialidadeService especialidadeService = new EspecialidadeService();
-            return especialidadeService.atualizar(especialidade);
-        } catch (SQLException ex) {
-            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public Especialidade atualizar(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
+        EspecialidadeService especialidadeService = new EspecialidadeService();
+        return especialidadeService.atualizar(especialidade);
     }
 
     @Override
-    public void deletar(int id) {
-        try {
-            EspecialidadeService especialidadeService = new EspecialidadeService();
-            especialidadeService.deletar(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void deletar(int id) throws ValidacaoException {
+        EspecialidadeService especialidadeService = new EspecialidadeService();
+        especialidadeService.deletar(id);
     }
     
     @Override
-    public Especialidade findById(int id) {
-        try {
-            EspecialidadeService especialidadeService = new EspecialidadeService();
-            return especialidadeService.findById(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public Especialidade findById(int id) throws ValidacaoException, CampoPreenchidoException {
+        EspecialidadeService especialidadeService = new EspecialidadeService();
+        return especialidadeService.findById(id);
     }
     
 }

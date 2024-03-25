@@ -4,6 +4,8 @@
  */
 package br.unipar.clinica2.interfaces;
 
+import br.unipar.clinica2.Exception.CampoPreenchidoException;
+import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.model.Especialidade;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
@@ -17,18 +19,18 @@ import java.util.ArrayList;
 public interface EspecialidadeWebService {
     
     @WebMethod
-    Especialidade inserir(Especialidade especialidade);
+    Especialidade inserir(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
     ArrayList<Especialidade> listAll();
 
     @WebMethod
-    Especialidade atualizar(Especialidade especialidade);
+    Especialidade atualizar(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod 
-    void deletar(int id);
+    void deletar(int id) throws ValidacaoException;
     
     @WebMethod
-    Especialidade findById(int id);
+    Especialidade findById(int id) throws ValidacaoException, CampoPreenchidoException;
     
 }
