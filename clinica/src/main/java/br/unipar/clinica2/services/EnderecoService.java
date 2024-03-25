@@ -22,18 +22,26 @@ public class EnderecoService {
             throw new ValidacaoException("Bairro deve possuir"
                    + " mais do que 3 caracteres.");
         }
+        if(endereco.getBairro() == null) {
+            throw new ValidacaoException("bairro");
+        }
+        
         if(endereco.getLogradouro().length() <= 3) {
             throw new ValidacaoException("Logradouro deve possuir"
                     + " mais do que 3 caracteres.");
         }
+        if(endereco.getLogradouro() == null) {
+            throw new ValidacaoException("logradouro");
+        }
+         
         if(endereco.getComplemento().length() <= 3) {
             throw new ValidacaoException("Complemento deve possuir"
                     + " mais do que 3 caracteres.");
         }
-        
+  
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
-            enderecoRepository.inserir(endereco);
+            return enderecoRepository.inserir(endereco);
         } catch(SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
