@@ -4,6 +4,8 @@
  */
 package br.unipar.clinica2.ws;
 
+import br.unipar.clinica2.Exception.CampoPreenchidoException;
+import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.model.Medico;
 import br.unipar.clinica2.services.MedicoService;
 import jakarta.jws.WebService;
@@ -21,14 +23,9 @@ import java.util.logging.Logger;
 public class MedicoWebServiceImp  implements MedicoWebService {
 
     @Override
-    public Medico inserir(Medico medico) {
-        try {
-            MedicoService medicoService = new MedicoService();
-            return medicoService.inserir(medico);
-        } catch (SQLException ex) {
-            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public Medico inserir(Medico medico) throws ValidacaoException, CampoPreenchidoException{
+        MedicoService medicoService = new MedicoService();
+        return medicoService.inserir(medico);
     }
 
     @Override
@@ -43,35 +40,21 @@ public class MedicoWebServiceImp  implements MedicoWebService {
     }
 
     @Override
-    public Medico atualizar(Medico medico) {
-        try {
-            MedicoService medicoService = new MedicoService();  
-            return medicoService.atualizar(medico);
-        } catch (SQLException ex) {
-            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public Medico atualizar(Medico medico) throws ValidacaoException, CampoPreenchidoException {
+        MedicoService medicoService = new MedicoService();  
+        return medicoService.atualizar(medico);
     }
 
     @Override
-    public void deletar(int id) {
-        try {
-            MedicoService medicoService = new MedicoService();
-            medicoService.deletar(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void deletar(int id) throws ValidacaoException {
+        MedicoService medicoService = new MedicoService();
+        medicoService.deletar(id);
     }
     
     @Override
-    public Medico findById(int id) {
-        try {
-            MedicoService medicoService = new MedicoService();
-            return medicoService.findById(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public Medico findById(int id) throws ValidacaoException, CampoPreenchidoException {
+        MedicoService medicoService = new MedicoService();
+        return medicoService.findById(id);
     }
     
 }
