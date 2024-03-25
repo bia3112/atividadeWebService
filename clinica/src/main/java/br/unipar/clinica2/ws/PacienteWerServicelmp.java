@@ -4,6 +4,8 @@
  */
 package br.unipar.clinica2.ws;
 
+import br.unipar.clinica2.Exception.CampoPreenchidoException;
+import br.unipar.clinica2.Exception.ValidacaoException;
 import jakarta.jws.WebService;
 import br.unipar.clinica2.interfaces.PacienteWebService;
 import br.unipar.clinica2.model.Paciente;
@@ -32,46 +34,27 @@ public class PacienteWerServicelmp implements PacienteWebService{
     }
 
     @Override
-    public Paciente inserir(Paciente paciente) {
-        try {
-            PacienteService pacienteService = new PacienteService();
-            return pacienteService.inserir(paciente);
-        } catch (SQLException ex) {
-            Logger.getLogger(PacienteWerServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public Paciente inserir(Paciente paciente) throws ValidacaoException, CampoPreenchidoException{
+        PacienteService pacienteService = new PacienteService();
+        return pacienteService.inserir(paciente);
     }
 
     @Override
-    public Paciente atualizar(Paciente paciente) {
-        try {
-            PacienteService pacienteService = new PacienteService();
-            return pacienteService.atualizar(paciente);
-        } catch (SQLException ex) {
-            Logger.getLogger(PacienteWerServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public Paciente atualizar(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
+        PacienteService pacienteService = new PacienteService();
+        return pacienteService.atualizar(paciente);
     }
 
     @Override
-    public void deletar(int id) {
-        try {
-            PacienteService pacienteService = new PacienteService();
-            pacienteService.deletar(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(PacienteWerServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void deletar(int id) throws ValidacaoException {
+        PacienteService pacienteService = new PacienteService();
+        pacienteService.deletar(id);
     }
 
     @Override
-    public Paciente findById(int id) {
-        try {
-            PacienteService pacienteService = new PacienteService();
-            return pacienteService.findById(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(PacienteWerServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public Paciente findById(int id) throws ValidacaoException, CampoPreenchidoException {
+        PacienteService pacienteService = new PacienteService();
+        return pacienteService.findById(id);
     }
     
 }
