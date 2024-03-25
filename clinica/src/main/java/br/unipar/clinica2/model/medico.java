@@ -8,7 +8,7 @@ package br.unipar.clinica2.model;
  *
  * @author vinid
  */
-public class Medico  extends Pessoa {
+public class Medico extends Pessoa {
     
      
      private int CRM;
