@@ -74,26 +74,12 @@ public class PacienteService {
         if(paciente.getNome() == null) {
             throw new CampoPreenchidoException("nome");
         }
-        if(paciente.getEmail().length() <= 12) {
-            throw new ValidacaoException("Email deve possuir"
-                   + " mais do que 12 caracteres.");
-        }
-        if(paciente.getEmail() == null) {
-            throw new CampoPreenchidoException("email");
-        }
         if(paciente.getTelefone().length() <= 8) {
             throw new ValidacaoException("Telefone deve possuir"
                    + " mais do que 8 caracteres.");
         }
         if(paciente.getTelefone() == null) {
             throw new CampoPreenchidoException("telefone");
-        }
-        if(paciente.getCpf().length() <= 10) {
-            throw new ValidacaoException("CPF deve possuir"
-                   + " mais do que 10 caracteres.");
-        }
-        if(paciente.getCpf() == null) {
-            throw new CampoPreenchidoException("CPF");
         }
         if(paciente.getEndereco() == null) {
             throw new CampoPreenchidoException("endereço");
