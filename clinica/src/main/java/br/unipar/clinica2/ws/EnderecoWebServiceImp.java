@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.ws;
 
+import br.unipar.clinica2.Exception.CampoPreenchidoException;
 import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.interfaces.EnderecoWebService;
 import br.unipar.clinica2.model.Endereco;
@@ -22,28 +23,19 @@ import java.util.logging.Logger;
 public class EnderecoWebServiceImp implements EnderecoWebService{
 
     @Override
-    public Endereco atualizar(Endereco endereco) {
+    public Endereco atualizar(Endereco endereco) throws ValidacaoException, CampoPreenchidoException{
         EnderecoService enderecoService = new EnderecoService();
-        try {
-            return enderecoService.atualizar(endereco);
-        } catch (SQLException ex) {
-            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return endereco;
+        return enderecoService.atualizar(endereco);
     }
 
     @Override
-    public void deletar(int id) {
-        try {
-            EnderecoService enderecoService = new EnderecoService();
-            enderecoService.deletar(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void deletar(int id) throws ValidacaoException {
+        EnderecoService enderecoService = new EnderecoService();
+        enderecoService.deletar(id);
     }
 
     @Override
-    public Endereco inserir(Endereco endereco) throws ValidacaoException {
+    public Endereco inserir(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
             EnderecoService enderecoService = new EnderecoService();
             return enderecoService.inserir(endereco);
     }
@@ -60,13 +52,14 @@ public class EnderecoWebServiceImp implements EnderecoWebService{
     }
    
     @Override
-    public Endereco findById(int id) {
+    public Endereco findById(int id) throws ValidacaoException, CampoPreenchidoException{
         try {
             EnderecoService enderecoService = new EnderecoService();
             return enderecoService.findById(id);
-        } catch (SQLException ex) {
+        } catch (ValidacaoException ex) {
             Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
+    
 }

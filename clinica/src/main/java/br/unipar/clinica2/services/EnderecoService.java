@@ -4,11 +4,14 @@
  */
 package br.unipar.clinica2.services;
 
+import br.unipar.clinica2.Exception.CampoPreenchidoException;
 import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.Repository.EnderecoRepository;
 import br.unipar.clinica2.model.Endereco;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,14 +19,14 @@ import java.util.ArrayList;
  */
 public class EnderecoService {
 
-    public Endereco inserir(Endereco endereco) throws ValidacaoException {
+    public Endereco inserir(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
        
         if(endereco.getBairro().length() <= 3) {
             throw new ValidacaoException("Bairro deve possuir"
                    + " mais do que 3 caracteres.");
         }
         if(endereco.getBairro() == null) {
-            throw new ValidacaoException("bairro");
+            throw new CampoPreenchidoException("bairro");
         }
         
         if(endereco.getLogradouro().length() <= 3) {
@@ -31,7 +34,7 @@ public class EnderecoService {
                     + " mais do que 3 caracteres.");
         }
         if(endereco.getLogradouro() == null) {
-            throw new ValidacaoException("logradouro");
+            throw new CampoPreenchidoException("logradouro");
         }
          
         if(endereco.getComplemento().length() <= 3) {
@@ -54,21 +57,64 @@ public class EnderecoService {
         return retorno;
     }
 
-    public Endereco atualizar(Endereco endereco) throws SQLException {
-        EnderecoRepository enderecoRepository = new EnderecoRepository();
-        enderecoRepository.atualizar(endereco);
-        return endereco;
+    public Endereco atualizar(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
         
+        if(endereco.getBairro().length() <= 3) {
+            throw new ValidacaoException("Bairro deve possuir"
+                   + " mais do que 3 caracteres.");
+        }
+        if(endereco.getBairro() == null) {
+            throw new CampoPreenchidoException("bairro");
+        }
+        
+        if(endereco.getLogradouro().length() <= 3) {
+            throw new ValidacaoException("Logradouro deve possuir"
+                    + " mais do que 3 caracteres.");
+        }
+        if(endereco.getLogradouro() == null) {
+            throw new CampoPreenchidoException("logradouro");
+        }
+         
+        if(endereco.getComplemento().length() <= 3) {
+            throw new ValidacaoException("Complemento deve possuir"
+                    + " mais do que 3 caracteres.");
+        }
+        
+        try {
+            EnderecoRepository enderecoRepository = new EnderecoRepository();
+            return enderecoRepository.atualizar(endereco);
+        } catch (SQLException ex) {
+            throw new ValidacaoException("Erro Interno de Servidor");
+        }
+  
     }
 
-    public void deletar(int id) throws SQLException {
-        EnderecoRepository enderecoRepository = new EnderecoRepository();
-        enderecoRepository.deletar(id);
+    public void deletar(int id) throws ValidacaoException {
+
+        try {
+            EnderecoRepository enderecoRepository = new EnderecoRepository();
+            enderecoRepository.deletar(id);
+        } catch (SQLException ex) {
+            throw new ValidacaoException("Erro Interno de Servidor");
+        }
     }
     
-    public Endereco findById(int id) throws SQLException {
-        EnderecoRepository enderecoRepository = new EnderecoRepository();
-        return enderecoRepository.findById(id);
+    public Endereco findById(int id) throws ValidacaoException, CampoPreenchidoException {
+        
+//        if(id == null) {
+//            throw new CampoPreenchidoException("id");
+//        } 
+
+        if(id <= 0) {
+            throw new ValidacaoException("Número de caracteres inválido.");
+        }
+            
+        try {
+            EnderecoRepository enderecoRepository = new EnderecoRepository();
+            return enderecoRepository.findById(id);
+        } catch (SQLException ex) {
+            throw new CampoPreenchidoException("Erro Interno de Servidor");
+        }
     }
     
 }

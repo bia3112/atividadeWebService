@@ -18,15 +18,20 @@ import java.util.ArrayList;
  */
 public class EnderecoRepository {
     
-    private static final String INSERT = "INSERT INTO ENDERECO(LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO) VALUES(?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO ENDERECO(LOGRADOURO, "
+            + "NUMERO, COMPLEMENTO, BAIRRO) VALUES(?, ?, ?, ?)";
 
-    private static final String FIND_ALL = "SELECT LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO FROM ENDERECO ";
+    private static final String FIND_ALL = "SELECT LOGRADOURO, NUMERO, "
+            + "COMPLEMENTO, BAIRRO FROM ENDERECO ";
 
-    private static final String FIND_BY_ID = "SELECT LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO FROM ENDERECO WHERE LOGRADOURO = ? ";
+    private static final String FIND_BY_ID = "SELECT LOGRADOURO, NUMERO, "
+            + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE LOGRADOURO = ? ";
 
-    private static final String DELETE_BY_ID = "DELETE FROM ENDERECO WHERE LOGRADOURO = ?";
+    private static final String DELETE_BY_ID = "DELETE FROM ENDERECO WHERE "
+            + "LOGRADOURO = ?";
 
-    private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
+    private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, "
+            + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
      
     
     public ArrayList<Endereco> listAll() throws SQLException {

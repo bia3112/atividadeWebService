@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.interfaces;
 
+import br.unipar.clinica2.Exception.CampoPreenchidoException;
 import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.model.Endereco;
 import jakarta.jws.WebMethod;
@@ -18,18 +19,18 @@ import java.util.ArrayList;
 public interface EnderecoWebService {
     
     @WebMethod
-    Endereco inserir(Endereco endereco) throws ValidacaoException;
+    Endereco inserir(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
     ArrayList<Endereco> listAll();
     
     @WebMethod 
-    Endereco atualizar(Endereco endereco);
+    Endereco atualizar(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    void deletar(int id);
+    void deletar(int id) throws ValidacaoException;
     
     @WebMethod
-    Endereco findById(int id);
+    Endereco findById(int id) throws ValidacaoException, CampoPreenchidoException;
  
 }
