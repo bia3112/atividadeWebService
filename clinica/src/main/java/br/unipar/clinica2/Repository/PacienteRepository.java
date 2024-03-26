@@ -28,7 +28,7 @@ public class PacienteRepository {
 
     private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
     
-    public ArrayList<Paciente> listAll() throws SQLException {
+    public ArrayList<Paciente> listAllPaciente() throws SQLException {
          
         ArrayList<Paciente> retorno = new ArrayList<>();
         Connection conn = null;
@@ -68,7 +68,7 @@ public class PacienteRepository {
         return retorno;
     }
     
-    public Paciente inserir(Paciente paciente) throws SQLException {
+    public Paciente inserirPaciente(Paciente paciente) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -98,7 +98,7 @@ public class PacienteRepository {
        return paciente;
     }
     
-    public Paciente atualizar(Paciente paciente) throws SQLException {
+    public Paciente atualizarPaciente(Paciente paciente) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -128,7 +128,7 @@ public class PacienteRepository {
         return paciente;
     }
     
-    public void deletar(int id) throws SQLException {
+    public void deletarPaciente(int id) throws SQLException {
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -150,7 +150,7 @@ public class PacienteRepository {
         }
     }
 
-    public Paciente findById(int id) throws SQLException {
+    public Paciente findByIdPaciente(int id) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
