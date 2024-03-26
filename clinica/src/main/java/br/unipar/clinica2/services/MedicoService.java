@@ -114,7 +114,7 @@ public class MedicoService {
          }
     }
     
-    public Medico findById(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Medico findByIdmedico(int id) throws ValidacaoException, CampoPreenchidoException {
 
              if(id <= 0) {
                  throw new ValidacaoException("Número de caracteres inválido.");
@@ -122,7 +122,7 @@ public class MedicoService {
              
         try {     
             MedicoRepository medicoRepository = new MedicoRepository();
-            return medicoRepository.findById(id);
+            return medicoRepository.findByIdmedico(id);
          } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
          }
