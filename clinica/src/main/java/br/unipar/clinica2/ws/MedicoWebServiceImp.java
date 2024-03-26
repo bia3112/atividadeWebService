@@ -23,16 +23,16 @@ import java.util.logging.Logger;
 public class MedicoWebServiceImp  implements MedicoWebService {
 
     @Override
-    public Medico inserir(Medico medico) throws ValidacaoException, CampoPreenchidoException {
+    public Medico inserirmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
         MedicoService medicoService = new MedicoService();
-        return medicoService.inserir(medico);
+        return medicoService.inserirmedico(medico);
     }
 
     @Override
-    public ArrayList<Medico> listAll() {
+    public ArrayList<Medico> listAllMedico() {
         try {
             MedicoService medicoService = new MedicoService(); 
-            return medicoService.listAll();
+            return medicoService.listAllMedico();
         } catch (SQLException ex) {
             Logger.getLogger(MedicoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -40,21 +40,21 @@ public class MedicoWebServiceImp  implements MedicoWebService {
     }
 
     @Override
-    public Medico atualizar(Medico medico) throws ValidacaoException, CampoPreenchidoException {
+    public Medico atualizarmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
         MedicoService medicoService = new MedicoService();  
-        return medicoService.atualizar(medico);
+        return medicoService.atualizarmedico(medico);
     }
 
     @Override
-    public void deletar(int id) throws ValidacaoException {
+    public void deletarmedico(int id) throws ValidacaoException {
         MedicoService medicoService = new MedicoService();
-        medicoService.deletar(id);
+        medicoService.deletarmedico(id);
     }
     
     @Override
-    public Medico findById(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Medico findByIdmedico(int id) throws ValidacaoException, CampoPreenchidoException {
         MedicoService medicoService = new MedicoService();
-        return medicoService.findById(id);
+        return medicoService.findByIdmedico(id);
     }
     
 }
