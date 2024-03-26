@@ -45,7 +45,7 @@ public class MedicoRepository {
 
             while (rs.next()) {
                 Medico medico = new Medico();
-                medico.setCRM(rs.getInt("CRM"));
+                medico.setCrm(rs.getInt("CRM"));
                 medico.setEspecialidade(new EspecialidadeRepository().findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
                 retorno.add(medico);
             }
@@ -77,7 +77,7 @@ public class MedicoRepository {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(INSERT);
             
-            pstmt.setInt(1, medico.getCRM());
+            pstmt.setInt(1, medico.getCrm());
             pstmt.setInt(2, medico.getEspecialidade().getId());
           
             pstmt.executeUpdate();
@@ -109,7 +109,7 @@ public class MedicoRepository {
             pstmt = conn.prepareStatement(UPDATE);
             
                 
-            pstmt.setInt(1, medico.getCRM());
+            pstmt.setInt(1, medico.getCrm());
             pstmt.setInt(2, medico.getEspecialidade().getId());
             
             pstmt.executeUpdate();
@@ -168,7 +168,7 @@ public class MedicoRepository {
 
             while (rs.next()) {
                 retorno = new Medico();
-                retorno.setCRM(rs.getInt("CRM"));
+                retorno.setCrm(rs.getInt("CRM"));
                  retorno.setEspecialidade(new EspecialidadeRepository().findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
                 
                
