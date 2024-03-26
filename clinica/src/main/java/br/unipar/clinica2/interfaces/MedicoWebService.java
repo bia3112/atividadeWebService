@@ -19,17 +19,17 @@ import java.util.ArrayList;
 public interface MedicoWebService {
     
     @WebMethod
-    Medico inserir(Medico medico) throws ValidacaoException, CampoPreenchidoException;
+    Medico inserirmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    ArrayList<Medico> listAll();
+    ArrayList<Medico> listAllMedico();
     
     @WebMethod
-    Medico atualizar(Medico medico) throws ValidacaoException, CampoPreenchidoException;
+    Medico atualizarmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod 
-    void deletar(int id) throws ValidacaoException;
+    void deletarmedico(int id) throws ValidacaoException;
     
     @WebMethod
-    Medico findById(int id) throws ValidacaoException, CampoPreenchidoException;
+    Medico findByIdmedico(int id) throws ValidacaoException, CampoPreenchidoException;
 }
