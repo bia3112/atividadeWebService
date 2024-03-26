@@ -17,13 +17,13 @@ import java.util.ArrayList;
  */
 public class PacienteService {
     
-    public ArrayList<Paciente> listAll()throws SQLException{
+    public ArrayList<Paciente> listAllPaciente()throws SQLException{
        PacienteRepository pacienteRepository = new PacienteRepository();
-       ArrayList<Paciente> retorno = pacienteRepository.listAll();
+       ArrayList<Paciente> retorno = pacienteRepository.listAllPaciente();
        return retorno;
     }
 
-    public Paciente inserir(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente inserirPaciente(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
         
         if(paciente.getNome().length() <= 3) {
             throw new ValidacaoException("Nome deve possuir"
@@ -59,13 +59,13 @@ public class PacienteService {
         
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
-            return pacienteRepository.inserir(paciente);
+            return pacienteRepository.inserirPaciente(paciente);
         } catch (SQLException ex) {
            throw new ValidacaoException("Erro Interno de Servidor");
         }
      }
     
-    public Paciente atualizar(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente atualizarPaciente(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
         
         if(paciente.getNome().length() <= 3) {
             throw new ValidacaoException("Nome deve possuir"
@@ -87,22 +87,22 @@ public class PacienteService {
         
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
-            return pacienteRepository.atualizar(paciente);
+            return pacienteRepository.atualizarPaciente(paciente);
         } catch (SQLException ex) {
            throw new ValidacaoException("Erro Interno de Servidor");
         }
     }
     
-    public void deletar(int id) throws ValidacaoException {
+    public void deletarPaciente(int id) throws ValidacaoException {
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
-            pacienteRepository.deletar(id);
+            pacienteRepository.deletarPaciente(id);
         } catch (SQLException ex) {
            throw new ValidacaoException("Erro Interno de Servidor");
         }
     }
     
-    public Paciente findById(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente findByIdPaciente(int id) throws ValidacaoException, CampoPreenchidoException {
         
         if(id <= 0) {
             throw new ValidacaoException("Número de caracteres inválido.");
@@ -110,7 +110,7 @@ public class PacienteService {
         
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
-            return pacienteRepository.findById(id);
+            return pacienteRepository.findByIdPaciente(id);
         } catch (SQLException ex) {
            throw new ValidacaoException("Erro Interno de Servidor");
         }

@@ -23,10 +23,10 @@ import java.util.logging.Logger;
 public class PacienteWerServicelmp implements PacienteWebService{
 
     @Override
-    public ArrayList<Paciente> listAll() {
+    public ArrayList<Paciente> listAllPaciente() {
         try {
             PacienteService pacienteService = new PacienteService();
-            return pacienteService.listAll();
+            return pacienteService.listAllPaciente();
         } catch (SQLException ex) {
             Logger.getLogger(PacienteWerServicelmp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -34,27 +34,27 @@ public class PacienteWerServicelmp implements PacienteWebService{
     }
 
     @Override
-    public Paciente inserir(Paciente paciente) throws ValidacaoException, CampoPreenchidoException{
+    public Paciente inserirPaciente(Paciente paciente) throws ValidacaoException, CampoPreenchidoException{
         PacienteService pacienteService = new PacienteService();
-        return pacienteService.inserir(paciente);
+        return pacienteService.inserirPaciente(paciente);
     }
 
     @Override
-    public Paciente atualizar(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente atualizarPaciente(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
         PacienteService pacienteService = new PacienteService();
-        return pacienteService.atualizar(paciente);
+        return pacienteService.atualizarPaciente(paciente);
     }
 
     @Override
-    public void deletar(int id) throws ValidacaoException {
+    public void deletarPaciente(int id) throws ValidacaoException {
         PacienteService pacienteService = new PacienteService();
-        pacienteService.deletar(id);
+        pacienteService.deletarPaciente(id);
     }
 
     @Override
-    public Paciente findById(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente findByIdPaciente(int id) throws ValidacaoException, CampoPreenchidoException {
         PacienteService pacienteService = new PacienteService();
-        return pacienteService.findById(id);
+        return pacienteService.findByIdPaciente(id);
     }
     
 }
