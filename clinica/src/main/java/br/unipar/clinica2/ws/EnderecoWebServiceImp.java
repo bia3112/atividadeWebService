@@ -10,10 +10,7 @@ import br.unipar.clinica2.interfaces.EnderecoWebService;
 import br.unipar.clinica2.model.Endereco;
 import br.unipar.clinica2.services.EnderecoService;
 import jakarta.jws.WebService;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -41,14 +38,9 @@ public class EnderecoWebServiceImp implements EnderecoWebService{
     }
 
     @Override
-    public ArrayList<Endereco> listAllEndereco() {
-        try {
+    public ArrayList<Endereco> listAllEndereco() throws ValidacaoException{
             EnderecoService enderecoService = new EnderecoService();
             return enderecoService.listAllEndereco();
-        } catch (SQLException ex) {
-            Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
    
     @Override

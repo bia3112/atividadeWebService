@@ -22,7 +22,7 @@ public interface EnderecoWebService {
     Endereco inserirEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    ArrayList<Endereco> listAllEndereco();
+    ArrayList<Endereco> listAllEndereco() throws ValidacaoException;
     
     @WebMethod 
     Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;

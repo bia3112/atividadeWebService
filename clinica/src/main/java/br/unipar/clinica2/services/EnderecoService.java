@@ -48,10 +48,14 @@ public class EnderecoService {
         
     }
 
-    public ArrayList<Endereco> listAllEndereco() throws SQLException {
-        EnderecoRepository enderecoRepository = new EnderecoRepository();
-        ArrayList<Endereco> retorno = enderecoRepository.listAllEndereco();
-        return retorno;
+    public ArrayList<Endereco> listAllEndereco()throws ValidacaoException {
+        try {
+            EnderecoRepository enderecoRepository = new EnderecoRepository();
+            ArrayList<Endereco> retorno = enderecoRepository.listAllEndereco();
+            return retorno;
+        } catch (SQLException ex) {
+            throw new ValidacaoException("Erro Interno de Servidor");
+        }
     }
 
     public Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
