@@ -48,7 +48,7 @@ public class PacienteRepository {
                 paciente.setNome(rs.getString("NOME"));
                 paciente.setEmail(rs.getString("EMAIL"));
                 paciente.setTelefone(rs.getString("TELEFONE"));
-                paciente.setEndereco(new EnderecoRepository().findById(rs.getInt("ENDERECO_ID")));
+                paciente.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
                 paciente.setCpf(rs.getString("CPF"));
                 
                 retorno.add(paciente);
@@ -172,7 +172,7 @@ public class PacienteRepository {
                 retorno.setNome(rs.getString("NOME")); 
                 retorno.setEmail(rs.getString("EMAIL"));
                 retorno.setTelefone(rs.getString("TELEFONE"));
-                retorno.setEndereco(new EnderecoRepository().findById(rs.getInt("ENDERECO_ID")));
+                retorno.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
                 retorno.setCpf(rs.getString("CPF"));
                
             }

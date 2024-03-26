@@ -19,18 +19,18 @@ import java.util.ArrayList;
 public interface EnderecoWebService {
     
     @WebMethod
-    Endereco inserir(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;
+    Endereco inserirEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    ArrayList<Endereco> listAll();
+    ArrayList<Endereco> listAllEndereco();
     
     @WebMethod 
-    Endereco atualizar(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;
+    Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    void deletar(int id) throws ValidacaoException;
+    void deletarEndereco(int id) throws ValidacaoException;
     
     @WebMethod
-    Endereco findById(int id) throws ValidacaoException, CampoPreenchidoException;
+    Endereco findByIdEndereco(int id) throws ValidacaoException, CampoPreenchidoException;
  
 }

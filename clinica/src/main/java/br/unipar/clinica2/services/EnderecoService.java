@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class EnderecoService {
 
-    public Endereco inserir(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
+    public Endereco inserirEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
        
         if(endereco.getBairro().length() <= 3) {
             throw new ValidacaoException("Bairro deve possuir"
@@ -41,20 +41,20 @@ public class EnderecoService {
   
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
-            return enderecoRepository.inserir(endereco);
+            return enderecoRepository.inserirEndereco(endereco);
         } catch(SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
         
     }
 
-    public ArrayList<Endereco> listAll() throws SQLException {
+    public ArrayList<Endereco> listAllEndereco() throws SQLException {
         EnderecoRepository enderecoRepository = new EnderecoRepository();
-        ArrayList<Endereco> retorno = enderecoRepository.listAll();
+        ArrayList<Endereco> retorno = enderecoRepository.listAllEndereco();
         return retorno;
     }
 
-    public Endereco atualizar(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
+    public Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
         
         if(endereco.getBairro().length() <= 3) {
             throw new ValidacaoException("Bairro deve possuir"
@@ -79,24 +79,24 @@ public class EnderecoService {
         
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
-            return enderecoRepository.atualizar(endereco);
+            return enderecoRepository.atualizarEndereco(endereco);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
   
     }
 
-    public void deletar(int id) throws ValidacaoException {
+    public void deletarEndereco(int id) throws ValidacaoException {
 
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
-            enderecoRepository.deletar(id);
+            enderecoRepository.deletarEndereco(id);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
     }
     
-    public Endereco findById(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Endereco findByIdEndereco(int id) throws ValidacaoException, CampoPreenchidoException {
         
 //        if(id == null) {
 //            throw new CampoPreenchidoException("id");
@@ -108,7 +108,7 @@ public class EnderecoService {
             
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
-            return enderecoRepository.findById(id);
+            return enderecoRepository.findByIdEndereco(id);
         } catch (SQLException ex) {
             throw new CampoPreenchidoException("Erro Interno de Servidor");
         }

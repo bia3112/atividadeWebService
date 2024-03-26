@@ -34,7 +34,7 @@ public class EnderecoRepository {
             + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
      
     
-    public ArrayList<Endereco> listAll() throws SQLException {
+    public ArrayList<Endereco> listAllEndereco() throws SQLException {
         
         ArrayList<Endereco> retorno = new ArrayList<>();
         Connection conn = null;
@@ -70,7 +70,7 @@ public class EnderecoRepository {
         return retorno;
     }
     
-       public Endereco inserir(Endereco endereco) throws SQLException {
+       public Endereco inserirEndereco(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -98,7 +98,7 @@ public class EnderecoRepository {
         return endereco;
     }
        
-      public Endereco atualizar(Endereco endereco) throws SQLException {
+      public Endereco atualizarEndereco(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -126,7 +126,7 @@ public class EnderecoRepository {
         return endereco;
 
     }
-      public void deletar(int id) throws SQLException {
+      public void deletarEndereco(int id) throws SQLException {
           
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -147,7 +147,7 @@ public class EnderecoRepository {
         }
     }
      
-    public Endereco findById(int id) throws SQLException {
+    public Endereco findByIdEndereco(int id) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;

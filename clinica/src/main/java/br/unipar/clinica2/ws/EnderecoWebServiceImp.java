@@ -23,28 +23,28 @@ import java.util.logging.Logger;
 public class EnderecoWebServiceImp implements EnderecoWebService{
 
     @Override
-    public Endereco atualizar(Endereco endereco) throws ValidacaoException, CampoPreenchidoException{
+    public Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException{
         EnderecoService enderecoService = new EnderecoService();
-        return enderecoService.atualizar(endereco);
+        return enderecoService.atualizarEndereco(endereco);
     }
 
     @Override
-    public void deletar(int id) throws ValidacaoException {
+    public void deletarEndereco(int id) throws ValidacaoException {
         EnderecoService enderecoService = new EnderecoService();
-        enderecoService.deletar(id);
+        enderecoService.deletarEndereco(id);
     }
 
     @Override
-    public Endereco inserir(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
+    public Endereco inserirEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
             EnderecoService enderecoService = new EnderecoService();
-            return enderecoService.inserir(endereco);
+            return enderecoService.inserirEndereco(endereco);
     }
 
     @Override
-    public ArrayList<Endereco> listAll() {
+    public ArrayList<Endereco> listAllEndereco() {
         try {
             EnderecoService enderecoService = new EnderecoService();
-            return enderecoService.listAll();
+            return enderecoService.listAllEndereco();
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,9 +52,9 @@ public class EnderecoWebServiceImp implements EnderecoWebService{
     }
    
     @Override
-    public Endereco findById(int id) throws ValidacaoException, CampoPreenchidoException{
+    public Endereco findByIdEndereco(int id) throws ValidacaoException, CampoPreenchidoException{
         EnderecoService enderecoService = new EnderecoService();
-        return enderecoService.findById(id);
+        return enderecoService.findByIdEndereco(id);
     }
     
 }
