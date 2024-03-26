@@ -46,7 +46,7 @@ public class MedicoRepository {
             while (rs.next()) {
                 Medico medico = new Medico();
                 medico.setCRM(rs.getInt("CRM"));
-                medico.setEspecialidade(new EspecialidadeRepository().findById(rs.getInt("ESPECIALIDADE_ID")));
+                medico.setEspecialidade(new EspecialidadeRepository().findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
                 retorno.add(medico);
             }
         } finally {
@@ -169,7 +169,7 @@ public class MedicoRepository {
             while (rs.next()) {
                 retorno = new Medico();
                 retorno.setCRM(rs.getInt("CRM"));
-                 retorno.setEspecialidade(new EspecialidadeRepository().findById(rs.getInt("ESPECIALIDADE_ID")));
+                 retorno.setEspecialidade(new EspecialidadeRepository().findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
                 
                
             }
