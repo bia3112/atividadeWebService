@@ -29,7 +29,7 @@ public class EspecialidadeRepository {
     private static final String FIND_BY_ID = "SELECT FROM ESPECIALIDADE WHERE ID = ?";
     
     
-    public ArrayList<Especialidade> listAll() throws SQLException {
+    public ArrayList<Especialidade> listAllEspecialidade() throws SQLException {
          
         ArrayList<Especialidade> retorno = new ArrayList<>();
         Connection conn = null;
@@ -64,7 +64,7 @@ public class EspecialidadeRepository {
         return retorno;
     }
      
-    public Especialidade inserir(Especialidade especialidade) throws SQLException {
+    public Especialidade inserirEspecialidade(Especialidade especialidade) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -89,7 +89,7 @@ public class EspecialidadeRepository {
         return especialidade;
     }
      
-    public Especialidade atualizar(Especialidade especialidade) throws SQLException {
+    public Especialidade atualizarEspecialidade(Especialidade especialidade) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -113,7 +113,7 @@ public class EspecialidadeRepository {
         return especialidade;
     }
       
-    public void deletar(int id) throws SQLException {
+    public void deletarEspecialidade(int id) throws SQLException {
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -135,7 +135,7 @@ public class EspecialidadeRepository {
         }
     }
 
-    public Especialidade findById(int id) throws SQLException {
+    public Especialidade findByIdEspecialidade(int id) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;

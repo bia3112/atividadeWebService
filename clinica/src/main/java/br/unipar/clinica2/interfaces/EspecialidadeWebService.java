@@ -19,18 +19,18 @@ import java.util.ArrayList;
 public interface EspecialidadeWebService {
     
     @WebMethod
-    Especialidade inserir(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException;
+    Especialidade inserirEspecialidade(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    ArrayList<Especialidade> listAll();
+    ArrayList<Especialidade> listAllEspecialidade();
 
     @WebMethod
-    Especialidade atualizar(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException;
+    Especialidade atualizarEspecialidade(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod 
-    void deletar(int id) throws ValidacaoException;
+    void deletarEspecialidade(int id) throws ValidacaoException;
     
     @WebMethod
-    Especialidade findById(int id) throws ValidacaoException, CampoPreenchidoException;
+    Especialidade findByIdEspecialidade(int id) throws ValidacaoException, CampoPreenchidoException;
     
 }
