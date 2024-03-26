@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class EspecialidadeService {
     
-      public Especialidade inserir(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException{
+      public Especialidade inserirEspecialidade(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException{
           
         if(especialidade.getNome().length() <= 8) {
             throw new ValidacaoException("Nome deve possuir"
@@ -29,19 +29,19 @@ public class EspecialidadeService {
           
         try {
             EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-            return especialidadeRepository.inserir(especialidade);
+            return especialidadeRepository.inserirEspecialidade(especialidade);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
     }
 
-    public ArrayList<Especialidade> listAll() throws SQLException {
+    public ArrayList<Especialidade> listAllEspecialidade() throws SQLException {
         EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-        ArrayList<Especialidade> retorno = especialidadeRepository.listAll();
+        ArrayList<Especialidade> retorno = especialidadeRepository.listAllEspecialidade();
         return retorno;
     }
 
-    public Especialidade atualizar(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
+    public Especialidade atualizarEspecialidade(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
         
         if(especialidade.getNome().length() <= 8) {
             throw new ValidacaoException("Nome deve possuir"
@@ -53,22 +53,22 @@ public class EspecialidadeService {
         
         try {
             EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-            return especialidadeRepository.atualizar(especialidade);
+            return especialidadeRepository.atualizarEspecialidade(especialidade);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
     }
 
-    public void deletar(int id) throws ValidacaoException {
+    public void deletarEspecialidade(int id) throws ValidacaoException {
         try {
             EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-            especialidadeRepository.deletar(id);
+            especialidadeRepository.deletarEspecialidade(id);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
     }
     
-    public Especialidade findById(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Especialidade findByIdEspecialidade(int id) throws ValidacaoException, CampoPreenchidoException {
         
         if(id <= 0) {
             throw new ValidacaoException("Número de caracteres inválido.");
@@ -76,7 +76,7 @@ public class EspecialidadeService {
         
         try {
             EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-            return especialidadeRepository.findById(id);
+            return especialidadeRepository.findByIdEspecialidade(id);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }

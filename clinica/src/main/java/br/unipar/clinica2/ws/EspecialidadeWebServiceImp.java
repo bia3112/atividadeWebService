@@ -25,16 +25,16 @@ import java.util.logging.Logger;
 public class EspecialidadeWebServiceImp  implements EspecialidadeWebService{
     
     @Override
-    public Especialidade inserir(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
+    public Especialidade inserirEspecialidade(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
         EspecialidadeService especialidadeService = new EspecialidadeService() {};
-        return especialidadeService.inserir(especialidade);
+        return especialidadeService.inserirEspecialidade(especialidade);
     }
 
     @Override
-    public ArrayList<Especialidade> listAll() {
+    public ArrayList<Especialidade> listAllEspecialidade() {
         try {
             EspecialidadeService especialidadeWebService = new EspecialidadeService();
-            return especialidadeWebService.listAll();
+            return especialidadeWebService.listAllEspecialidade();
         } catch (SQLException ex) {
             Logger.getLogger(EspecialidadeWebServiceImp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,21 +42,21 @@ public class EspecialidadeWebServiceImp  implements EspecialidadeWebService{
     }
 
     @Override
-    public Especialidade atualizar(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
+    public Especialidade atualizarEspecialidade(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException {
         EspecialidadeService especialidadeService = new EspecialidadeService();
-        return especialidadeService.atualizar(especialidade);
+        return especialidadeService.atualizarEspecialidade(especialidade);
     }
 
     @Override
-    public void deletar(int id) throws ValidacaoException {
+    public void deletarEspecialidade(int id) throws ValidacaoException {
         EspecialidadeService especialidadeService = new EspecialidadeService();
-        especialidadeService.deletar(id);
+        especialidadeService.deletarEspecialidade(id);
     }
     
     @Override
-    public Especialidade findById(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Especialidade findByIdEspecialidade(int id) throws ValidacaoException, CampoPreenchidoException {
         EspecialidadeService especialidadeService = new EspecialidadeService();
-        return especialidadeService.findById(id);
+        return especialidadeService.findByIdEspecialidade(id);
     }
     
 }
