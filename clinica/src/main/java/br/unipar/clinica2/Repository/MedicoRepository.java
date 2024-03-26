@@ -28,7 +28,7 @@ public class MedicoRepository {
     
     private static final String FIND_BY_ID = "SELECT FROM MEDICO WHERE ID = ?";
     
-    public ArrayList<Medico> listAll() throws SQLException {
+    public ArrayList<Medico> listAllMedico() throws SQLException {
         
         ArrayList<Medico> retorno = new ArrayList<>();
         Connection conn = null;
@@ -67,7 +67,7 @@ public class MedicoRepository {
         return retorno;
     }
     
-   public Medico inserir(Medico medico) throws SQLException {
+   public Medico inserirmedico(Medico medico) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -97,7 +97,7 @@ public class MedicoRepository {
     }
    
    
-   public Medico atualizar(Medico medico) throws SQLException {
+   public Medico atualizarmedico(Medico medico) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -127,7 +127,7 @@ public class MedicoRepository {
 
     }
    
-     public void deletar(int id) throws SQLException {
+     public void deletarmedico(int id) throws SQLException {
          
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -150,7 +150,7 @@ public class MedicoRepository {
         }
 
     }
-   public Medico findById(int id) throws SQLException {
+   public Medico findByIdmedico(int id) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
