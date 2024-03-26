@@ -22,9 +22,9 @@ public class MedicoRepository {
 
     private static final String FIND_ALL = "SELECT CRM, ESPECIALIDADE_ID, PESSOA_ID FROM MEDICO ";
 
-    private static final String DELETE = "DELETE FROM MEDICO WHERE CRM = ?";
+    private static final String DELETE = "DELETE FROM MEDICO WHERE ID = ?";
 
-    private static final String UPDATE = "UPDATE MEDICO SET CRM = ?, ESPECIALIDADE_ID = ?, PESSOA_ID = ? WHERE CRM = ?";
+    private static final String UPDATE = "UPDATE MEDICO SET CRM = ?, ESPECIALIDADE_ID = ?, PESSOA_ID = ? WHERE ID = ?";
     
     private static final String FIND_BY_ID = "SELECT FROM MEDICO WHERE ID = ?";
     

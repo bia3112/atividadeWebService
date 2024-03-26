@@ -85,6 +85,14 @@ public class PacienteService {
             throw new CampoPreenchidoException("endereço");
         }
         
+        Paciente pacienteExixtente = findByIdPaciente(paciente.getId());
+        if(!pacienteExixtente.getEmail().equals(paciente.getEmail())) {
+            throw new ValidacaoException("Não é permitido alterar o email.");
+        }
+        if(!pacienteExixtente.getCpf().equals(paciente.getCpf())) {
+            throw new ValidacaoException("Não é permitido alterar o CPF.");
+        }
+        
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
             return pacienteRepository.atualizarPaciente(paciente);

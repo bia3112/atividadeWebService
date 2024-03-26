@@ -22,16 +22,16 @@ public class EnderecoRepository {
             + "NUMERO, COMPLEMENTO, BAIRRO) VALUES(?, ?, ?, ?)";
 
     private static final String FIND_ALL = "SELECT LOGRADOURO, NUMERO, "
-            + "COMPLEMENTO, BAIRRO FROM ENDERECO ";
+            + "COMPLEMENTO, BAIRRO FROM ENDERECO";
 
     private static final String FIND_BY_ID = "SELECT LOGRADOURO, NUMERO, "
-            + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE LOGRADOURO = ? ";
+            + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE ID = ? ";
 
     private static final String DELETE_BY_ID = "DELETE FROM ENDERECO WHERE "
-            + "LOGRADOURO = ?";
+            + "ID = ?";
 
     private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, "
-            + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
+            + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE ID = ?";
      
     
     public ArrayList<Endereco> listAllEndereco() throws SQLException {

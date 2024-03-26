@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -18,15 +19,15 @@ import java.util.ArrayList;
  */
 public class PacienteRepository {
     
-   private static final String INSERT = "INSERT INTO PACIENTE(LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO) VALUES(?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO PACIENTE(NOME, EMAIL, TELEFONE, ENDERECO_ID, CPF) VALUES(?, ?, ?, ?, ?)";
 
-    private static final String LIST_ALL = "SELECT LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO FROM ENDERECO ";
+    private static final String LIST_ALL = "SELECT NOME, EMAIL, TELEFONE, ENDERECO_ID, CPF FROM PACIENTE";
 
-    private static final String FIND_BY_ID = "SELECT LOGRADOURO, NUMERO, COMPLEMENTO, BAIRRO FROM ENDERECO WHERE LOGRADOURO = ? ";
+    private static final String FIND_BY_ID = "SELECT NOME, EMAIL, TELEFONE, ENDERECO_ID, CPF FROM PACIENTE WHERE ID = ? ";
 
-    private static final String DELETE = "DELETE FROM ENDERECO WHERE LOGRADOURO = ?";
+    private static final String DELETE = "DELETE FROM PACIENTE WHERE ID = ?";
 
-    private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE LOGRADOURO = ?";
+    private static final String UPDATE = "UPDATE PACIENTE SET NOME = ?, EMAIL = ?, TELEFONE = ?, ENDERECO_ID = ?, CPF = ? WHERE ID = ?";
     
     public ArrayList<Paciente> listAllPaciente() throws SQLException {
          
@@ -64,6 +65,8 @@ public class PacienteRepository {
                 pstmt.close();
             }
         }
+        //listar em ordem alfabética
+        Collections.sort(retorno, (Paciente p1, Paciente p2) -> p1.getNome().compareTo(p2.getNome()));
 
         return retorno;
     }
