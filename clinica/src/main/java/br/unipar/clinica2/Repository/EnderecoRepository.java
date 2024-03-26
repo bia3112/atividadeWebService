@@ -21,8 +21,7 @@ public class EnderecoRepository {
     private static final String INSERT = "INSERT INTO ENDERECO(LOGRADOURO, "
             + "NUMERO, COMPLEMENTO, BAIRRO) VALUES(?, ?, ?, ?)";
 
-    private static final String FIND_ALL = "SELECT LOGRADOURO, NUMERO, "
-            + "COMPLEMENTO, BAIRRO FROM ENDERECO";
+    private static final String FIND_ALL = "SELECT * FROM ENDERECO";
 
     private static final String FIND_BY_ID = "SELECT LOGRADOURO, NUMERO, "
             + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE ID = ? ";
@@ -34,7 +33,7 @@ public class EnderecoRepository {
             + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE ID = ?";
      
     
-    public ArrayList<Endereco> listAllEndereco() throws SQLException {
+    public ArrayList<Endereco> listAllEndereco() throws SQLException{
         
         ArrayList<Endereco> retorno = new ArrayList<>();
         Connection conn = null;
