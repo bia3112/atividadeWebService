@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class MedicoService {
     
-     public Medico inserir(Medico medico) throws ValidacaoException, CampoPreenchidoException {
+     public Medico inserirmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
 
             if(medico.getCRM() == 0) {
                 throw new ValidacaoException("CMR inválido.");
@@ -51,20 +51,20 @@ public class MedicoService {
             
         try {     
             MedicoRepository medicoRepository = new MedicoRepository();
-            return medicoRepository.inserir(medico);
+            return medicoRepository.inserirmedico(medico);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
         
     }
 
-    public ArrayList<Medico> listAll() throws SQLException {
+    public ArrayList<Medico> listAllMedico() throws SQLException {
         MedicoRepository medicoRepository = new MedicoRepository();
-        ArrayList<Medico> retorno = medicoRepository.listAll();
+        ArrayList<Medico> retorno = medicoRepository.listAllMedico();
         return retorno;
     }
 
-    public Medico atualizar(Medico medico) throws ValidacaoException, CampoPreenchidoException {
+    public Medico atualizarmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
 
             if(medico.getCRM() == 0) {
                 throw new ValidacaoException("CMR inválido.");
@@ -98,17 +98,17 @@ public class MedicoService {
              
         try {     
             MedicoRepository medicoRepository = new MedicoRepository();
-            return medicoRepository.atualizar(medico);
+            return medicoRepository.atualizarmedico(medico);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
         
     }
 
-    public void deletar(int id) throws ValidacaoException {
+    public void deletarmedico(int id) throws ValidacaoException {
          try {
              MedicoRepository medicoRepository = new MedicoRepository();
-             medicoRepository.deletar(id);
+             medicoRepository.deletarmedico(id);
          } catch (SQLException ex) {
              throw new ValidacaoException("Erro Interno de Servidor");
          }
