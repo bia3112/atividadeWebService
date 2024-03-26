@@ -97,10 +97,6 @@ public class EnderecoService {
     }
     
     public Endereco findByIdEndereco(int id) throws ValidacaoException, CampoPreenchidoException {
-        
-//        if(id == null) {
-//            throw new CampoPreenchidoException("id");
-//        } 
 
         if(id <= 0) {
             throw new ValidacaoException("Número de caracteres inválido.");
