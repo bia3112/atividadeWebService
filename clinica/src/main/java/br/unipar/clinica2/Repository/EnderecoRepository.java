@@ -23,7 +23,7 @@ public class EnderecoRepository {
 
     private static final String FIND_ALL = "SELECT * FROM ENDERECO";
 
-    private static final String FIND_BY_ID = "SELECT LOGRADOURO, NUMERO, "
+    private static final String FIND_BY_ID = "SELECT ID, LOGRADOURO, NUMERO, "
             + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE ID = ?";
 
     private static final String DELETE_BY_ID = "DELETE FROM ENDERECO WHERE "
@@ -107,10 +107,11 @@ public class EnderecoRepository {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(UPDATE);
 
-            pstmt.setString(1, endereco.getLogradouro());
-            pstmt.setInt(2, endereco.getNumero());
-            pstmt.setString(3, endereco.getComplemento());
-            pstmt.setString(4, endereco.getBairro());
+            pstmt.setInt(1, endereco.getId());
+            pstmt.setString(2, endereco.getLogradouro());
+            pstmt.setInt(3, endereco.getNumero());
+            pstmt.setString(4, endereco.getComplemento());
+            pstmt.setString(5, endereco.getBairro());
 
             pstmt.executeUpdate();
 
@@ -161,7 +162,7 @@ public class EnderecoRepository {
             pstmt.setInt(1, id);
 
             rs = pstmt.executeQuery();
-
+            
             while (rs.next()) {
                 retorno = new Endereco();
                 retorno.setId(rs.getInt("ID"));
