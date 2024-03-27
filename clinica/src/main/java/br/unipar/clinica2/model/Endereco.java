@@ -15,16 +15,18 @@ public class Endereco {
     private int numero;
     private String complemento;
     private String bairro;
+    private boolean status;
 
     public Endereco() {
     }
 
-    public Endereco(int id, String logradouro, int numero, String complemento, String bairro) {
+    public Endereco(int id, String logradouro, int numero, String complemento, String bairro, boolean status) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
+        this.status = status;
     }
 
     public int getId() {
@@ -67,5 +69,14 @@ public class Endereco {
         this.bairro = bairro;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+   
     
+
 }

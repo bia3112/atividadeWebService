@@ -33,14 +33,14 @@ public class EnderecoWebServiceImp implements EnderecoWebService{
 
     @Override
     public Endereco inserirEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
-            EnderecoService enderecoService = new EnderecoService();
-            return enderecoService.inserirEndereco(endereco);
+        EnderecoService enderecoService = new EnderecoService();
+        return enderecoService.inserirEndereco(endereco);
     }
 
     @Override
     public ArrayList<Endereco> listAllEndereco() throws ValidacaoException{
-            EnderecoService enderecoService = new EnderecoService();
-            return enderecoService.listAllEndereco();
+        EnderecoService enderecoService = new EnderecoService();
+        return enderecoService.listAllEndereco();
     }
    
     @Override

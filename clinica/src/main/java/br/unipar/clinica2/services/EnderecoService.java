@@ -34,10 +34,10 @@ public class EnderecoService {
             throw new CampoPreenchidoException("logradouro");
         }
          
-        if(endereco.getComplemento().length() <= 3) {
-            throw new ValidacaoException("Complemento deve possuir"
-                    + " mais do que 3 caracteres.");
-        }
+//        if(endereco.getComplemento().length() <= 3) {
+//            throw new ValidacaoException("Complemento deve possuir"
+//                    + " mais do que 3 caracteres.");
+//        }
   
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
@@ -87,12 +87,17 @@ public class EnderecoService {
 
     public void deletarEndereco(int id) throws ValidacaoException {
 
+        if(id <= 0) {
+            throw new ValidacaoException("Número de caracteres inválido.");
+        }
+        
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
             enderecoRepository.deletarEndereco(id);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
+
     }
     
     public Endereco findByIdEndereco(int id) throws ValidacaoException {

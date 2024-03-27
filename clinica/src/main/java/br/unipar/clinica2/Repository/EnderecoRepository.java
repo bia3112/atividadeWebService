@@ -19,15 +19,15 @@ import java.util.ArrayList;
 public class EnderecoRepository {
     
     private static final String INSERT = "INSERT INTO ENDERECO(LOGRADOURO, "
-            + "NUMERO, COMPLEMENTO, BAIRRO) VALUES(?, ?, ?, ?)";
+            + "NUMERO, COMPLEMENTO, BAIRRO, STATUS) VALUES(?, ?, ?, ?, ?)";
 
     private static final String FIND_ALL = "SELECT * FROM ENDERECO";
 
     private static final String FIND_BY_ID = "SELECT ID, LOGRADOURO, NUMERO, "
             + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE ID = ?";
 
-    private static final String DELETE_BY_ID = "DELETE FROM ENDERECO WHERE "
-            + "ID = ?";
+    private static final String DELETE = "UPDATE ENDERECO SET STATUS = ? "
+            + "WHERE ID = ?";
 
     private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, "
             + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE ID = ?";
@@ -83,6 +83,7 @@ public class EnderecoRepository {
             pstmt.setInt(2, endereco.getNumero());
             pstmt.setString(3, endereco.getComplemento());
             pstmt.setString(4, endereco.getBairro());
+            pstmt.setBoolean(5, true);
 
             pstmt.executeUpdate();
             
@@ -94,6 +95,7 @@ public class EnderecoRepository {
                 conn.close();
             }
         }
+        endereco.setStatus(true);
         return endereco;
     }
        
@@ -133,9 +135,11 @@ public class EnderecoRepository {
 
         try {
             conn = new ConnectionFactory().getConnection();
-            pstmt = conn.prepareStatement(DELETE_BY_ID);
-            pstmt.setInt(1, id);
+            pstmt = conn.prepareStatement(DELETE);
+            pstmt.setBoolean(1, false);
+            pstmt.setInt(2, id);
             pstmt.executeUpdate();
+
 
         } finally {
             if (pstmt != null) {
@@ -186,6 +190,5 @@ public class EnderecoRepository {
         }
         return retorno;
     }
-      
-      
+   
 }
