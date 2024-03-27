@@ -24,7 +24,7 @@ public class EnderecoRepository {
     private static final String FIND_ALL = "SELECT * FROM ENDERECO";
 
     private static final String FIND_BY_ID = "SELECT ID, LOGRADOURO, NUMERO, "
-            + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE ID = ?";
+            + "COMPLEMENTO, BAIRRO, STATUS FROM ENDERECO WHERE ID = ?";
 
     private static final String DELETE = "UPDATE ENDERECO SET STATUS = ? "
             + "WHERE ID = ?";
@@ -52,6 +52,7 @@ public class EnderecoRepository {
                 endereco.setNumero(rs.getInt("NUMERO"));
                 endereco.setComplemento(rs.getString("COMPLEMENTO"));
                 endereco.setBairro(rs.getString("BAIRRO"));
+                endereco.setStatus(rs.getBoolean("STATUS"));
                 retorno.add(endereco);
             }
         } finally {
@@ -174,6 +175,7 @@ public class EnderecoRepository {
                 retorno.setNumero(rs.getInt("NUMERO"));
                 retorno.setComplemento(rs.getString("COMPLEMENTO"));
                 retorno.setBairro(rs.getString("BAIRRO"));
+                retorno.setStatus(rs.getBoolean("STATUS"));
                
             }
             
