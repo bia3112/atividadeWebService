@@ -24,7 +24,7 @@ public class EnderecoRepository {
     private static final String FIND_ALL = "SELECT * FROM ENDERECO";
 
     private static final String FIND_BY_ID = "SELECT LOGRADOURO, NUMERO, "
-            + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE ID = ? ";
+            + "COMPLEMENTO, BAIRRO FROM ENDERECO WHERE ID = ?";
 
     private static final String DELETE_BY_ID = "DELETE FROM ENDERECO WHERE "
             + "ID = ?";

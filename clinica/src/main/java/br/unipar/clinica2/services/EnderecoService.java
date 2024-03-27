@@ -100,7 +100,7 @@ public class EnderecoService {
         }
     }
     
-    public Endereco findByIdEndereco(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Endereco findByIdEndereco(int id) throws ValidacaoException {
 
         if(id <= 0) {
             throw new ValidacaoException("Número de caracteres inválido.");
@@ -110,7 +110,7 @@ public class EnderecoService {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
             return enderecoRepository.findByIdEndereco(id);
         } catch (SQLException ex) {
-            throw new CampoPreenchidoException("Erro Interno de Servidor");
+            throw new ValidacaoException("Erro Interno de Servidor");
         }
     }
     

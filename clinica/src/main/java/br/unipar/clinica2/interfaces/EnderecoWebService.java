@@ -31,6 +31,6 @@ public interface EnderecoWebService {
     void deletarEndereco(int id) throws ValidacaoException;
     
     @WebMethod
-    Endereco findByIdEndereco(int id) throws ValidacaoException, CampoPreenchidoException;
+    Endereco findByIdEndereco(int id) throws ValidacaoException;
  
 }

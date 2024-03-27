@@ -44,7 +44,7 @@ public class EnderecoWebServiceImp implements EnderecoWebService{
     }
    
     @Override
-    public Endereco findByIdEndereco(int id) throws ValidacaoException, CampoPreenchidoException{
+    public Endereco findByIdEndereco(int id) throws ValidacaoException{
         EnderecoService enderecoService = new EnderecoService();
         return enderecoService.findByIdEndereco(id);
     }
