@@ -14,29 +14,31 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-//sql da consulta
-//CREATE TABLE Consultas (
-//    ConsultaID INT PRIMARY KEY,
-//    PacienteID INT,
-//    MedicoID INT,
-//    DataHora DATETIME,
-//    FOREIGN KEY (PacienteID) REFERENCES Pacientes(PacienteID),
-//    FOREIGN KEY (MedicoID) REFERENCES Medicos(MedicoID)
+//SQL DA CONSULTA
+//CREATE TABLE CONSULTAS (
+//    CONSULTAID INT PRIMARY KEY,
+//    PACIENTEID INT,
+//    MEDICOID INT,
+//    DATAHORA DATETIME,
+//    FOREIGN KEY (PACIENTEID) REFERENCES PACIENTES(PACIENTEID),
+//    FOREIGN KEY (MEDICOID) REFERENCES MEDICOS(MEDICOID)
 //);
+
 public class ConsultaRepository {
-        private static final String INSERT = "INSERT INTO Consultas(PacienteID, "
-            + "MedicoID, DataHora) VALUES(?, ?, ?)";
+    
+    private static final String FIND_ALL = "SELECT * FROM CONSULTAS ";
+    
+    private static final String INSERT = "INSERT INTO CONSULTAS(PACIENTEID , "
+            + "MEDICOID, DATAHORA ) VALUES(?, ?, ?)";
+    
+    private static final String FIND_BY_ID = "SELECT CONSULTAID , PACIENTEID, MEDICOID, "
+            + "DATAHORA  FROM CONSULTAS  WHERE CONSULTAID = ?";
 
-    private static final String FIND_ALL = "SELECT * FROM Consultas";
+    private static final String DELETE = "UPDATE CONSULTAS  SET STATUS = ? "
+            + "WHERE CONSULTAID  = ?";
 
-    private static final String FIND_BY_ID = "SELECT ConsultaID, PacienteID, MedicoID, "
-            + "DataHora FROM Consulta WHERE ID = ?";
-
-    private static final String DELETE = "UPDATE Consulta SET STATUS = ? "
-            + "WHERE ID = ?";
-
-    private static final String UPDATE = "UPDATE Consulta SET PacienteID = ?, "
-            + "MedicoID = ?, DataHora = ? WHERE ConsultaID = ?";
+    private static final String UPDATE = "UPDATE CONSULTAS  SET PACIENTEID  = ?, "
+            + "MEDICOID = ?, DATAHORA = ? WHERE CONSULTAID = ?";
      
     
     public ArrayList<Consulta> listAllConsulta() throws SQLException{
@@ -54,9 +56,9 @@ public class ConsultaRepository {
 
             while (rs.next()) {
                 Consulta consulta = new Consulta();
-                consulta.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PacienteID")));
-                consulta.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MedicoID")));
-                LocalDateTime dataHora = rs.getTimestamp("DataHora").toLocalDateTime();        
+                consulta.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTEID")));
+                consulta.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICOID")));
+                LocalDateTime dataHora = rs.getTimestamp("DATAHORA").toLocalDateTime();        
                 retorno.add(consulta);
             }
         } finally {
@@ -170,10 +172,11 @@ public class ConsultaRepository {
             
             while (rs.next()) {
                 retorno = new Consulta();
-                retorno.setConsultaID(rs.getInt("ConsultaID"));
-                retorno.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PacienteID")));
-                
-               
+                retorno.setConsultaID(rs.getInt("CONSULTAID"));
+                retorno.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTEID")));
+                retorno.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICOID")));
+                retorno.setDataHora(rs.getTimestamp("DATAHORA").toLocalDateTime()); 
+                     
             }
             
         } finally {
