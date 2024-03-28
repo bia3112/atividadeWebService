@@ -9,7 +9,11 @@ import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.Repository.ConsultaRepository;
 import br.unipar.clinica2.interfaces.ConsultaWebService;
 import br.unipar.clinica2.model.Consulta;
+import jakarta.jws.WebService;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,32 +26,57 @@ public class ConsultaWebServicelmp implements ConsultaWebService {
     @Override
     public Consulta inserirConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
          ConsultaRepository consultaRepository = new ConsultaRepository();
-        return consultaRepository.inserirConsulta(consulta);
+        try {
+            return consultaRepository.inserirConsulta(consulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
     }
 
     @Override
     public ArrayList<Consulta> listAllConsulta() throws ValidacaoException {
          ConsultaRepository consultaRepository = new ConsultaRepository();
-        return consultaRepository.listAllConsulta();
+        try {
+            return consultaRepository.listAllConsulta();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
 
     @Override
     public Consulta atualizarConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
          ConsultaRepository consultaRepository = new ConsultaRepository();
-        return consultaRepository.atualizarConsulta(consulta);
+        try {
+            return consultaRepository.atualizarConsulta(consulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public void deletarConsulta(int id) throws ValidacaoException {
        ConsultaRepository consultaRepository = new ConsultaRepository();
-        consultaRepository.deletarConsulta(id);
+        try {
+            consultaRepository.deletarConsulta(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public Consulta findByIdConsulta(int id) throws ValidacaoException {
         ConsultaRepository consultaRepository = new ConsultaRepository();
-        return consultaRepository.findByIdConsulta(id);
+        try {
+            return consultaRepository.findByIdConsulta(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     

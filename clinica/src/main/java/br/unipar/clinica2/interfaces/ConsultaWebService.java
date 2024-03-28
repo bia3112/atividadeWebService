@@ -7,6 +7,8 @@ package br.unipar.clinica2.interfaces;
 import br.unipar.clinica2.Exception.CampoPreenchidoException;
 import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.model.Consulta;
+import jakarta.jws.WebMethod;
+import jakarta.jws.WebService;
 import java.util.ArrayList;
 
 /**
