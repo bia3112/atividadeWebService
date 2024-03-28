@@ -7,6 +7,7 @@ package br.unipar.clinica2.model;
 import java.time.LocalDateTime;
     
 public class Consulta {
+    private int idConsulta;
     private Paciente paciente;
     private Medico medico;
     private LocalDateTime dataHora;
@@ -16,6 +17,19 @@ public class Consulta {
         this.medico = medico;
         this.dataHora = dataHora;
     }
+
+    public Consulta(int idConsulta) {
+        this.idConsulta = idConsulta;
+    }
+
+    public int getIdConsulta() {
+        return idConsulta;
+    }
+
+    public void setIdConsulta(int idConsulta) {
+        this.idConsulta = idConsulta;
+    }
+    
 
     public Consulta() {
     }
