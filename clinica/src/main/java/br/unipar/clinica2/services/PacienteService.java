@@ -102,6 +102,7 @@ public class PacienteService {
     }
     
     public void deletarPaciente(int id) throws ValidacaoException {
+
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
             pacienteRepository.deletarPaciente(id);
