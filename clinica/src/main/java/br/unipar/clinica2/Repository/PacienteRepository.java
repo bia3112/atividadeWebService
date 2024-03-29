@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -19,15 +20,19 @@ import java.util.Collections;
  */
 public class PacienteRepository {
     
-    private static final String INSERT = "INSERT INTO PACIENTE(NOME, EMAIL, TELEFONE, ENDERECO_ID, CPF) VALUES(?, ?, ?, ?, ?)";
+    private static final String INSERT = "INSERT INTO PACIENTE(NOME, EMAIL, "
+            + "TELEFONE, ENDERECO_ID, CPF, STATUS) VALUES(?, ?, ?, ?, ?, ?)";
 
-    private static final String LIST_ALL = "SELECT NOME, EMAIL, TELEFONE, ENDERECO_ID, CPF FROM PACIENTE";
+    private static final String LIST_ALL = "SELECT NOME, EMAIL, CPF FROM PACIENTE";
 
-    private static final String FIND_BY_ID = "SELECT NOME, EMAIL, TELEFONE, ENDERECO_ID, CPF FROM PACIENTE WHERE ID = ? ";
+    private static final String FIND_BY_ID = "SELECT NOME, EMAIL, TELEFONE,"
+            + " ENDERECO_ID, CPF FROM PACIENTE WHERE ID = ? ";
 
-    private static final String DELETE = "DELETE FROM PACIENTE WHERE ID = ?";
+    private static final String DELETE = "UPDATE PACIENTE SET STATUS = ?"
+            + " WHERE ID = ?";
 
-    private static final String UPDATE = "UPDATE PACIENTE SET NOME = ?, TELEFONE = ?, ENDERECO_ID = ? WHERE ID = ?";
+    private static final String UPDATE = "UPDATE PACIENTE SET NOME = ?, "
+            + "TELEFONE = ?, ENDERECO_ID = ? WHERE ID = ?";
     
     public ArrayList<Paciente> listAllPaciente() throws SQLException {
          
@@ -42,13 +47,11 @@ public class PacienteRepository {
             pstmt = conn.prepareStatement(LIST_ALL);
             
             rs = pstmt.executeQuery();
-
+            
             while (rs.next()) {
                 Paciente paciente = new Paciente();
                 paciente.setNome(rs.getString("NOME"));
                 paciente.setEmail(rs.getString("EMAIL"));
-                paciente.setTelefone(rs.getString("TELEFONE"));
-                paciente.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
                 paciente.setCpf(rs.getString("CPF"));
                 
                 retorno.add(paciente);
@@ -77,14 +80,15 @@ public class PacienteRepository {
 
         try {
             
-            conn = new ConnectionFactory().getConnection();
-            
+            conn = new ConnectionFactory().getConnection(); 
             pstmt = conn.prepareStatement(INSERT);
+            
             pstmt.setString(1, paciente.getNome());
             pstmt.setString(2, paciente.getEmail());
             pstmt.setString(3, paciente.getTelefone());
             pstmt.setInt(4, paciente.getEndereco().getId());
             pstmt.setString(5, paciente.getCpf());
+            pstmt.setBoolean(6, true);
 
             pstmt.executeUpdate();
 
@@ -128,6 +132,7 @@ public class PacienteRepository {
     }
     
     public void deletarPaciente(int id) throws SQLException {
+        
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -135,7 +140,8 @@ public class PacienteRepository {
 
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETE);
-            pstmt.setInt(1, id);
+            pstmt.setBoolean(1, false);
+            pstmt.setInt(2, id);
 
             pstmt.executeUpdate();
 
@@ -158,7 +164,7 @@ public class PacienteRepository {
 
         try {
             
-             conn = new ConnectionFactory().getConnection();
+            conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(FIND_BY_ID);
 
             pstmt.setInt(1, id);

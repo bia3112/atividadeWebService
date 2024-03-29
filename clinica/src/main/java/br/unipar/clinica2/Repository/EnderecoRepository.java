@@ -19,18 +19,19 @@ import java.util.ArrayList;
 public class EnderecoRepository {
     
     private static final String INSERT = "INSERT INTO ENDERECO(LOGRADOURO, "
-            + "NUMERO, COMPLEMENTO, BAIRRO, STATUS) VALUES(?, ?, ?, ?, ?)";
+            + "NUMERO, COMPLEMENTO, BAIRRO, CIDADE, UF, CEP, STATUS) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String FIND_ALL = "SELECT * FROM ENDERECO";
 
     private static final String FIND_BY_ID = "SELECT ID, LOGRADOURO, NUMERO, "
-            + "COMPLEMENTO, BAIRRO, STATUS FROM ENDERECO WHERE ID = ?";
+            + "COMPLEMENTO, BAIRRO, CIDADE, UF, CEP, STATUS FROM ENDERECO WHERE ID = ?";
 
     private static final String DELETE = "UPDATE ENDERECO SET STATUS = ? "
             + "WHERE ID = ?";
 
     private static final String UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?, "
-            + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ? WHERE ID = ?";
+            + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ?, CIDADE = ?, "
+            + "UF = ?, CEP = ? WHERE ID = ?";
      
     
     public ArrayList<Endereco> listAllEndereco() throws SQLException{
@@ -52,6 +53,9 @@ public class EnderecoRepository {
                 endereco.setNumero(rs.getInt("NUMERO"));
                 endereco.setComplemento(rs.getString("COMPLEMENTO"));
                 endereco.setBairro(rs.getString("BAIRRO"));
+                endereco.setCidade(rs.getString("CIDADE"));
+                endereco.setUf(rs.getString("UF"));
+                endereco.setCep(rs.getInt("CEP"));
                 endereco.setStatus(rs.getBoolean("STATUS"));
                 retorno.add(endereco);
             }
@@ -84,7 +88,10 @@ public class EnderecoRepository {
             pstmt.setInt(2, endereco.getNumero());
             pstmt.setString(3, endereco.getComplemento());
             pstmt.setString(4, endereco.getBairro());
-            pstmt.setBoolean(5, true);
+            pstmt.setString(5, endereco.getCidade());
+            pstmt.setString(6, endereco.getUf());
+            pstmt.setInt(7, endereco.getCep());
+            pstmt.setBoolean(8, true);
 
             pstmt.executeUpdate();
             
@@ -115,6 +122,9 @@ public class EnderecoRepository {
             pstmt.setInt(3, endereco.getNumero());
             pstmt.setString(4, endereco.getComplemento());
             pstmt.setString(5, endereco.getBairro());
+            pstmt.setString(6, endereco.getCidade());
+            pstmt.setString(7, endereco.getUf());
+            pstmt.setInt(8, endereco.getCep());
 
             pstmt.executeUpdate();
 
@@ -175,6 +185,9 @@ public class EnderecoRepository {
                 retorno.setNumero(rs.getInt("NUMERO"));
                 retorno.setComplemento(rs.getString("COMPLEMENTO"));
                 retorno.setBairro(rs.getString("BAIRRO"));
+                retorno.setCidade(rs.getString("CIDADE"));
+                retorno.setUf(rs.getString("UF"));
+                retorno.setCep(rs.getInt("CEP"));
                 retorno.setStatus(rs.getBoolean("STATUS"));
                
             }
