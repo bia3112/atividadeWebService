@@ -66,9 +66,6 @@ public class MedicoService {
 
     public Medico atualizarmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
 
-            if(medico.getCrm() == 0) {
-                throw new ValidacaoException("CMR inválido.");
-            }
             if(medico.getCpf() == null) {
                 throw new CampoPreenchidoException("CPF");
             }
@@ -86,9 +83,7 @@ public class MedicoService {
             if(medico.getEndereco() == null) {
                 throw new CampoPreenchidoException("endereço");
             }
-            if(medico.getEspecialidade() == null) {
-                throw new CampoPreenchidoException("especialidade");
-            }
+
             if(medico.getTelefone() == null) {
                 throw new CampoPreenchidoException("telefone");
             }
