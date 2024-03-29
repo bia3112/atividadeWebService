@@ -27,7 +27,7 @@ public class PacienteRepository {
 
     private static final String DELETE = "DELETE FROM PACIENTE WHERE ID = ?";
 
-    private static final String UPDATE = "UPDATE PACIENTE SET NOME = ?, EMAIL = ?, TELEFONE = ?, ENDERECO_ID = ?, CPF = ? WHERE ID = ?";
+    private static final String UPDATE = "UPDATE PACIENTE SET NOME = ?, TELEFONE = ?, ENDERECO_ID = ? WHERE ID = ?";
     
     public ArrayList<Paciente> listAllPaciente() throws SQLException {
          
@@ -111,10 +111,8 @@ public class PacienteRepository {
             
             pstmt.setInt(1, paciente.getId());
             pstmt.setString(2, paciente.getNome());
-            pstmt.setString(3, paciente.getEmail());
-            pstmt.setString(4, paciente.getTelefone());
-            pstmt.setInt(5, paciente.getEndereco().getId());
-            pstmt.setString(6, paciente.getCpf());
+            pstmt.setString(3, paciente.getTelefone());
+            pstmt.setInt(4, paciente.getEndereco().getId());
             
             pstmt.executeUpdate();
 

@@ -21,12 +21,12 @@ public class MedicoRepository {
     private static final String INSERT = "INSERT INTO MEDICO(CRM, ESPECIALIDADE_ID, NOME, EMAIL, TELEFONE, ENDERECO_ID, CPF) "
             + "VALUES(?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String FIND_ALL = "SELECT * FROM MEDICO ";
+    private static final String FIND_ALL = "SELECT * FROM MEDICO";
 
     private static final String DELETE = "DELETE FROM MEDICO WHERE ID = ?";
 
-    private static final String UPDATE = "UPDATE MEDICO SET CRM = ?, ESPECIALIDADE_ID = ?, NOME = ?, "
-            + "EMAIL = ?, TELEFONE = ?, ENDERECO_ID = ?, CPF = ? WHERE ID = ?";
+    private static final String UPDATE = "UPDATE MEDICO SET NOME = ?, "
+            + " TELEFONE = ?, ENDERECO_ID = ? WHERE ID = ?";
     
     private static final String FIND_BY_ID = "SELECT FROM MEDICO WHERE ID = ?";
     
@@ -121,13 +121,9 @@ public class MedicoRepository {
            
             pstmt = conn.prepareStatement(UPDATE);
             pstmt.setInt(1, medico.getId());
-            pstmt.setInt(2, medico.getCrm());
-            pstmt.setString(3, medico.getNome());
-            pstmt.setString(4, medico.getCpf());
-            pstmt.setString(5, medico.getEmail());
-            pstmt.setString(6, medico.getTelefone());
-            pstmt.setInt(7, medico.getEspecialidade().getId());
-            pstmt.setInt(8, medico.getEndereco().getId());
+            pstmt.setString(2, medico.getNome());
+            pstmt.setString(3, medico.getTelefone());
+            pstmt.setInt(4, medico.getEndereco().getId());
             
             pstmt.executeUpdate();
 
