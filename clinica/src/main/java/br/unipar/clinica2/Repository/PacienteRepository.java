@@ -45,7 +45,6 @@ public class PacienteRepository {
 
             while (rs.next()) {
                 Paciente paciente = new Paciente();
-                paciente.setId(rs.getInt("ID"));
                 paciente.setNome(rs.getString("NOME"));
                 paciente.setEmail(rs.getString("EMAIL"));
                 paciente.setTelefone(rs.getString("TELEFONE"));
@@ -81,12 +80,11 @@ public class PacienteRepository {
             conn = new ConnectionFactory().getConnection();
             
             pstmt = conn.prepareStatement(INSERT);
-            pstmt.setInt(1, paciente.getId());
-            pstmt.setString(2, paciente.getNome());
-            pstmt.setString(3, paciente.getEmail());
-            pstmt.setString(4, paciente.getTelefone());
-            pstmt.setInt(5, paciente.getEndereco().getId());
-            pstmt.setString(6, paciente.getCpf());
+            pstmt.setString(1, paciente.getNome());
+            pstmt.setString(2, paciente.getEmail());
+            pstmt.setString(3, paciente.getTelefone());
+            pstmt.setInt(4, paciente.getEndereco().getId());
+            pstmt.setString(5, paciente.getCpf());
 
             pstmt.executeUpdate();
 

@@ -14,18 +14,14 @@ public class Medico extends Pessoa {
      private int crm;
      private Especialidade Especialidade;
 
+    public Medico(int crm, Especialidade Especialidade, int id, String nome, 
+            String email, String telefone, Endereco endereco, String cpf) {
+        super(id, nome, email, telefone, endereco, cpf);
+        this.crm = crm;
+        this.Especialidade = Especialidade;
+    }
+
     public Medico() {
-    }
-
-    public Medico(int crm, Especialidade Especialidade) {
-        this.crm = crm;
-        this.Especialidade = Especialidade;
-    }
-
-    public Medico(int crm, Especialidade Especialidade, int id, String nome, String email, String telefone, Endereco endereco, String CPF) {
-        super(id, nome, email, telefone, endereco, CPF);
-        this.crm = crm;
-        this.Especialidade = Especialidade;
     }
 
     public int getCrm() {
@@ -43,6 +39,7 @@ public class Medico extends Pessoa {
     public void setEspecialidade(Especialidade Especialidade) {
         this.Especialidade = Especialidade;
     }
+    
     
 }
 
