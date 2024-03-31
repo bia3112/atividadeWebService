@@ -7,6 +7,7 @@ package br.unipar.clinica2.model;
 import java.time.LocalDateTime;
     
 public class Consulta {
+    
     private int ConsultaID;
     private Paciente paciente;
     private Medico medico;

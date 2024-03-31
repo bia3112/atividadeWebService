@@ -19,26 +19,35 @@ import java.util.ArrayList;
 //    CONSULTAID INT PRIMARY KEY,
 //    PACIENTEID INT,
 //    MEDICOID INT,
-//    DATAHORA DATETIME,
-//    FOREIGN KEY (PACIENTEID) REFERENCES PACIENTES(PACIENTEID),
-//    FOREIGN KEY (MEDICOID) REFERENCES MEDICOS(MEDICOID)
+//    DATAHORA TIMESTAMP NOT NULL,
+//    FOREIGN KEY (PACIENTEID) REFERENCES PACIENTES(id),
+//    FOREIGN KEY (MEDICOID) REFERENCES MEDICOS(id)
+//);
+
+//CREATE TABLE CONSULTA (
+//    id INT PRIMARY KEY,
+//    paciente_id INT,
+//    medico_id INT,
+//    datahora TIMESTAMP NOT NULL,
+//    FOREIGN KEY (paciente_id) REFERENCES PACIENTE(id),
+//    FOREIGN KEY (medico_id) REFERENCES MEDICO(id)
 //);
 
 public class ConsultaRepository {
     
-    private static final String FIND_ALL = "SELECT * FROM CONSULTAS ";
+    private static final String FIND_ALL = "SELECT * FROM CONSULTA";
     
-    private static final String INSERT = "INSERT INTO CONSULTAS(PACIENTEID , "
-            + "MEDICOID, DATAHORA ) VALUES(?, ?, ?)";
+    private static final String INSERT = "INSERT INTO CONSULTA(PACIENTE_ID , "
+            + "MEDICO_ID, DATAHORA ) VALUES(?, ?, ?)";
     
-    private static final String FIND_BY_ID = "SELECT CONSULTAID , PACIENTEID, MEDICOID, "
-            + "DATAHORA  FROM CONSULTAS  WHERE CONSULTAID = ?";
+    private static final String FIND_BY_ID = "SELECT ID , PACIENTE_ID, MEDICO_ID, "
+            + "DATAHORA  FROM CONSULTA WHERE ID = ?";
 
-    private static final String DELETE = "UPDATE CONSULTAS  SET STATUS = ? "
-            + "WHERE CONSULTAID  = ?";
+    private static final String DELETE = "UPDATE CONSULTA SET STATUS = ? "
+            + "WHERE CONSULTA_ID  = ?";
 
-    private static final String UPDATE = "UPDATE CONSULTAS  SET PACIENTEID  = ?, "
-            + "MEDICOID = ?, DATAHORA = ? WHERE CONSULTAID = ?";
+    private static final String UPDATE = "UPDATE CONSULTA SET PACIENTE_ID  = ?, "
+            + "MEDICO_ID = ?, DATAHORA = ? WHERE ID = ?";
      
     
     public ArrayList<Consulta> listAllConsulta() throws SQLException{
@@ -56,8 +65,8 @@ public class ConsultaRepository {
 
             while (rs.next()) {
                 Consulta consulta = new Consulta();
-                consulta.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTEID")));
-                consulta.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICOID")));
+                consulta.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTE_ID")));
+                consulta.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICO_ID")));
                 LocalDateTime dataHora = rs.getTimestamp("DATAHORA").toLocalDateTime();        
                 retorno.add(consulta);
             }
@@ -172,8 +181,8 @@ public class ConsultaRepository {
             
             while (rs.next()) {
                 retorno = new Consulta();
-                retorno.setConsultaID(rs.getInt("CONSULTAID"));
-                retorno.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTEID")));
+                retorno.setConsultaID(rs.getInt("CONSULTA_ID"));
+                retorno.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTE_ID")));
                 retorno.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICOID")));
                 retorno.setDataHora(rs.getTimestamp("DATAHORA").toLocalDateTime()); 
                      
