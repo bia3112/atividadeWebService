@@ -9,6 +9,7 @@ import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.model.Consulta;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +22,7 @@ public interface ConsultaWebService {
     Consulta inserirConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    ArrayList<Consulta> listAllConsulta() throws ValidacaoException;
+    ArrayList<Consulta> listAllConsulta() throws SQLException;
     
     @WebMethod 
     Consulta atualizarConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException;

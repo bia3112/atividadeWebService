@@ -26,16 +26,14 @@ public class ConsultaService {
         }
         
     }
-       public ArrayList<Consulta> listAllConsulta()throws ValidacaoException {
-        try {
-            ConsultaRepository consultaRepository = new ConsultaRepository();
-            ArrayList<Consulta> retorno = consultaRepository.listAllConsulta();
-            return retorno;
-        } catch (SQLException ex) {
-            throw new ValidacaoException("Erro Interno de Servidor");
-        }
+    
+    public ArrayList<Consulta> listAllConsulta()throws SQLException {
+        ConsultaRepository consultaRepository = new ConsultaRepository();
+        ArrayList<Consulta> retorno = consultaRepository.listAllConsulta();
+        return retorno;
     }
-        public Consulta atualizarConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
+       
+    public Consulta atualizarConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
        
         try {
             ConsultaRepository consultaRepository = new ConsultaRepository();
@@ -45,7 +43,8 @@ public class ConsultaService {
         }
   
     }
-        public void deletarConsulta(int id) throws ValidacaoException {
+    
+    public void deletarConsulta(int id) throws ValidacaoException {
 
         if(id <= 0) {
             throw new ValidacaoException("Número de caracteres inválido.");
@@ -59,7 +58,8 @@ public class ConsultaService {
         }
 
     }
-          public Consulta findByIdConsulta(int id) throws ValidacaoException {
+    
+    public Consulta findByIdConsulta(int id) throws ValidacaoException {
 
         if(id <= 0) {
             throw new ValidacaoException("Número de caracteres inválido.");

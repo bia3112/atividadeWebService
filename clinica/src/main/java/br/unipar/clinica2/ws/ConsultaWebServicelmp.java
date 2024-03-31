@@ -6,14 +6,12 @@ package br.unipar.clinica2.ws;
 
 import br.unipar.clinica2.Exception.CampoPreenchidoException;
 import br.unipar.clinica2.Exception.ValidacaoException;
-import br.unipar.clinica2.Repository.ConsultaRepository;
 import br.unipar.clinica2.interfaces.ConsultaWebService;
 import br.unipar.clinica2.model.Consulta;
+import br.unipar.clinica2.services.ConsultaService;
 import jakarta.jws.WebService;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,64 +19,35 @@ import java.util.logging.Logger;
  */
 @WebService(endpointInterface = "br.unipar.clinica2.interfaces.ConsultaWebService")
 public class ConsultaWebServicelmp implements ConsultaWebService {
-    
 
     @Override
     public Consulta inserirConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
-         ConsultaRepository consultaRepository = new ConsultaRepository();
-        try {
-            return consultaRepository.inserirConsulta(consulta);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-        
+        ConsultaService consultaService = new ConsultaService();
+        return consultaService.inserirConsulta(consulta);
     }
 
     @Override
-    public ArrayList<Consulta> listAllConsulta() throws ValidacaoException {
-         ConsultaRepository consultaRepository = new ConsultaRepository();
-        try {
-            return consultaRepository.listAllConsulta();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    public ArrayList<Consulta> listAllConsulta() throws SQLException {
+         ConsultaService consultaService = new ConsultaService();
+        return consultaService.listAllConsulta();
     }
-    
 
     @Override
     public Consulta atualizarConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
-         ConsultaRepository consultaRepository = new ConsultaRepository();
-        try {
-            return consultaRepository.atualizarConsulta(consulta);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        ConsultaService consultaService = new ConsultaService();
+        return consultaService.atualizarConsulta(consulta);
     }
 
     @Override
     public void deletarConsulta(int id) throws ValidacaoException {
-       ConsultaRepository consultaRepository = new ConsultaRepository();
-        try {
-            consultaRepository.deletarConsulta(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ConsultaService consultaService = new ConsultaService();
+        consultaService.deletarConsulta(id);
     }
 
     @Override
     public Consulta findByIdConsulta(int id) throws ValidacaoException {
-        ConsultaRepository consultaRepository = new ConsultaRepository();
-        try {
-            return consultaRepository.findByIdConsulta(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaWebServicelmp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        ConsultaService consultaService = new ConsultaService();
+        return consultaService.findByIdConsulta(id);
     }
-    
-    
     
 }

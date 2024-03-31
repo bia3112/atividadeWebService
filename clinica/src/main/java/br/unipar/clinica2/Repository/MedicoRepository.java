@@ -169,6 +169,7 @@ public class MedicoRepository {
         }
 
     }
+     
    public Medico findByIdmedico(int id) throws SQLException {
 
         Connection conn = null;
@@ -212,6 +213,7 @@ public class MedicoRepository {
         }
         return retorno;
     }
+   
    
 }
 
