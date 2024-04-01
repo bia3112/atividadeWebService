@@ -10,21 +10,22 @@ package br.unipar.clinica2.model;
  */
 public class Paciente extends Pessoa {
     
-    private boolean status;
+    private String status;
 
     public Paciente() {
     }
 
-    public Paciente(boolean status, int id, String nome, String email, String telefone, Endereco endereco, String cpf) {
+    public Paciente(String status, int id, String nome, String email, 
+            String telefone, Endereco endereco, String cpf) {
         super(id, nome, email, telefone, endereco, cpf);
         this.status = status;
     }
 
-    public boolean getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

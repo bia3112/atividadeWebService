@@ -11,11 +11,12 @@ package br.unipar.clinica2.model;
 public class Medico extends Pessoa {
     
      
-     private int crm;
+     private String crm;
      private Especialidade especialidade;
-     private boolean status;
+     private String status;
 
-    public Medico(int crm, Especialidade especialidade, boolean status, int id, String nome, String email, String telefone, Endereco endereco, String cpf) {
+    public Medico(String crm, Especialidade especialidade, String status, 
+            int id, String nome, String email, String telefone, Endereco endereco, String cpf) {
         super(id, nome, email, telefone, endereco, cpf);
         this.crm = crm;
         this.especialidade = especialidade;
@@ -25,11 +26,11 @@ public class Medico extends Pessoa {
     public Medico() {
     }
 
-    public int getCrm() {
+    public String getCrm() {
         return crm;
     }
 
-    public void setCrm(int crm) {
+    public void setCrm(String crm) {
         this.crm = crm;
     }
 
@@ -41,11 +42,11 @@ public class Medico extends Pessoa {
         this.especialidade = especialidade;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
     

@@ -28,7 +28,7 @@ public class PacienteRepository {
     private static final String FIND_BY_ID = "SELECT NOME, EMAIL, TELEFONE,"
             + " ENDERECO_ID, CPF FROM PACIENTE WHERE ID = ? ";
 
-    private static final String DELETE = "UPDATE PACIENTE SET STATUS = ?"
+    private static final String DELETE = "UPDATE PACIENTE SET STATUS = 'INATIVO'"
             + " WHERE ID = ?";
 
     private static final String UPDATE = "UPDATE PACIENTE SET NOME = ?, "
@@ -88,7 +88,7 @@ public class PacienteRepository {
             pstmt.setString(3, paciente.getTelefone());
             pstmt.setInt(4, paciente.getEndereco().getId());
             pstmt.setString(5, paciente.getCpf());
-            pstmt.setBoolean(6, true);
+            pstmt.setString(6, "ATIVO");
 
             pstmt.executeUpdate();
 
@@ -140,8 +140,7 @@ public class PacienteRepository {
 
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETE);
-            pstmt.setBoolean(1, false);
-            pstmt.setInt(2, id);
+            pstmt.setInt(1, id);
 
             pstmt.executeUpdate();
 

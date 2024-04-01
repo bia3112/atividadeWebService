@@ -33,11 +33,18 @@ public class EnderecoService {
         if(endereco.getLogradouro() == null) {
             throw new CampoPreenchidoException("logradouro");
         }
-         
-//        if(endereco.getComplemento().length() <= 3) {
-//            throw new ValidacaoException("Complemento deve possuir"
-//                    + " mais do que 3 caracteres.");
-//        }
+        
+        if(endereco.getCidade() == null) {
+            throw new CampoPreenchidoException("cidade");
+        }
+        
+        if(endereco.getUf() == null) {
+            throw new CampoPreenchidoException("uf");
+        }
+        
+        if(endereco.getCep() == null) {
+            throw new CampoPreenchidoException("cep");
+        }
   
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();

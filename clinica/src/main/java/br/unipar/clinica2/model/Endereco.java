@@ -17,13 +17,13 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String uf;
-    private int cep;
-    private boolean status;
+    private String cep;
 
     public Endereco() {
     }
 
-    public Endereco(int id, String logradouro, int numero, String complemento, String bairro, String cidade, String uf, int cep, boolean status) {
+    public Endereco(int id, String logradouro, int numero, String complemento, 
+            String bairro, String cidade, String uf, String cep) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -32,7 +32,6 @@ public class Endereco {
         this.cidade = cidade;
         this.uf = uf;
         this.cep = cep;
-        this.status = status;
     }
 
     public int getId() {
@@ -75,14 +74,6 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
     public String getCidade() {
         return cidade;
     }
@@ -99,11 +90,11 @@ public class Endereco {
         this.uf = uf;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     } 
 

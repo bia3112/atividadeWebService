@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
     
 public class Consulta {
     
-    private int ConsultaID;
+    private int id;
     private Paciente paciente;
     private Medico medico;
     private LocalDateTime dataHora;
@@ -19,16 +19,16 @@ public class Consulta {
         this.dataHora = dataHora;
     }
 
-    public Consulta(int ConsultaID) {
-        this.ConsultaID = ConsultaID;
+    public Consulta(int id) {
+        this.id = id;
     }
 
-    public int getConsultaID() {
-        return ConsultaID;
+    public int getId() {
+        return id;
     }
 
-    public void setConsultaID(int ConsultaID) {
-        this.ConsultaID = ConsultaID;
+    public void setId(int id) {
+        this.id = id;
     }
 
    
