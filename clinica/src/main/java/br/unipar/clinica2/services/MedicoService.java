@@ -10,6 +10,8 @@ import br.unipar.clinica2.Repository.MedicoRepository;
 import br.unipar.clinica2.model.Medico;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -19,7 +21,7 @@ public class MedicoService {
     
      public Medico inserirmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
 
-            if(medico.getCrm() == 0) {
+            if(medico.getCrm() == null) {
                 throw new ValidacaoException("CMR inválido.");
             }        
             if(medico.getCpf() == null) {
@@ -61,6 +63,7 @@ public class MedicoService {
     public ArrayList<Medico> listAllMedico() throws SQLException {
         MedicoRepository medicoRepository = new MedicoRepository();
         ArrayList<Medico> retorno = medicoRepository.listAllMedico();
+        Collections.sort(retorno, Comparator.comparing(Medico::getNome));
         return retorno;
     }
 
@@ -89,6 +92,17 @@ public class MedicoService {
             }
             if(medico.getEmail() == null) {
                 throw new CampoPreenchidoException("email");
+            }
+            
+            Medico medicoExistente = findByIdmedico(medico.getId());
+            if (!medico.getCrm().equals(medicoExistente.getCrm())) {
+                throw new ValidacaoException("CRM não pode ser alterado.");
+            }
+            if (!medico.getEmail().equals(medicoExistente.getEmail())) {
+                throw new ValidacaoException("E-mail não pode ser alterado.");
+            }
+            if (!medico.getEspecialidade().equals(medicoExistente.getEspecialidade())) {
+                throw new ValidacaoException("Especialidade não pode ser alterado");
             }
              
         try {     

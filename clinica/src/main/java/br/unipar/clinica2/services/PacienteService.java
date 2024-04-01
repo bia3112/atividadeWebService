@@ -10,6 +10,8 @@ import br.unipar.clinica2.Repository.PacienteRepository;
 import br.unipar.clinica2.model.Paciente;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -20,6 +22,7 @@ public class PacienteService {
     public ArrayList<Paciente> listAllPaciente()throws SQLException{
        PacienteRepository pacienteRepository = new PacienteRepository();
        ArrayList<Paciente> retorno = pacienteRepository.listAllPaciente();
+       Collections.sort(retorno, Comparator.comparing(Paciente::getNome));
        return retorno;
     }
 
@@ -55,6 +58,14 @@ public class PacienteService {
         }
         if(paciente.getEndereco() == null) {
             throw new CampoPreenchidoException("endereço");
+        }
+        
+        Paciente pacienteExistente = findByIdPaciente(paciente.getId());
+        if (!paciente.getCpf().equals(pacienteExistente.getCpf())) {
+            throw new ValidacaoException("CRM não pode ser alterado.");
+        }
+        if (!paciente.getEmail().equals(pacienteExistente.getEmail())) {
+            throw new ValidacaoException("E-mail não pode ser alterado.");
         }
         
         try {

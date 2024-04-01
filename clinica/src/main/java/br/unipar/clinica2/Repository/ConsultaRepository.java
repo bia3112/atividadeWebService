@@ -44,7 +44,7 @@ public class ConsultaRepository {
             + "DATAHORA  FROM CONSULTA WHERE ID = ?";
 
     private static final String DELETE = "UPDATE CONSULTA SET STATUS = ? "
-            + "WHERE CONSULTA_ID  = ?";
+            + "WHERE ID  = ?";
 
     private static final String UPDATE = "UPDATE CONSULTA SET PACIENTE_ID  = ?, "
             + "MEDICO_ID = ?, DATAHORA = ? WHERE ID = ?";
@@ -123,7 +123,7 @@ public class ConsultaRepository {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(UPDATE);
 
-            pstmt.setInt(1, consulta.getConsultaID());
+            pstmt.setInt(1, consulta.getId());
             pstmt.setInt(1, consulta.getPaciente().getId());
             pstmt.setInt(2, consulta.getMedico().getId());
             pstmt.setTimestamp(3, Timestamp.valueOf(consulta.getDataHora()));
@@ -181,7 +181,7 @@ public class ConsultaRepository {
             
             while (rs.next()) {
                 retorno = new Consulta();
-                retorno.setConsultaID(rs.getInt("CONSULTA_ID"));
+                retorno.setId(rs.getInt("ID"));
                 retorno.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTE_ID")));
                 retorno.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICOID")));
                 retorno.setDataHora(rs.getTimestamp("DATAHORA").toLocalDateTime()); 
