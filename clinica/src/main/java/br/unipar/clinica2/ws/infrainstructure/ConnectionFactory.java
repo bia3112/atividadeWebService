@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  */
 public class ConnectionFactory {
     
-    private static final String RESOURCE_NAME = "postgresResources1";
+    private static final String RESOURCE_NAME = "teste1";
     
     private DataSource getDatasource() throws NamingException{
         
