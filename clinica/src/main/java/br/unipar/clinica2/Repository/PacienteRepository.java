@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
@@ -21,7 +20,7 @@ import java.util.Comparator;
 public class PacienteRepository {
     
     private static final String INSERT = "INSERT INTO PACIENTE(NOME, EMAIL, "
-            + "TELEFONE, ENDERECO_ID, CPF, STATUS) VALUES(?, ?, ?, ?, ?, ?)";
+            + "TELEFONE, ENDERECO_ID, CPF, STATUS) VALUES(?, ?, ?, ?, ?, 'ATIVO')";
 
     private static final String LIST_ALL = "SELECT NOME, EMAIL, CPF FROM PACIENTE";
 

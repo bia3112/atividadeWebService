@@ -22,7 +22,7 @@ public class MedicoService {
      public Medico inserirmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
 
             if(medico.getCrm() == null) {
-                throw new ValidacaoException("CMR inválido.");
+                throw new ValidacaoException("CRM inválido.");
             }        
             if(medico.getCpf() == null) {
                 throw new CampoPreenchidoException("CPF");

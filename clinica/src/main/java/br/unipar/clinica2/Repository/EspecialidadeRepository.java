@@ -20,13 +20,13 @@ public class EspecialidadeRepository {
     
     private static final String INSERIR = "INSERT INTO ESPECIALIDADE(NOME) VALUES(?)";
 
-    private static final String LIST_ALL = "SELECT NOME FROM ESPECIALIDADE";
+    private static final String LIST_ALL = "SELECT * FROM ESPECIALIDADE";
 
     private static final String DELETAR = "DELETE FROM ESPECIALIDADE WHERE ID = ?";
 
     private static final String ATUALIZAR = "UPDATE ESPECIALIDADE SET NOME = ? WHERE ID = ?";
     
-    private static final String FIND_BY_ID = "SELECT FROM ESPECIALIDADE WHERE ID = ?";
+    private static final String FIND_BY_ID = "SELECT ID, NOME FROM ESPECIALIDADE WHERE ID = ?";
     
     
     public ArrayList<Especialidade> listAllEspecialidade() throws SQLException {
