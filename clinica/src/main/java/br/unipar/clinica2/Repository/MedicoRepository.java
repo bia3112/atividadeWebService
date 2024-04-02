@@ -19,11 +19,10 @@ import java.sql.SQLException;
 public class MedicoRepository {
     
     private static final String INSERT = "INSERT INTO MEDICO(CRM, "
-            + "ESPECIALIDADE_ID, NOME, EMAIL, TELEFONE, ENDERECO_ID, CPF) "
+            + "NOME, CPF, EMAIL, TELEFONE, ESPECIALIDADE_ID, ENDERECO_ID) "
             + "VALUES(?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String FIND_ALL = "SELECT NOME, EMAIL, "
-            + "CRM, ESPECIALIDADE_ID FROM MEDICO";
+    private static final String FIND_ALL = "SELECT * FROM MEDICO";
 
     private static final String DELETE = "UPDATE MEDICO SET STATUS = 'INATIVO' "
             + "WHERE ID = ?";
@@ -31,7 +30,8 @@ public class MedicoRepository {
     private static final String UPDATE = "UPDATE MEDICO SET NOME = ?, "
             + " TELEFONE = ?, ENDERECO_ID = ? WHERE ID = ?";
     
-    private static final String FIND_BY_ID = "SELECT FROM MEDICO WHERE ID = ?";
+    private static final String FIND_BY_ID = "SELECT ID, NOME, CRM, "
+            + "ESPECIALIDADE, STATUS FROM MEDICO WHERE ID = ?";
     
     public ArrayList<Medico> listAllMedico() throws SQLException {
         
@@ -54,6 +54,9 @@ public class MedicoRepository {
                 medico.setNome(rs.getString("NOME"));
                 medico.setEmail(rs.getString("EMAIL"));
                 medico.setEspecialidade(new EspecialidadeRepository().findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
+                medico.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
+                medico.setTelefone(rs.getString("TELEFONE"));
+                medico.setCpf(rs.getString("CPF"));
                 medico.setStatus(rs.getString("STATUS"));
                 
                 retorno.add(medico);
@@ -73,8 +76,6 @@ public class MedicoRepository {
                 pstmt.close();
             }
         }
-
-        //Collections.sort(retorno, (Medico p1, Medico p2) -> p1.getNome().compareTo(p2.getNome()));
         
         return retorno;
     }

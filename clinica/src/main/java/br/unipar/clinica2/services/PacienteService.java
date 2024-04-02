@@ -78,23 +78,23 @@ public class PacienteService {
     
     public Paciente atualizarPaciente(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
         
-        if(paciente.getNome().length() <= 3) {
-            throw new ValidacaoException("Nome deve possuir"
-                   + " mais do que 3 caracteres.");
-        }
-        if(paciente.getNome() == null) {
-            throw new CampoPreenchidoException("nome");
-        }
-        if(paciente.getTelefone().length() <= 8) {
-            throw new ValidacaoException("Telefone deve possuir"
-                   + " mais do que 8 caracteres.");
-        }
-        if(paciente.getTelefone() == null) {
-            throw new CampoPreenchidoException("telefone");
-        }
-        if(paciente.getEndereco() == null) {
-            throw new CampoPreenchidoException("endereço");
-        }
+//        if(paciente.getNome().length() <= 3) {
+//            throw new ValidacaoException("Nome deve possuir"
+//                   + " mais do que 3 caracteres.");
+//        }
+//        if(paciente.getNome() == null) {
+//            throw new CampoPreenchidoException("nome");
+//        }
+//        if(paciente.getTelefone().length() <= 8) {
+//            throw new ValidacaoException("Telefone deve possuir"
+//                   + " mais do que 8 caracteres.");
+//        }
+//        if(paciente.getTelefone() == null) {
+//            throw new CampoPreenchidoException("telefone");
+//        }
+//        if(paciente.getEndereco() == null) {
+//            throw new CampoPreenchidoException("endereço");
+//        }
         
         Paciente pacienteExixtente = findByIdPaciente(paciente.getId());
         if(!pacienteExixtente.getEmail().equals(paciente.getEmail())) {
