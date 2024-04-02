@@ -99,6 +99,8 @@ public class EspecialidadeRepository {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(ATUALIZAR);
             pstmt.setString(1, especialidade.getNome());
+            pstmt.setInt(2, especialidade.getId()); // Definir o ID
+
             
             pstmt.executeUpdate();
 
