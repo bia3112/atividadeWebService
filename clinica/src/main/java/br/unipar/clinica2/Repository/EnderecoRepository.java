@@ -106,37 +106,33 @@ public class EnderecoRepository {
     }
        
       public Endereco atualizarEndereco(Endereco endereco) throws SQLException {
+    Connection conn = null;
+    PreparedStatement pstmt = null;
 
-        Connection conn = null;
-        PreparedStatement pstmt = null;
+    try {
+        conn = new ConnectionFactory().getConnection();
+        pstmt = conn.prepareStatement(UPDATE);
 
-        try {
-            
-            conn = new ConnectionFactory().getConnection();
-            pstmt = conn.prepareStatement(UPDATE);
+        pstmt.setString(1, endereco.getLogradouro());
+        pstmt.setInt(2, endereco.getNumero());
+        pstmt.setString(3, endereco.getComplemento());
+        pstmt.setString(4, endereco.getBairro());
+        pstmt.setString(5, endereco.getCidade());
+        pstmt.setString(6, endereco.getUf());
+        pstmt.setString(7, endereco.getCep());
+        pstmt.setInt(8, endereco.getId()); // id no final pq no sql ta no final 
 
-            pstmt.setInt(1, endereco.getId());
-            pstmt.setString(2, endereco.getLogradouro());
-            pstmt.setInt(3, endereco.getNumero());
-            pstmt.setString(4, endereco.getComplemento());
-            pstmt.setString(5, endereco.getBairro());
-            pstmt.setString(6, endereco.getCidade());
-            pstmt.setString(7, endereco.getUf());
-            pstmt.setString(8, endereco.getCep());
-
-            pstmt.executeUpdate();
-
-        } finally {
-            if (pstmt != null) {
-                pstmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+        pstmt.executeUpdate();
+    } finally {
+        if (pstmt != null) {
+            pstmt.close();
         }
-        return endereco;
-
+        if (conn != null) {
+            conn.close();
+        }
     }
+    return endereco;
+}
       public void deletarEndereco(int id) throws SQLException {
           
         Connection conn = null;

@@ -18,9 +18,9 @@ import java.sql.SQLException;
  */
 public class MedicoRepository {
     
-    private static final String INSERT = "INSERT INTO MEDICO(CRM, "
-            + "NOME, CPF, EMAIL, TELEFONE, ESPECIALIDADE_ID, ENDERECO_ID) "
-            + "VALUES(?, ?, ?, ?, ?, ?, ?)";
+     private static final String INSERT = "INSERT INTO MEDICO(CRM, "
+            + "NOME, CPF, EMAIL, TELEFONE, ESPECIALIDADE_ID, ENDERECO_ID, STATUS) "
+            + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String FIND_ALL = "SELECT * FROM MEDICO";
 
@@ -29,24 +29,23 @@ public class MedicoRepository {
 
     private static final String UPDATE = "UPDATE MEDICO SET NOME = ?, "
             + " TELEFONE = ?, ENDERECO_ID = ? WHERE ID = ?";
-    
+
     private static final String FIND_BY_ID = "SELECT ID, NOME, CRM, "
             + "ESPECIALIDADE, STATUS FROM MEDICO WHERE ID = ?";
-    
+
     public ArrayList<Medico> listAllMedico() throws SQLException {
-        
+
         ArrayList<Medico> retorno = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
-            
+
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(FIND_ALL);
 
             rs = pstmt.executeQuery();
-            
 
             while (rs.next()) {
                 Medico medico = new Medico();
@@ -58,9 +57,9 @@ public class MedicoRepository {
                 medico.setTelefone(rs.getString("TELEFONE"));
                 medico.setCpf(rs.getString("CPF"));
                 medico.setStatus(rs.getString("STATUS"));
-                
+
                 retorno.add(medico);
-                
+
             }
         } finally {
 
@@ -76,20 +75,20 @@ public class MedicoRepository {
                 pstmt.close();
             }
         }
-        
+
         return retorno;
     }
-    
-   public Medico inserirmedico(Medico medico) throws SQLException {
+
+    public Medico inserirmedico(Medico medico) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        
+
         try {
-            
+
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(INSERT);
-            
+
             pstmt.setString(1, medico.getCrm());
             pstmt.setString(2, medico.getNome());
             pstmt.setString(3, medico.getCpf());
@@ -98,9 +97,9 @@ public class MedicoRepository {
             pstmt.setInt(6, medico.getEspecialidade().getId());
             pstmt.setInt(7, medico.getEndereco().getId());
             pstmt.setString(8, "ATIVO");
-          
+
             pstmt.executeUpdate();
-            
+
         } finally {
 
             if (pstmt != null) {
@@ -110,27 +109,26 @@ public class MedicoRepository {
                 conn.close();
             }
         }
-        
+
         return medico;
-        
+
     }
-   
-   
-   public Medico atualizarmedico(Medico medico) throws SQLException {
+
+    public Medico atualizarmedico(Medico medico) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
 
         try {
-            
-            conn = new ConnectionFactory().getConnection();      
+
+            conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(UPDATE);
-            
-            pstmt.setInt(1, medico.getId());
-            pstmt.setString(2, medico.getNome());
-            pstmt.setString(3, medico.getTelefone());
-            pstmt.setInt(4, medico.getEndereco().getId());
-            
+
+            pstmt.setString(1, medico.getNome());
+            pstmt.setString(2, medico.getTelefone());
+            pstmt.setInt(3, medico.getEndereco().getId());
+            pstmt.setInt(4, medico.getId());
+
             pstmt.executeUpdate();
 
         } finally {
@@ -145,9 +143,9 @@ public class MedicoRepository {
         return medico;
 
     }
-   
+
     public void deletarmedico(int id) throws SQLException {
-         
+
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -169,8 +167,8 @@ public class MedicoRepository {
         }
 
     }
-     
-   public Medico findByIdmedico(int id) throws SQLException {
+
+    public Medico findByIdmedico(int id) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -178,7 +176,7 @@ public class MedicoRepository {
         Medico retorno = null;
 
         try {
-            
+
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(FIND_BY_ID);
 
@@ -196,7 +194,7 @@ public class MedicoRepository {
                 retorno.setTelefone(rs.getString("TELEFONE"));
                 retorno.setEspecialidade(new EspecialidadeRepository().findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
                 retorno.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
-                
+
             }
         } finally {
 
@@ -213,7 +211,5 @@ public class MedicoRepository {
         }
         return retorno;
     }
-   
-   
-}
+   }
 
