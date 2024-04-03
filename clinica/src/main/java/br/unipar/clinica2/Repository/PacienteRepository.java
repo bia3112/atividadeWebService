@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -20,14 +21,14 @@ import java.util.Collections;
 public class PacienteRepository {
     
     private static final String INSERT = "INSERT INTO PACIENTE(NOME, EMAIL, "
-            + "TELEFONE, ENDERECO_ID, CPF, STATUS) VALUES(?, ?, ?, ?, ?, 'ATIVO')";
+            + "TELEFONE, ENDERECO_ID, CPF, STATUS) VALUES(?, ?, ?, ?, ?, ?)";
 
-    private static final String LIST_ALL = "SELECT NOME, EMAIL, CPF FROM PACIENTE";
+    private static final String LIST_ALL = "SELECT NOME, EMAIL, CPF, STATUS FROM PACIENTE";
 
-    private static final String FIND_BY_ID = "SELECT NOME, EMAIL, TELEFONE,"
-            + " ENDERECO_ID, CPF FROM PACIENTE WHERE ID = ? ";
+    private static final String FIND_BY_ID = "SELECT NOME, EMAIL"
+            + ", CPF, STATUS FROM PACIENTE WHERE ID = ? ";
 
-    private static final String DELETE = "UPDATE PACIENTE SET STATUS = 'INATIVO'"
+    private static final String DELETE = "UPDATE PACIENTE SET STATUS = ? "
             + " WHERE ID = ?";
 
     private static final String UPDATE = "UPDATE PACIENTE SET NOME = ?, "
@@ -52,6 +53,7 @@ public class PacienteRepository {
                 paciente.setNome(rs.getString("NOME"));
                 paciente.setEmail(rs.getString("EMAIL"));
                 paciente.setCpf(rs.getString("CPF"));
+                paciente.setStatus(rs.getString("STATUS"));
                 
                 retorno.add(paciente);
             }
@@ -66,8 +68,13 @@ public class PacienteRepository {
                 pstmt.close();
             }
         }
-        //listar em ordem alfabética
-        Collections.sort(retorno, (Paciente p1, Paciente p2) -> p1.getNome().compareTo(p2.getNome()));
+        
+        Collections.sort(retorno, new Comparator<Paciente>() {
+            @Override
+            public int compare(Paciente p1, Paciente p2) {
+                return p1.getNome().compareToIgnoreCase(p2.getNome());
+            }
+        });
 
         return retorno;
     }
@@ -85,9 +92,9 @@ public class PacienteRepository {
             pstmt.setString(1, paciente.getNome());
             pstmt.setString(2, paciente.getEmail());
             pstmt.setString(3, paciente.getTelefone());
-            pstmt.setInt(4, paciente.getEndereco().getId());
+            pstmt.setInt(4, paciente.getEndereco().getIdEndereco());
             pstmt.setString(5, paciente.getCpf());
-            pstmt.setString(6, "ATIVO");
+            pstmt.setString(6, paciente.getStatus());
 
             pstmt.executeUpdate();
 
@@ -111,11 +118,11 @@ public class PacienteRepository {
             
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(UPDATE);
-            
-            pstmt.setInt(1, paciente.getId());
-            pstmt.setString(2, paciente.getNome());
-            pstmt.setString(3, paciente.getTelefone());
-            pstmt.setInt(4, paciente.getEndereco().getId());
+                       
+            pstmt.setString(1, paciente.getNome());
+            pstmt.setString(2, paciente.getTelefone());
+            pstmt.setInt(3, paciente.getEndereco().getIdEndereco());
+            pstmt.setInt(4, paciente.getId());
             
             pstmt.executeUpdate();
 
@@ -130,7 +137,7 @@ public class PacienteRepository {
         return paciente;
     }
     
-    public void deletarPaciente(int id) throws SQLException {
+    public Paciente deletarPaciente(Paciente paciente) throws SQLException {
         
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -139,7 +146,8 @@ public class PacienteRepository {
 
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETE);
-            pstmt.setInt(1, id);
+            pstmt.setString(1, paciente.getStatus());
+            pstmt.setInt(2, paciente.getId());
 
             pstmt.executeUpdate();
 
@@ -151,6 +159,7 @@ public class PacienteRepository {
                 conn.close();
             }
         }
+        return paciente;
     }
 
     public Paciente findByIdPaciente(int id) throws SQLException {
@@ -171,13 +180,12 @@ public class PacienteRepository {
 
             while (rs.next()) {
                 retorno = new Paciente();
-                retorno.setId(rs.getInt("ID"));
+                
                 retorno.setNome(rs.getString("NOME")); 
                 retorno.setEmail(rs.getString("EMAIL"));
-                retorno.setTelefone(rs.getString("TELEFONE"));
-                retorno.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
                 retorno.setCpf(rs.getString("CPF"));
-               
+                retorno.setStatus(rs.getString("STATUS"));
+
             }
             
         } finally {

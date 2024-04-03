@@ -50,7 +50,7 @@ public class ConsultaService {
     
     public Consulta inserirConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
   
-        Consulta consultaExistente = findByIdConsulta(consulta.getId());
+        Consulta consultaExistente = findByIdConsulta(consulta.getIdConsulta());
         
         if(!isHorarioFuncionamento(consulta.getDataHora().getDayOfWeek(), consulta.getDataHora().toLocalTime())) {
             throw new ValidacaoException("Horário fora do funcionamento da clínica.");

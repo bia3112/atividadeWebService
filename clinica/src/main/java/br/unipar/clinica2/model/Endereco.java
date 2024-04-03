@@ -10,7 +10,7 @@ package br.unipar.clinica2.model;
  */
 public class Endereco {
     
-    private int id;
+    private int idEndereco;
     private String logradouro;
     private int numero;
     private String complemento;
@@ -18,13 +18,14 @@ public class Endereco {
     private String cidade;
     private String uf;
     private String cep;
+    private String status;
 
     public Endereco() {
     }
 
-    public Endereco(int id, String logradouro, int numero, String complemento, 
-            String bairro, String cidade, String uf, String cep) {
-        this.id = id;
+    public Endereco(int idEndereco, String logradouro, int numero, String complemento, 
+            String bairro, String cidade, String uf, String cep, String status) {
+        this.idEndereco = idEndereco;
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
@@ -32,14 +33,15 @@ public class Endereco {
         this.cidade = cidade;
         this.uf = uf;
         this.cep = cep;
+        this.status = status;
     }
 
-    public int getId() {
-        return id;
+    public int getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getLogradouro() {
@@ -98,4 +100,12 @@ public class Endereco {
         this.cep = cep;
     } 
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
 }

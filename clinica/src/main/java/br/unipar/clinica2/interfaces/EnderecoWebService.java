@@ -28,7 +28,7 @@ public interface EnderecoWebService {
     Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    void deletarEndereco(int id) throws ValidacaoException;
+    Endereco deletarEndereco(Endereco endereco) throws ValidacaoException;
     
     @WebMethod
     Endereco findByIdEndereco(int id) throws ValidacaoException;

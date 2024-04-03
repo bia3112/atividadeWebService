@@ -46,13 +46,13 @@ public class PacienteWerServicelmp implements PacienteWebService{
     }
 
     @Override
-    public void deletarPaciente(int id) throws ValidacaoException {
+    public Paciente deletarPaciente(Paciente paciente) throws ValidacaoException {
         PacienteService pacienteService = new PacienteService();
-        pacienteService.deletarPaciente(id);
+        return pacienteService.deletarPaciente(paciente);
     }
 
     @Override
-    public Paciente findByIdPaciente(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente findByIdPaciente(int id) throws ValidacaoException {
         PacienteService pacienteService = new PacienteService();
         return pacienteService.findByIdPaciente(id);
     }

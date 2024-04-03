@@ -10,23 +10,23 @@ package br.unipar.clinica2.model;
  */
 public class Especialidade {
     
-    private int id;
+    private int idEspecialidade;
     private String nome;
-
-    public Especialidade(int id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
 
     public Especialidade() {
     }
 
-    public int getId() {
-        return id;
+    public Especialidade(int idEspecialidade, String nome) {
+        this.idEspecialidade = idEspecialidade;
+        this.nome = nome;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdEspecialidade() {
+        return idEspecialidade;
+    }
+
+    public void setIdEspecialidade(int idEspecialidade) {
+        this.idEspecialidade = idEspecialidade;
     }
 
     public String getNome() {
