@@ -123,7 +123,7 @@ public class ConsultaRepository {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(UPDATE);
 
-            pstmt.setInt(1, consulta.getId());
+            pstmt.setInt(1, consulta.getIdConsulta());
             pstmt.setInt(1, consulta.getPaciente().getId());
             pstmt.setInt(2, consulta.getMedico().getId());
             pstmt.setTimestamp(3, Timestamp.valueOf(consulta.getDataHora()));
@@ -181,7 +181,7 @@ public class ConsultaRepository {
             
             while (rs.next()) {
                 retorno = new Consulta();
-                retorno.setId(rs.getInt("ID"));
+                retorno.setIdConsulta(rs.getInt("ID"));
                 retorno.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTE_ID")));
                 retorno.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICOID")));
                 retorno.setDataHora(rs.getTimestamp("DATAHORA").toLocalDateTime()); 

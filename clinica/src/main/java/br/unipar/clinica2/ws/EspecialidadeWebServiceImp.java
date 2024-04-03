@@ -48,9 +48,9 @@ public class EspecialidadeWebServiceImp  implements EspecialidadeWebService{
     }
 
     @Override
-    public void deletarEspecialidade(int id) throws ValidacaoException {
+    public Especialidade deletarEspecialidade(Especialidade especialidade) throws ValidacaoException {
         EspecialidadeService especialidadeService = new EspecialidadeService();
-        especialidadeService.deletarEspecialidade(id);
+        return especialidadeService.deletarEspecialidade(especialidade);
     }
     
     @Override

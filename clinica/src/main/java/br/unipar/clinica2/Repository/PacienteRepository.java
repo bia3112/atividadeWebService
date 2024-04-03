@@ -25,8 +25,8 @@ public class PacienteRepository {
 
     private static final String LIST_ALL = "SELECT NOME, EMAIL, CPF, STATUS FROM PACIENTE";
 
-    private static final String FIND_BY_ID = "SELECT NOME, EMAIL, TELEFONE,"
-            + " ENDERECO_ID, CPF FROM PACIENTE WHERE ID = ? ";
+    private static final String FIND_BY_ID = "SELECT NOME, EMAIL"
+            + ", CPF, STATUS FROM PACIENTE WHERE ID = ? ";
 
     private static final String DELETE = "UPDATE PACIENTE SET STATUS = ? "
             + " WHERE ID = ?";
@@ -183,11 +183,9 @@ public class PacienteRepository {
                 
                 retorno.setNome(rs.getString("NOME")); 
                 retorno.setEmail(rs.getString("EMAIL"));
-                retorno.setTelefone(rs.getString("TELEFONE"));
-                retorno.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
                 retorno.setCpf(rs.getString("CPF"));
                 retorno.setStatus(rs.getString("STATUS"));
-                retorno.setId(rs.getInt("ID"));
+
             }
             
         } finally {

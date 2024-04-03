@@ -59,10 +59,11 @@ public class EspecialidadeService {
         }
     }
 
-    public void deletarEspecialidade(int id) throws ValidacaoException {
+    public Especialidade deletarEspecialidade(Especialidade especialidade) throws ValidacaoException {
+        
         try {
             EspecialidadeRepository especialidadeRepository = new EspecialidadeRepository();
-            especialidadeRepository.deletarEspecialidade(id);
+            return especialidadeRepository.deletarEspecialidade(especialidade);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }

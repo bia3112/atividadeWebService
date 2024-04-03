@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -22,9 +24,9 @@ public class MedicoRepository {
             + "NOME, CPF, EMAIL, TELEFONE, ESPECIALIDADE_ID, ENDERECO_ID, STATUS) "
             + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String FIND_ALL = "SELECT * FROM MEDICO";
+    private static final String FIND_ALL = "SELECT CRM, NOME, EMAIL, ESPECIALIDADE_ID, STATUS FROM MEDICO";
 
-    private static final String DELETE = "UPDATE MEDICO SET STATUS = 'INATIVO' "
+    private static final String DELETE = "UPDATE MEDICO SET STATUS = ? "
             + "WHERE ID = ?";
 
     private static final String UPDATE = "UPDATE MEDICO SET NOME = ?, "
@@ -52,10 +54,8 @@ public class MedicoRepository {
                 medico.setCrm(rs.getString("CRM"));
                 medico.setNome(rs.getString("NOME"));
                 medico.setEmail(rs.getString("EMAIL"));
-                medico.setEspecialidade(new EspecialidadeRepository().findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
-                medico.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
-                medico.setTelefone(rs.getString("TELEFONE"));
-                medico.setCpf(rs.getString("CPF"));
+                medico.setEspecialidade(new EspecialidadeRepository().
+                        findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
                 medico.setStatus(rs.getString("STATUS"));
 
                 retorno.add(medico);
@@ -75,6 +75,13 @@ public class MedicoRepository {
                 pstmt.close();
             }
         }
+        
+        Collections.sort(retorno, new Comparator<Medico>() {
+            @Override
+            public int compare(Medico m1, Medico m2) {
+                return m1.getNome().compareToIgnoreCase(m2.getNome());
+            }
+        });
 
         return retorno;
     }
@@ -94,9 +101,9 @@ public class MedicoRepository {
             pstmt.setString(3, medico.getCpf());
             pstmt.setString(4, medico.getEmail());
             pstmt.setString(5, medico.getTelefone());
-            pstmt.setInt(6, medico.getEspecialidade().getId());
+            pstmt.setInt(6, medico.getEspecialidade().getIdEspecialidade());
             pstmt.setInt(7, medico.getEndereco().getIdEndereco());
-            pstmt.setString(8, "ATIVO");
+            pstmt.setString(8, medico.getStatus());
 
             pstmt.executeUpdate();
 
@@ -144,7 +151,7 @@ public class MedicoRepository {
 
     }
 
-    public void deletarmedico(int id) throws SQLException {
+    public Medico deletarmedico(Medico medico) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -153,7 +160,7 @@ public class MedicoRepository {
 
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETE);
-            pstmt.setInt(1, id);
+            pstmt.setInt(1, medico.getId());
 
             pstmt.executeUpdate();
 
@@ -165,6 +172,7 @@ public class MedicoRepository {
                 conn.close();
             }
         }
+         return medico;
 
     }
 
@@ -186,7 +194,6 @@ public class MedicoRepository {
 
             while (rs.next()) {
                 retorno = new Medico();
-                retorno.setId(rs.getInt("ID"));
                 retorno.setCrm(rs.getString("CRM"));
                 retorno.setNome(rs.getString("NOME"));
                 retorno.setCpf(rs.getString("CPF"));
@@ -211,5 +218,6 @@ public class MedicoRepository {
         }
         return retorno;
     }
+    
    }
 

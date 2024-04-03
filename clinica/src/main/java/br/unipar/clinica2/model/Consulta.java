@@ -8,30 +8,29 @@ import java.time.LocalDateTime;
     
 public class Consulta {
     
-    private int id;
+    private int idConsulta;
     private Paciente paciente;
     private Medico medico;
     private LocalDateTime dataHora;
 
-    public Consulta(Paciente paciente, Medico medico, LocalDateTime dataHora) {
+    public Consulta(int idConsulta, Paciente paciente, Medico medico, LocalDateTime dataHora) {
+        this.idConsulta = idConsulta;
         this.paciente = paciente;
         this.medico = medico;
         this.dataHora = dataHora;
     }
 
-    public Consulta(int id) {
-        this.id = id;
+    public Consulta(int idConsulta) {
+        this.idConsulta = idConsulta;
     }
 
-    public int getId() {
-        return id;
+    public int getIdConsulta() {
+        return idConsulta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdConsulta(int idConsulta) {
+        this.idConsulta = idConsulta;
     }
-
-   
 
     public Consulta() {
     }
@@ -47,7 +46,6 @@ public class Consulta {
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
     }
-    
 
     public Paciente getPaciente() {
         return paciente;

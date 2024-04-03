@@ -25,45 +25,45 @@ public class PacienteService {
 
     public Paciente inserirPaciente(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
         
-        if(paciente.getNome().length() <= 3) {
-            throw new ValidacaoException("Nome deve possuir"
-                   + " mais do que 3 caracteres.");
-        }
-        if(paciente.getNome() == null) {
-            throw new CampoPreenchidoException("nome");
-        }
-        if(paciente.getEmail().length() <= 12) {
-            throw new ValidacaoException("Email deve possuir"
-                   + " mais do que 12 caracteres.");
-        }
-        if(paciente.getEmail() == null) {
-            throw new CampoPreenchidoException("email");
-        }
-        if(paciente.getTelefone().length() <= 8) {
-            throw new ValidacaoException("Telefone deve possuir"
-                   + " mais do que 8 caracteres.");
-        }
-        if(paciente.getTelefone() == null) {
-            throw new CampoPreenchidoException("telefone");
-        }
-        if(paciente.getCpf().length() <= 10) {
-            throw new ValidacaoException("CPF deve possuir"
-                   + " mais do que 10 caracteres.");
-        }
-        if(paciente.getCpf() == null) {
-            throw new CampoPreenchidoException("CPF");
-        }
-        if(paciente.getEndereco() == null) {
-            throw new CampoPreenchidoException("endereço");
-        }
+//        if(paciente.getNome().length() <= 3) {
+//            throw new ValidacaoException("Nome deve possuir"
+//                   + " mais do que 3 caracteres.");
+//        }
+//        if(paciente.getNome() == null) {
+//            throw new CampoPreenchidoException("nome");
+//        }
+//        if(paciente.getEmail().length() <= 12) {
+//            throw new ValidacaoException("Email deve possuir"
+//                   + " mais do que 12 caracteres.");
+//        }
+//        if(paciente.getEmail() == null) {
+//            throw new CampoPreenchidoException("email");
+//        }
+//        if(paciente.getTelefone().length() <= 8) {
+//            throw new ValidacaoException("Telefone deve possuir"
+//                   + " mais do que 8 caracteres.");
+//        }
+//        if(paciente.getTelefone() == null) {
+//            throw new CampoPreenchidoException("telefone");
+//        }
+//        if(paciente.getCpf().length() <= 10) {
+//            throw new ValidacaoException("CPF deve possuir"
+//                   + " mais do que 10 caracteres.");
+//        }
+//        if(paciente.getCpf() == null) {
+//            throw new CampoPreenchidoException("CPF");
+//        }
+//        if(paciente.getEndereco() == null) {
+//            throw new CampoPreenchidoException("endereço");
+//        }
         
-        Paciente pacienteExistente = findByIdPaciente(paciente.getId());
-        if (!paciente.getCpf().equals(pacienteExistente.getCpf())) {
-            throw new ValidacaoException("CRM não pode ser alterado.");
-        }
-        if (!paciente.getEmail().equals(pacienteExistente.getEmail())) {
-            throw new ValidacaoException("E-mail não pode ser alterado.");
-        }
+//        Paciente pacienteExistente = findByIdPaciente(paciente.getId());
+//        if (!paciente.getCpf().equals(pacienteExistente.getCpf())) {
+//            throw new ValidacaoException("CRM não pode ser alterado.");
+//        }
+//        if (!paciente.getEmail().equals(pacienteExistente.getEmail())) {
+//            throw new ValidacaoException("E-mail não pode ser alterado.");
+//        }
         
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
@@ -76,22 +76,22 @@ public class PacienteService {
     public Paciente atualizarPaciente(Paciente paciente) throws ValidacaoException, 
             CampoPreenchidoException {
         
-        if(paciente.getNome().length() <= 3) {
-            throw new ValidacaoException("Nome deve possuir"
-                   + " mais do que 3 caracteres.");
-        }
-        if(paciente.getTelefone().length() <= 8) {
-            throw new ValidacaoException("Telefone deve possuir"
-                   + " mais do que 8 caracteres.");
-        }
+//        if(paciente.getNome().length() <= 3) {
+//            throw new ValidacaoException("Nome deve possuir"
+//                   + " mais do que 3 caracteres.");
+//        }
+//        if(paciente.getTelefone().length() <= 8) {
+//            throw new ValidacaoException("Telefone deve possuir"
+//                   + " mais do que 8 caracteres.");
+//        }
         
-        Paciente pacienteExixtente = findByIdPaciente(paciente.getId());
-        if(!pacienteExixtente.getEmail().equals(paciente.getEmail())) {
-            throw new ValidacaoException("Não é permitido alterar o email.");
-        }
-        if(!pacienteExixtente.getCpf().equals(paciente.getCpf())) {
-            throw new ValidacaoException("Não é permitido alterar o CPF.");
-        }
+//        Paciente pacienteExixtente = findByIdPaciente(paciente.getId());
+//        if(!pacienteExixtente.getEmail().equals(paciente.getEmail())) {
+//            throw new ValidacaoException("Não é permitido alterar o email.");
+//        }
+//        if(!pacienteExixtente.getCpf().equals(paciente.getCpf())) {
+//            throw new ValidacaoException("Não é permitido alterar o CPF.");
+//        }
         
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
@@ -111,11 +111,11 @@ public class PacienteService {
         }
     }
     
-    public Paciente findByIdPaciente(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente findByIdPaciente(int id) throws ValidacaoException {
         
-        if(id <= 0) {
-            throw new ValidacaoException("Número de caracteres inválido.");
-        }
+//        if(id <= 0) {
+//            throw new ValidacaoException("Número de caracteres inválido.");
+//        }
         
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();

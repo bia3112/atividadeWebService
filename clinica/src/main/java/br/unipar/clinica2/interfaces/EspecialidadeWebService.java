@@ -28,7 +28,7 @@ public interface EspecialidadeWebService {
     Especialidade atualizarEspecialidade(Especialidade especialidade) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod 
-    void deletarEspecialidade(int id) throws ValidacaoException;
+    Especialidade deletarEspecialidade(Especialidade especialidade) throws ValidacaoException;
     
     @WebMethod
     Especialidade findByIdEspecialidade(int id) throws ValidacaoException, CampoPreenchidoException;

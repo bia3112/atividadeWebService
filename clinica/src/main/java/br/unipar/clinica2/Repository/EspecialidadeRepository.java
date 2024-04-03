@@ -22,7 +22,7 @@ public class EspecialidadeRepository {
 
     private static final String LIST_ALL = "SELECT * FROM ESPECIALIDADE";
 
-    private static final String DELETAR = "DELETE FROM ESPECIALIDADE WHERE ID = ?";
+    private static final String DELETAR = "UPDATE ESPECIALIDADE SET STATUS = ? WHERE ID = ?";
 
     private static final String ATUALIZAR = "UPDATE ESPECIALIDADE SET NOME = ? WHERE ID = ?";
     
@@ -99,8 +99,7 @@ public class EspecialidadeRepository {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(ATUALIZAR);
             pstmt.setString(1, especialidade.getNome());
-            pstmt.setInt(2, especialidade.getId()); // Definir o ID
-
+            pstmt.setInt(2, especialidade.getIdEspecialidade()); // Definir o ID
             
             pstmt.executeUpdate();
 
@@ -115,7 +114,8 @@ public class EspecialidadeRepository {
         return especialidade;
     }
       
-    public void deletarEspecialidade(int id) throws SQLException {
+    public Especialidade deletarEspecialidade(Especialidade especialidade) throws SQLException {
+        
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -123,7 +123,8 @@ public class EspecialidadeRepository {
 
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETAR);
-            pstmt.setInt(1, id);
+            
+            pstmt.setInt(1, especialidade.getIdEspecialidade());
 
             pstmt.executeUpdate();
 
@@ -135,6 +136,7 @@ public class EspecialidadeRepository {
                 conn.close();
             }
         }
+        return especialidade;
     }
 
     public Especialidade findByIdEspecialidade(int id) throws SQLException {
@@ -155,7 +157,7 @@ public class EspecialidadeRepository {
 
             while (rs.next()) {
                 retorno = new Especialidade();
-                retorno.setId(rs.getInt("ID"));
+                retorno.setIdEspecialidade(rs.getInt("ID"));
                 retorno.setNome(rs.getString("NOME")); 
                
             }

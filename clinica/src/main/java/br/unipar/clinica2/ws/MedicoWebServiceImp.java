@@ -46,9 +46,9 @@ public class MedicoWebServiceImp  implements MedicoWebService {
     }
 
     @Override
-    public void deletarmedico(int id) throws ValidacaoException {
+    public Medico deletarmedico(Medico medico) throws ValidacaoException {
         MedicoService medicoService = new MedicoService();
-        medicoService.deletarmedico(id);
+        return medicoService.deletarmedico(medico);
     }
     
     @Override

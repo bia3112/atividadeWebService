@@ -52,7 +52,7 @@ public class PacienteWerServicelmp implements PacienteWebService{
     }
 
     @Override
-    public Paciente findByIdPaciente(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente findByIdPaciente(int id) throws ValidacaoException {
         PacienteService pacienteService = new PacienteService();
         return pacienteService.findByIdPaciente(id);
     }
