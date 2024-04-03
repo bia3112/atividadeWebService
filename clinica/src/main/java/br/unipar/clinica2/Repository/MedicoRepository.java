@@ -95,7 +95,7 @@ public class MedicoRepository {
             pstmt.setString(4, medico.getEmail());
             pstmt.setString(5, medico.getTelefone());
             pstmt.setInt(6, medico.getEspecialidade().getId());
-            pstmt.setInt(7, medico.getEndereco().getId());
+            pstmt.setInt(7, medico.getEndereco().getIdEndereco());
             pstmt.setString(8, "ATIVO");
 
             pstmt.executeUpdate();
@@ -126,7 +126,7 @@ public class MedicoRepository {
 
             pstmt.setString(1, medico.getNome());
             pstmt.setString(2, medico.getTelefone());
-            pstmt.setInt(3, medico.getEndereco().getId());
+            pstmt.setInt(3, medico.getEndereco().getIdEndereco());
             pstmt.setInt(4, medico.getId());
 
             pstmt.executeUpdate();

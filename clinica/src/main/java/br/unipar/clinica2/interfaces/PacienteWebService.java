@@ -28,7 +28,7 @@ public interface PacienteWebService {
     Paciente atualizarPaciente(Paciente paciente) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod 
-    void deletarPaciente(int id) throws ValidacaoException;
+    Paciente deletarPaciente(Paciente paciente) throws ValidacaoException;
     
     @WebMethod
     Paciente findByIdPaciente(int id) throws ValidacaoException, CampoPreenchidoException;

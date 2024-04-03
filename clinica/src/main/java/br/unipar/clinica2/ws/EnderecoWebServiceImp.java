@@ -26,9 +26,9 @@ public class EnderecoWebServiceImp implements EnderecoWebService{
     }
 
     @Override
-    public void deletarEndereco(int id) throws ValidacaoException {
+    public Endereco deletarEndereco(Endereco endereco) throws ValidacaoException {
         EnderecoService enderecoService = new EnderecoService();
-        enderecoService.deletarEndereco(id);
+        return enderecoService.deletarEndereco(endereco);
     }
 
     @Override

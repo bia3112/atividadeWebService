@@ -10,8 +10,6 @@ import br.unipar.clinica2.Repository.PacienteRepository;
 import br.unipar.clinica2.model.Paciente;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
@@ -22,7 +20,6 @@ public class PacienteService {
     public ArrayList<Paciente> listAllPaciente()throws SQLException{
        PacienteRepository pacienteRepository = new PacienteRepository();
        ArrayList<Paciente> retorno = pacienteRepository.listAllPaciente();
-       Collections.sort(retorno, Comparator.comparing(Paciente::getNome));
        return retorno;
     }
 
@@ -76,25 +73,17 @@ public class PacienteService {
         }
      }
     
-    public Paciente atualizarPaciente(Paciente paciente) throws ValidacaoException, CampoPreenchidoException {
+    public Paciente atualizarPaciente(Paciente paciente) throws ValidacaoException, 
+            CampoPreenchidoException {
         
-//        if(paciente.getNome().length() <= 3) {
-//            throw new ValidacaoException("Nome deve possuir"
-//                   + " mais do que 3 caracteres.");
-//        }
-//        if(paciente.getNome() == null) {
-//            throw new CampoPreenchidoException("nome");
-//        }
-//        if(paciente.getTelefone().length() <= 8) {
-//            throw new ValidacaoException("Telefone deve possuir"
-//                   + " mais do que 8 caracteres.");
-//        }
-//        if(paciente.getTelefone() == null) {
-//            throw new CampoPreenchidoException("telefone");
-//        }
-//        if(paciente.getEndereco() == null) {
-//            throw new CampoPreenchidoException("endereço");
-//        }
+        if(paciente.getNome().length() <= 3) {
+            throw new ValidacaoException("Nome deve possuir"
+                   + " mais do que 3 caracteres.");
+        }
+        if(paciente.getTelefone().length() <= 8) {
+            throw new ValidacaoException("Telefone deve possuir"
+                   + " mais do que 8 caracteres.");
+        }
         
         Paciente pacienteExixtente = findByIdPaciente(paciente.getId());
         if(!pacienteExixtente.getEmail().equals(paciente.getEmail())) {
@@ -112,11 +101,11 @@ public class PacienteService {
         }
     }
     
-    public void deletarPaciente(int id) throws ValidacaoException {
+    public Paciente deletarPaciente(Paciente paciente) throws ValidacaoException {
 
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
-            pacienteRepository.deletarPaciente(id);
+            return pacienteRepository.deletarPaciente(paciente);
         } catch (SQLException ex) {
            throw new ValidacaoException("Erro Interno de Servidor");
         }

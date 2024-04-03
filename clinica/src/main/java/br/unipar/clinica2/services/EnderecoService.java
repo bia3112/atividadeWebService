@@ -92,15 +92,15 @@ public class EnderecoService {
   
     }
 
-    public void deletarEndereco(int id) throws ValidacaoException {
+    public Endereco deletarEndereco(Endereco endereco) throws ValidacaoException {
 
-        if(id <= 0) {
+        if(endereco.getIdEndereco() <= 0) {
             throw new ValidacaoException("Número de caracteres inválido.");
         }
         
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
-            enderecoRepository.deletarEndereco(id);
+            return enderecoRepository.deletarEndereco(endereco);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
