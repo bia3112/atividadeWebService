@@ -31,5 +31,5 @@ public interface MedicoWebService {
     Medico deletarmedico(Medico medico) throws ValidacaoException;
     
     @WebMethod
-    Medico findByIdmedico(int id) throws ValidacaoException, CampoPreenchidoException;
+    Medico findByIdmedico(int id) throws ValidacaoException;
 }

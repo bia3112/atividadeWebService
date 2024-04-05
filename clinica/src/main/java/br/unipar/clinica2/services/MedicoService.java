@@ -120,7 +120,7 @@ public class MedicoService {
          }
     }
     
-    public Medico findByIdmedico(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Medico findByIdmedico(int id) throws ValidacaoException {
 
 //             if(id <= 0) {
 //                 throw new ValidacaoException("Número de caracteres inválido.");

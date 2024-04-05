@@ -52,7 +52,7 @@ public class MedicoWebServiceImp  implements MedicoWebService {
     }
     
     @Override
-    public Medico findByIdmedico(int id) throws ValidacaoException, CampoPreenchidoException {
+    public Medico findByIdmedico(int id) throws ValidacaoException {
         MedicoService medicoService = new MedicoService();
         return medicoService.findByIdmedico(id);
     }
