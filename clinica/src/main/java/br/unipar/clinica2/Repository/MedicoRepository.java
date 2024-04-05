@@ -33,7 +33,7 @@ public class MedicoRepository {
             + " TELEFONE = ?, ENDERECO_ID = ? WHERE ID = ?";
 
     private static final String FIND_BY_ID = "SELECT ID, NOME, CRM, "
-            + "ESPECIALIDADE, STATUS FROM MEDICO WHERE ID = ?";
+            + "ESPECIALIDADE_ID, STATUS FROM MEDICO WHERE ID = ?";
 
     public ArrayList<Medico> listAllMedico() throws SQLException {
 

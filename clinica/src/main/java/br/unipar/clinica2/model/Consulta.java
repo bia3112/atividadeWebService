@@ -13,15 +13,14 @@ public class Consulta {
     private Medico medico;
     private LocalDateTime dataHora;
 
+    public Consulta() {
+    }
+    
     public Consulta(int idConsulta, Paciente paciente, Medico medico, LocalDateTime dataHora) {
         this.idConsulta = idConsulta;
         this.paciente = paciente;
         this.medico = medico;
         this.dataHora = dataHora;
-    }
-
-    public Consulta(int idConsulta) {
-        this.idConsulta = idConsulta;
     }
 
     public int getIdConsulta() {
@@ -32,32 +31,28 @@ public class Consulta {
         this.idConsulta = idConsulta;
     }
 
-    public Consulta() {
+    public Paciente getPaciente() {
+        return paciente;
     }
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
     public Medico getMedico() {
         return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 
     public LocalDateTime getDataHora() {
         return dataHora;
     }
 
-    
+    public void setDataHora(LocalDateTime dataHora) {
+        this.dataHora = dataHora;
+    }
+
 }

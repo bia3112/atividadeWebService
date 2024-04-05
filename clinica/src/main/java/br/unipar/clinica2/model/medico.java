@@ -9,11 +9,10 @@ package br.unipar.clinica2.model;
  * @author vinid
  */
 public class Medico extends Pessoa {
-    
-     
-     private String crm;
-     private Especialidade especialidade;
-     private String status;
+
+    private String crm;
+    private Especialidade especialidade;
+    private String status;
 
     public Medico(String crm, Especialidade especialidade, String status, 
             int id, String nome, String email, String telefone, Endereco endereco, String cpf) {

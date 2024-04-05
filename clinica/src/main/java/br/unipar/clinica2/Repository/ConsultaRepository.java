@@ -40,7 +40,7 @@ public class ConsultaRepository {
     private static final String INSERT = "INSERT INTO CONSULTA(PACIENTE_ID , "
             + "MEDICO_ID, DATAHORA ) VALUES(?, ?, ?)";
     
-    private static final String FIND_BY_ID = "SELECT ID , PACIENTE_ID, MEDICO_ID, "
+    private static final String FIND_BY_ID = "SELECT PACIENTE_ID, MEDICO_ID, "
             + "DATAHORA  FROM CONSULTA WHERE ID = ?";
 
     private static final String DELETE = "UPDATE CONSULTA SET STATUS = ? "
@@ -67,7 +67,8 @@ public class ConsultaRepository {
                 Consulta consulta = new Consulta();
                 consulta.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTE_ID")));
                 consulta.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICO_ID")));
-                LocalDateTime dataHora = rs.getTimestamp("DATAHORA").toLocalDateTime();        
+                consulta.setDataHora(rs.getTimestamp("DATAHORA").toLocalDateTime());  
+                
                 retorno.add(consulta);
             }
         } finally {
@@ -98,7 +99,6 @@ public class ConsultaRepository {
             pstmt.setInt(1, consulta.getPaciente().getId());
             pstmt.setInt(2, consulta.getMedico().getId());
             pstmt.setTimestamp(3, Timestamp.valueOf(consulta.getDataHora()));
-
             pstmt.executeUpdate();
             
         } finally {
@@ -123,10 +123,11 @@ public class ConsultaRepository {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(UPDATE);
 
-            pstmt.setInt(1, consulta.getIdConsulta());
             pstmt.setInt(1, consulta.getPaciente().getId());
             pstmt.setInt(2, consulta.getMedico().getId());
             pstmt.setTimestamp(3, Timestamp.valueOf(consulta.getDataHora()));
+            pstmt.setInt(4, consulta.getIdConsulta());
+            
             pstmt.executeUpdate();
 
         } finally {
@@ -181,10 +182,9 @@ public class ConsultaRepository {
             
             while (rs.next()) {
                 retorno = new Consulta();
-                retorno.setIdConsulta(rs.getInt("ID"));
                 retorno.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTE_ID")));
                 retorno.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICOID")));
-                retorno.setDataHora(rs.getTimestamp("DATAHORA").toLocalDateTime()); 
+                retorno.setDataHora(rs.getTimestamp("DATAHORA").toLocalDateTime());
                      
             }
             
