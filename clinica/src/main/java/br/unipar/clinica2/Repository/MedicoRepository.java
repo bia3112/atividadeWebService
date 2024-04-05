@@ -20,11 +20,12 @@ import java.util.Comparator;
  */
 public class MedicoRepository {
     
-     private static final String INSERT = "INSERT INTO MEDICO(CRM, "
-            + "NOME, CPF, EMAIL, TELEFONE, ESPECIALIDADE_ID, ENDERECO_ID, STATUS) "
+     private static final String INSERT = "INSERT INTO MEDICO(NOME, EMAIL, "
+            + "TELEFONE, ENDERECO_ID, CPF, CRM, ESPECIALIDADE_ID, STATUS) "
             + "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
-    private static final String FIND_ALL = "SELECT CRM, NOME, EMAIL, ESPECIALIDADE_ID, STATUS FROM MEDICO";
+    private static final String FIND_ALL = "SELECT CRM, NOME, EMAIL, "
+            + "ESPECIALIDADE_ID, STATUS FROM MEDICO";
 
     private static final String DELETE = "UPDATE MEDICO SET STATUS = ? "
             + "WHERE ID = ?";
@@ -32,8 +33,8 @@ public class MedicoRepository {
     private static final String UPDATE = "UPDATE MEDICO SET NOME = ?, "
             + " TELEFONE = ?, ENDERECO_ID = ? WHERE ID = ?";
 
-    private static final String FIND_BY_ID = "SELECT ID, NOME, CRM, "
-            + "ESPECIALIDADE, STATUS FROM MEDICO WHERE ID = ?";
+    private static final String FIND_BY_ID = "SELECT NOME, CRM, "
+            + "ESPECIALIDADE_ID, STATUS FROM MEDICO WHERE ID = ?";
 
     public ArrayList<Medico> listAllMedico() throws SQLException {
 
@@ -50,10 +51,10 @@ public class MedicoRepository {
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                Medico medico = new Medico();
-                medico.setCrm(rs.getString("CRM"));
+                Medico medico = new Medico(); 
                 medico.setNome(rs.getString("NOME"));
                 medico.setEmail(rs.getString("EMAIL"));
+                medico.setCrm(rs.getString("CRM"));
                 medico.setEspecialidade(new EspecialidadeRepository().
                         findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
                 medico.setStatus(rs.getString("STATUS"));
@@ -96,13 +97,13 @@ public class MedicoRepository {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(INSERT);
 
-            pstmt.setString(1, medico.getCrm());
-            pstmt.setString(2, medico.getNome());
-            pstmt.setString(3, medico.getCpf());
-            pstmt.setString(4, medico.getEmail());
-            pstmt.setString(5, medico.getTelefone());
-            pstmt.setInt(6, medico.getEspecialidade().getIdEspecialidade());
-            pstmt.setInt(7, medico.getEndereco().getIdEndereco());
+            pstmt.setString(1, medico.getNome());
+            pstmt.setString(2, medico.getEmail());
+            pstmt.setString(3, medico.getTelefone());
+            pstmt.setInt(4, medico.getEndereco().getIdEndereco());
+            pstmt.setString(5, medico.getCpf());
+            pstmt.setString(6, medico.getCrm());
+            pstmt.setInt(7, medico.getEspecialidade().getIdEspecialidade());
             pstmt.setString(8, medico.getStatus());
 
             pstmt.executeUpdate();
@@ -160,7 +161,8 @@ public class MedicoRepository {
 
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETE);
-            pstmt.setInt(1, medico.getId());
+            pstmt.setString(1, medico.getStatus());
+            pstmt.setInt(2, medico.getId());
 
             pstmt.executeUpdate();
 
@@ -196,11 +198,9 @@ public class MedicoRepository {
                 retorno = new Medico();
                 retorno.setCrm(rs.getString("CRM"));
                 retorno.setNome(rs.getString("NOME"));
-                retorno.setCpf(rs.getString("CPF"));
-                retorno.setEmail(rs.getString("EMAIL"));
-                retorno.setTelefone(rs.getString("TELEFONE"));
-                retorno.setEspecialidade(new EspecialidadeRepository().findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
-                retorno.setEndereco(new EnderecoRepository().findByIdEndereco(rs.getInt("ENDERECO_ID")));
+                retorno.setEspecialidade(new EspecialidadeRepository().
+                        findByIdEspecialidade(rs.getInt("ESPECIALIDADE_ID")));
+                retorno.setStatus(rs.getString("STATUS"));
 
             }
         } finally {
@@ -219,5 +219,5 @@ public class MedicoRepository {
         return retorno;
     }
     
-   }
+}
 
