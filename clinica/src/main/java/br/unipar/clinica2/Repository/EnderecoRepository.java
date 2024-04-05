@@ -153,8 +153,6 @@ public class EnderecoRepository {
             pstmt.setInt(2, endereco.getIdEndereco());
             pstmt.executeUpdate();
 
-            endereco.setStatus("INATIVO");
-
         } finally {
             if (pstmt != null) {
                 pstmt.close();
@@ -185,7 +183,6 @@ public class EnderecoRepository {
             while (rs.next()) {
                 
                 retorno = new Endereco();
-                retorno.setIdEndereco(rs.getInt("ID_ENDERECO"));
                 retorno.setLogradouro(rs.getString("LOGRADOURO"));
                 retorno.setNumero(rs.getInt("NUMERO"));
                 retorno.setComplemento(rs.getString("COMPLEMENTO"));
