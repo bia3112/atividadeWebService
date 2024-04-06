@@ -14,6 +14,7 @@ public class Medico extends Pessoa {
     private Especialidade especialidade;
     private String status;
 
+    
     public Medico(String crm, Especialidade especialidade, String status, 
             int id, String nome, String email, String telefone, Endereco endereco, String cpf) {
         super(id, nome, email, telefone, endereco, cpf);
