@@ -24,15 +24,6 @@ import java.util.ArrayList;
 //    FOREIGN KEY (MEDICOID) REFERENCES MEDICOS(id)
 //);
 
-//CREATE TABLE CONSULTA (
-//    id INT PRIMARY KEY,
-//    paciente_id INT,
-//    medico_id INT,
-//    datahora TIMESTAMP NOT NULL,
-//    FOREIGN KEY (paciente_id) REFERENCES PACIENTE(id),
-//    FOREIGN KEY (medico_id) REFERENCES MEDICO(id)
-//);
-
 public class ConsultaRepository {
     
     private static final String FIND_ALL = "SELECT * FROM CONSULTA";

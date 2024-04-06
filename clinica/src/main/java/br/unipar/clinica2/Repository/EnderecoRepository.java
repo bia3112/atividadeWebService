@@ -24,8 +24,9 @@ public class EnderecoRepository {
 
     private static final String FIND_ALL = "SELECT * FROM ENDERECO";
 
-    private static final String FIND_BY_ID = "SELECT ID_ENDERECO, LOGRADOURO, NUMERO, "
-            + "COMPLEMENTO, BAIRRO, CIDADE, UF, CEP FROM ENDERECO WHERE ID_ENDERECO = ?";
+    private static final String FIND_BY_ID = "SELECT ID_ENDERECO, LOGRADOURO, "
+            + "NUMERO, COMPLEMENTO, BAIRRO, CIDADE, UF, CEP FROM ENDERECO "
+            + "WHERE ID_ENDERECO = ?";
 
     private static final String DELETE = "UPDATE ENDERECO SET STATUS = ? "
             + "WHERE ID_ENDERECO = ?";
@@ -34,7 +35,6 @@ public class EnderecoRepository {
             + "NUMERO = ?, COMPLEMENTO = ?, BAIRRO = ?, CIDADE = ?, "
             + "UF = ?, CEP = ? WHERE ID_ENDERECO = ?";
      
-    
     public ArrayList<Endereco> listAllEndereco() throws SQLException{
         
         ArrayList<Endereco> retorno = new ArrayList<>();
@@ -59,6 +59,7 @@ public class EnderecoRepository {
                 endereco.setCep(rs.getString("CEP"));
                 endereco.setStatus(rs.getString("STATUS"));
                 endereco.setIdEndereco(rs.getInt("ID_ENDERECO"));
+                
                 retorno.add(endereco);
             }
         } finally {
@@ -76,7 +77,7 @@ public class EnderecoRepository {
         return retorno;
     }
     
-       public Endereco inserirEndereco(Endereco endereco) throws SQLException {
+    public Endereco inserirEndereco(Endereco endereco) throws SQLException {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -126,7 +127,7 @@ public class EnderecoRepository {
             pstmt.setString(6, endereco.getUf());
             pstmt.setString(7, endereco.getCep());
             pstmt.setInt(8, endereco.getIdEndereco()); // id no final pq no sql ta no final 
-
+            
             pstmt.executeUpdate();
 
         } finally {
@@ -152,8 +153,6 @@ public class EnderecoRepository {
             pstmt.setString(1, endereco.getStatus());
             pstmt.setInt(2, endereco.getIdEndereco());
             pstmt.executeUpdate();
-
-            endereco.setStatus("INATIVO");
 
         } finally {
             if (pstmt != null) {

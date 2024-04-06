@@ -16,35 +16,36 @@ import java.util.ArrayList;
  */
 public class EnderecoService {
 
-    public Endereco inserirEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
+    public Endereco inserirEndereco(Endereco endereco) throws ValidacaoException, 
+            CampoPreenchidoException {
        
-        if(endereco.getBairro().length() <= 3) {
-            throw new ValidacaoException("Bairro deve possuir"
-                   + " mais do que 3 caracteres.");
-        }
-        if(endereco.getBairro() == null) {
-            throw new CampoPreenchidoException("bairro");
-        }
-        
-        if(endereco.getLogradouro().length() <= 3) {
-            throw new ValidacaoException("Logradouro deve possuir"
-                    + " mais do que 3 caracteres.");
-        }
-        if(endereco.getLogradouro() == null) {
-            throw new CampoPreenchidoException("logradouro");
-        }
-        
-        if(endereco.getCidade() == null) {
-            throw new CampoPreenchidoException("cidade");
-        }
-        
-        if(endereco.getUf() == null) {
-            throw new CampoPreenchidoException("uf");
-        }
-        
-        if(endereco.getCep() == null) {
-            throw new CampoPreenchidoException("cep");
-        }
+//        if(endereco.getBairro().length() <= 3) {
+//            throw new ValidacaoException("Bairro deve possuir"
+//                   + " mais do que 3 caracteres.");
+//        }
+//        if(endereco.getBairro() == null) {
+//            throw new CampoPreenchidoException("bairro");
+//        }
+//        
+//        if(endereco.getLogradouro().length() <= 3) {
+//            throw new ValidacaoException("Logradouro deve possuir"
+//                    + " mais do que 3 caracteres.");
+//        }
+//        if(endereco.getLogradouro() == null) {
+//            throw new CampoPreenchidoException("logradouro");
+//        }
+//        
+//        if(endereco.getCidade() == null) {
+//            throw new CampoPreenchidoException("cidade");
+//        }
+//        
+//        if(endereco.getUf() == null) {
+//            throw new CampoPreenchidoException("uf");
+//        }
+//        
+//        if(endereco.getCep() == null) {
+//            throw new CampoPreenchidoException("cep");
+//        }
   
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
@@ -65,7 +66,8 @@ public class EnderecoService {
         }
     }
 
-    public Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
+    public Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, 
+            CampoPreenchidoException {
         
 //        if(endereco.getBairro().length() <= 3) {
 //            throw new ValidacaoException("Bairro deve possuir"
@@ -93,10 +95,6 @@ public class EnderecoService {
     }
 
     public Endereco deletarEndereco(Endereco endereco) throws ValidacaoException {
-
-        if(endereco.getIdEndereco() <= 0) {
-            throw new ValidacaoException("Número de caracteres inválido.");
-        }
         
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
@@ -109,9 +107,9 @@ public class EnderecoService {
     
     public Endereco findByIdEndereco(int id) throws ValidacaoException {
 
-        if(id <= 0) {
-            throw new ValidacaoException("Número de caracteres inválido.");
-        }
+//        if(id <= 0) {
+//            throw new ValidacaoException("Número de caracteres inválido.");
+//        }
             
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();
