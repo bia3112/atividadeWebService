@@ -5,6 +5,7 @@
 package br.unipar.clinica2.Repository;
 
 
+import Enum.MotivoEnum;
 import br.unipar.clinica2.model.Consulta;
 import br.unipar.clinica2.ws.infrainstructure.ConnectionFactory;
 import java.sql.Connection;
@@ -40,6 +41,17 @@ public class ConsultaRepository {
     private static final String UPDATE = "UPDATE CONSULTA SET PACIENTE_ID  = ?, "
             + "MEDICO_ID = ?, DATAHORA = ? WHERE ID = ?";
      
+    
+//    public void CancelarConsulta(Consulta consulta, MotivoEnum motivo) {
+//        int id = consulta.getIdConsulta();
+//        
+//        String descricaoMotivo = motivo.getDescricao();
+//        consulta.cancelarConsulta(descricaoMotivo);
+//        
+//        
+//    }
+    
+    
     
     public ArrayList<Consulta> listAllConsulta() throws SQLException{
         
@@ -132,10 +144,12 @@ public class ConsultaRepository {
         return consulta;
 
     }
-      public void deletarConsulta(int id) throws SQLException {
+      public void cancelarConsulta(int id) throws SQLException {
           
         Connection conn = null;
         PreparedStatement pstmt = null;
+        
+        
 
         try {
             conn = new ConnectionFactory().getConnection();
@@ -154,6 +168,7 @@ public class ConsultaRepository {
             }
         }
     }
+
      
     public Consulta findByIdConsulta(int id) throws SQLException {
 

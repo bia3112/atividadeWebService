@@ -39,9 +39,9 @@ public class ConsultaWebServicelmp implements ConsultaWebService {
     }
 
     @Override
-    public void deletarConsulta(int id) throws ValidacaoException {
+    public void cancelarConsulta(int id) throws ValidacaoException {
         ConsultaService consultaService = new ConsultaService();
-        consultaService.deletarConsulta(id);
+        consultaService.cancelarConsulta(id);
     }
 
     @Override

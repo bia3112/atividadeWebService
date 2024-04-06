@@ -105,7 +105,7 @@ public class ConsultaService {
   
     }
     
-    public void deletarConsulta(int id) throws ValidacaoException {
+    public void cancelarConsulta(int id) throws ValidacaoException {
 
 //        if(id <= 0) {
 //            throw new ValidacaoException("Número de caracteres inválido.");
@@ -113,7 +113,7 @@ public class ConsultaService {
         
         try {
             ConsultaRepository consultaRepository = new ConsultaRepository();
-            consultaRepository.deletarConsulta(id);
+            consultaRepository.cancelarConsulta(id);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }

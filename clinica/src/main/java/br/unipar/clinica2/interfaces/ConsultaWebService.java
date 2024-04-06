@@ -28,7 +28,7 @@ public interface ConsultaWebService {
     Consulta atualizarConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    void deletarConsulta(int id) throws ValidacaoException;
+    void cancelarConsulta(int id) throws ValidacaoException;
     
     @WebMethod
     Consulta findByIdConsulta(int id) throws ValidacaoException;
