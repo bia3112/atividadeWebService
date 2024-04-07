@@ -67,21 +67,21 @@ public class EnderecoService {
 
     public Endereco atualizarEndereco(Endereco endereco) throws ValidacaoException, CampoPreenchidoException {
         
-//        if(endereco.getBairro().length() <= 3) {
-//            throw new ValidacaoException("Bairro deve possuir"
-//                   + " mais do que 3 caracteres.");
-//        }
-//        if(endereco.getBairro() == null) {
-//            throw new CampoPreenchidoException("bairro");
-//        }
-//        
-//        if(endereco.getLogradouro().length() <= 3) {
-//            throw new ValidacaoException("Logradouro deve possuir"
-//                    + " mais do que 3 caracteres.");
-//        }
-//        if(endereco.getLogradouro() == null) {
-//            throw new CampoPreenchidoException("logradouro");
-//        }
+        if(endereco.getBairro().length() <= 3) {
+            throw new ValidacaoException("Bairro deve possuir"
+                   + " mais do que 3 caracteres.");
+        }
+        if(endereco.getBairro() == null) {
+            throw new CampoPreenchidoException("bairro");
+        }
+        
+        if(endereco.getLogradouro().length() <= 3) {
+            throw new ValidacaoException("Logradouro deve possuir"
+                    + " mais do que 3 caracteres.");
+        }
+        if(endereco.getLogradouro() == null) {
+            throw new CampoPreenchidoException("logradouro");
+        }
         
         try {
             EnderecoRepository enderecoRepository = new EnderecoRepository();

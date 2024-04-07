@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.model;
 
+import Enum.StatusConsultaEnum;
 import java.time.LocalDateTime;
     
 public class Consulta {
@@ -12,12 +13,17 @@ public class Consulta {
     private Paciente paciente;
     private Medico medico;
     private LocalDateTime dataHora;
+    private StatusConsultaEnum status;
 
-    public Consulta(int idConsulta, Paciente paciente, Medico medico, LocalDateTime dataHora) {
+    public Consulta(int idConsulta, Paciente paciente, Medico medico, LocalDateTime dataHora, StatusConsultaEnum status) {
         this.idConsulta = idConsulta;
         this.paciente = paciente;
         this.medico = medico;
         this.dataHora = dataHora;
+        this.status = status;
+    }  
+
+    public Consulta() {
     }
 
     public Consulta(int idConsulta) {
@@ -30,9 +36,6 @@ public class Consulta {
 
     public void setIdConsulta(int idConsulta) {
         this.idConsulta = idConsulta;
-    }
-
-    public Consulta() {
     }
 
     public void setPaciente(Paciente paciente) {
@@ -59,5 +62,12 @@ public class Consulta {
         return dataHora;
     }
 
-    
+    public StatusConsultaEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusConsultaEnum status) {
+        this.status = status;
+    }
+ 
 }
