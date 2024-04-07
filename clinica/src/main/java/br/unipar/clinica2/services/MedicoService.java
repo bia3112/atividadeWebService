@@ -18,36 +18,41 @@ import java.util.ArrayList;
 public class MedicoService {
     
      public Medico inserirmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
-//
-//            if(medico.getCrm() == null) {
-//                throw new ValidacaoException("CRM inválido.");
-//            }        
-//            if(medico.getCpf() == null) {
-//                throw new CampoPreenchidoException("CPF");
-//            }
-//            if(medico.getCpf().length() <= 10) {
-//                throw new ValidacaoException("CPF deve possuir "
-//                        + "11 caracteres.");
-//            }
-//            if(medico.getNome().length() <= 3) {
-//                throw new ValidacaoException("Nome deve possuir"
-//                        + " mais do que 3 caracteres.");
-//            }
-//            if(medico.getNome() == null) {
-//                throw new CampoPreenchidoException("nome");
-//            }
-//            if(medico.getEndereco() == null) {
-//                throw new CampoPreenchidoException("endereço");
-//            }
-//            if(medico.getEspecialidade() == null) {
-//                throw new CampoPreenchidoException("especialidade");
-//            }
-//            if(medico.getTelefone() == null) {
-//                throw new CampoPreenchidoException("telefone");
-//            }
-//            if(medico.getEmail() == null) {
-//                throw new CampoPreenchidoException("email");
-//            } 
+
+//        if(medico.getCrm() == null) {
+//            throw new CampoPreenchidoException("CRM");
+//        }        
+//        if(medico.getNome().length() <= 3) {
+//        throw new ValidacaoException("Nome deve possuir"
+//                + " mais do que 3 caracteres.");
+//        }
+//        if(medico.getNome() == null) {
+//            throw new CampoPreenchidoException("nome");
+//        }
+//        if(medico.getEmail().length() <= 12) {
+//            throw new ValidacaoException("Email deve possuir"
+//                   + " mais do que 12 caracteres.");
+//        }
+//        if(medico.getEmail() == null) {
+//            throw new CampoPreenchidoException("email");
+//        }
+//        if(medico.getTelefone().length() <= 8) {
+//            throw new ValidacaoException("Telefone deve possuir"
+//                   + " mais do que 8 caracteres.");
+//        }
+//        if(medico.getTelefone() == null) {
+//            throw new CampoPreenchidoException("telefone");
+//        }
+//        if(medico.getCpf().length() <= 10) {
+//            throw new ValidacaoException("CPF deve possuir"
+//                   + " mais do que 10 caracteres.");
+//        }
+//        if(medico.getCpf() == null) {
+//            throw new CampoPreenchidoException("CPF");
+//        }
+//        if(medico.getEndereco() == null) {
+//            throw new CampoPreenchidoException("endereço");
+//        }
             
         try {     
             MedicoRepository medicoRepository = new MedicoRepository();
@@ -66,37 +71,24 @@ public class MedicoService {
 
     public Medico atualizarmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
 
-//            if(medico.getCpf() == null) {
-//                throw new CampoPreenchidoException("CPF");
-//            }
-//            if(medico.getCpf().length() <= 10) {
-//                throw new ValidacaoException("CPF deve possuir "
-//                         + "11 caracteres.");
-//            }
-//            if(medico.getNome().length() <= 3) {
-//                throw new ValidacaoException("Nome deve possuir"
-//                         + " mais do que 3 caracteres.");
-//            }
-//            if(medico.getNome() == null) {
-//                throw new CampoPreenchidoException("nome");
-//            }
-//            if(medico.getEndereco() == null) {
-//                throw new CampoPreenchidoException("endereço");
-//            }
-//
-//            if(medico.getTelefone() == null) {
-//                throw new CampoPreenchidoException("telefone");
-//            }
-//            if(medico.getEmail() == null) {
-//                throw new CampoPreenchidoException("email");
-//            }
-//            
+            if(medico.getNome().length() <= 3) {
+                throw new ValidacaoException("Nome deve possuir"
+                         + " mais do que 3 caracteres.");
+            }
+            if(medico.getNome() == null) {
+                throw new CampoPreenchidoException("nome");
+            }
+            if(medico.getEndereco() == null) {
+                throw new CampoPreenchidoException("endereço");
+            }
+
+            if(medico.getTelefone() == null) {
+                throw new CampoPreenchidoException("telefone");
+            }
+            
 //            Medico medicoExistente = findByIdmedico(medico.getId());
 //            if (!medico.getCrm().equals(medicoExistente.getCrm())) {
 //                throw new ValidacaoException("CRM não pode ser alterado.");
-//            }
-//            if (!medico.getEmail().equals(medicoExistente.getEmail())) {
-//                throw new ValidacaoException("E-mail não pode ser alterado.");
 //            }
 //            if (!medico.getEspecialidade().equals(medicoExistente.getEspecialidade())) {
 //                throw new ValidacaoException("Especialidade não pode ser alterado");
@@ -122,10 +114,10 @@ public class MedicoService {
     
     public Medico findByIdmedico(int id) throws ValidacaoException {
 
-//             if(id <= 0) {
-//                 throw new ValidacaoException("Número de caracteres inválido.");
-//             }
-//             
+        if(id <= 0) {
+            throw new ValidacaoException("Número de caracteres inválido.");
+        }
+      
         try {     
             MedicoRepository medicoRepository = new MedicoRepository();
             return medicoRepository.findByIdmedico(id);

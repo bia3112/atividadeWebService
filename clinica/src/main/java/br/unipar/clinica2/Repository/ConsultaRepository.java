@@ -5,6 +5,7 @@
 package br.unipar.clinica2.Repository;
 
 
+import Enum.StatusConsultaEnum;
 import br.unipar.clinica2.model.Consulta;
 import br.unipar.clinica2.ws.infrainstructure.ConnectionFactory;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 //SQL DA CONSULTA
@@ -40,14 +42,14 @@ public class ConsultaRepository {
     private static final String INSERT = "INSERT INTO CONSULTA(PACIENTE_ID , "
             + "MEDICO_ID, DATAHORA ) VALUES(?, ?, ?)";
     
-    private static final String FIND_BY_ID = "SELECT ID , PACIENTE_ID, MEDICO_ID, "
-            + "DATAHORA  FROM CONSULTA WHERE ID = ?";
+    private static final String FIND_BY_ID = "SELECT PACIENTE_ID, MEDICO_ID, "
+            + "DATAHORA  FROM CONSULTA WHERE ID_CONSULTA = ?";
 
     private static final String DELETE = "UPDATE CONSULTA SET STATUS = ? "
-            + "WHERE ID  = ?";
+            + "WHERE ID_CONSULTA  = ?";
 
     private static final String UPDATE = "UPDATE CONSULTA SET PACIENTE_ID  = ?, "
-            + "MEDICO_ID = ?, DATAHORA = ? WHERE ID = ?";
+            + "MEDICO_ID = ?, DATAHORA = ? WHERE ID_CONSULTA = ?";
      
     
     public ArrayList<Consulta> listAllConsulta() throws SQLException{
@@ -65,9 +67,31 @@ public class ConsultaRepository {
 
             while (rs.next()) {
                 Consulta consulta = new Consulta();
-                consulta.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTE_ID")));
-                consulta.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICO_ID")));
-                LocalDateTime dataHora = rs.getTimestamp("DATAHORA").toLocalDateTime();        
+                consulta.setPaciente(new PacienteRepository()
+                        .findByIdPaciente(rs.getInt("PACIENTE_ID")));
+                consulta.setMedico(new MedicoRepository()
+                        .findByIdmedico(rs.getInt("MEDICO_ID")));
+                LocalDateTime dataHora = rs.getTimestamp("DATAHORA").toLocalDateTime();   
+                consulta.setDataHora(dataHora);
+
+                String statusString = rs.getString("STATUS");
+                StatusConsultaEnum statusEnum = null;
+                if (statusString != null) {
+                    try {
+                        statusEnum = StatusConsultaEnum.valueOf(statusString.toUpperCase());
+                    } catch (IllegalArgumentException e) {
+                        // Lidar com o caso em que o valor do banco de dados não corresponde a nenhum enum
+                        statusEnum = StatusConsultaEnum.OUTROS; // Ou defina um valor padrão apropriado
+                        // Alternativamente, lance uma exceção ou registre um aviso, dependendo dos requisitos
+                    }
+                } else {
+                    // Lidar com o caso em que o valor do banco de dados é nulo
+                    statusEnum = StatusConsultaEnum.OUTROS; // Ou defina um valor padrão apropriado
+                }
+
+                consulta.setStatus(statusEnum);
+
+
                 retorno.add(consulta);
             }
         } finally {
@@ -98,6 +122,7 @@ public class ConsultaRepository {
             pstmt.setInt(1, consulta.getPaciente().getId());
             pstmt.setInt(2, consulta.getMedico().getId());
             pstmt.setTimestamp(3, Timestamp.valueOf(consulta.getDataHora()));
+            pstmt.setObject(4, consulta.getStatus(), Types.OTHER);
 
             pstmt.executeUpdate();
             
@@ -140,18 +165,21 @@ public class ConsultaRepository {
         return consulta;
 
     }
-      public void deletarConsulta(int id) throws SQLException {
+      public Consulta cancelarConsulta(Consulta consulta) throws SQLException {
           
         Connection conn = null;
         PreparedStatement pstmt = null;
-
+        
         try {
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(DELETE);
-            pstmt.setBoolean(1, false);
-            pstmt.setInt(2, id);
+            
+            pstmt.setObject(1, consulta.getStatus());
+            pstmt.setInt(2, consulta.getIdConsulta());
+
             pstmt.executeUpdate();
 
+            
 
         } finally {
             if (pstmt != null) {
@@ -161,6 +189,7 @@ public class ConsultaRepository {
                 conn.close();
             }
         }
+        return consulta;
     }
      
     public Consulta findByIdConsulta(int id) throws SQLException {
@@ -181,11 +210,12 @@ public class ConsultaRepository {
             
             while (rs.next()) {
                 retorno = new Consulta();
-                retorno.setIdConsulta(rs.getInt("ID"));
-                retorno.setPaciente(new PacienteRepository().findByIdPaciente(rs.getInt("PACIENTE_ID")));
-                retorno.setMedico(new MedicoRepository().findByIdmedico(rs.getInt("MEDICOID")));
+                retorno.setPaciente(new PacienteRepository().
+                        findByIdPaciente(rs.getInt("PACIENTE_ID")));
+                retorno.setMedico(new MedicoRepository().
+                        findByIdmedico(rs.getInt("MEDICO_ID")));
                 retorno.setDataHora(rs.getTimestamp("DATAHORA").toLocalDateTime()); 
-                     
+  
             }
             
         } finally {

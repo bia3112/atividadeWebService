@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.ws;
 
+import Enum.StatusConsultaEnum;
 import br.unipar.clinica2.Exception.CampoPreenchidoException;
 import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.interfaces.ConsultaWebService;
@@ -39,9 +40,9 @@ public class ConsultaWebServicelmp implements ConsultaWebService {
     }
 
     @Override
-    public void deletarConsulta(int id) throws ValidacaoException {
+    public Consulta cancelarConsulta(Consulta consulta) throws ValidacaoException {
         ConsultaService consultaService = new ConsultaService();
-        consultaService.deletarConsulta(id);
+        return consultaService.cancelarConsulta(consulta);
     }
 
     @Override

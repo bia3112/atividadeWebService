@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.services;
 
+import Enum.StatusConsultaEnum;
 import br.unipar.clinica2.Exception.CampoPreenchidoException;
 import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.Repository.ConsultaRepository;
@@ -24,60 +25,60 @@ import java.util.Random;
  */
 public class ConsultaService {
     
-    private ArrayList<Medico> listaMedico;
-    private Medico medicoAleatorio() {
-        Random random = new Random();
-        int id = random.nextInt(listaMedico.size());
-        return listaMedico.get(id);
-    }
-    
-    private Map<DayOfWeek, HorarioFuncionamento> horarioFuncionamento;
-
-    private void horarioEspecificoFuncionamento() {
-        horarioFuncionamento = new EnumMap<>(DayOfWeek.class);
-        for(DayOfWeek dia : DayOfWeek.values()) {
-            if(dia != DayOfWeek.SUNDAY) {
-                horarioFuncionamento.put(dia, new HorarioFuncionamento(LocalTime.of(7, 0), LocalTime.of(19, 0)));
-            }
-        }
-    }
-    
-    public boolean isHorarioFuncionamento(DayOfWeek diaSemana, LocalTime horario) {
-        HorarioFuncionamento intervalo = horarioFuncionamento.get(diaSemana);
-        return intervalo != null && intervalo.estaNoIntervalo(horario);
-    }
+//    private ArrayList<Medico> listaMedico;
+//    private Medico medicoAleatorio() {
+//        Random random = new Random();
+//        int id = random.nextInt(listaMedico.size());
+//        return listaMedico.get(id);
+//    }
+//    
+//    private Map<DayOfWeek, HorarioFuncionamento> horarioFuncionamento;
+//
+//    private void horarioEspecificoFuncionamento() {
+//        horarioFuncionamento = new EnumMap<>(DayOfWeek.class);
+//        for(DayOfWeek dia : DayOfWeek.values()) {
+//            if(dia != DayOfWeek.SUNDAY) {
+//                horarioFuncionamento.put(dia, new HorarioFuncionamento(LocalTime.of(7, 0), LocalTime.of(19, 0)));
+//            }
+//        }
+//    }
+//    
+//    public boolean isHorarioFuncionamento(DayOfWeek diaSemana, LocalTime horario) {
+//        HorarioFuncionamento intervalo = horarioFuncionamento.get(diaSemana);
+//        return intervalo != null && intervalo.estaNoIntervalo(horario);
+//    }
     
     
     public Consulta inserirConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
   
-        Consulta consultaExistente = findByIdConsulta(consulta.getIdConsulta());
-        
-        if(!isHorarioFuncionamento(consulta.getDataHora().getDayOfWeek(), consulta.getDataHora().toLocalTime())) {
-            throw new ValidacaoException("Horário fora do funcionamento da clínica.");
-        }
-        
-        if(consulta.getPaciente().getStatus().equals("INATIVO")) {
-            throw new ValidacaoException("Paciente está inativo.");
-        }
-        if(consulta.getMedico().getStatus().equals("INATIVO")) {
-            throw new ValidacaoException("Médico está inativo.");
-        }
-        
-        if(!consulta.getPaciente().equals(consultaExistente.getPaciente())) {
-            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
-                throw new ValidacaoException("Paciente já tem uma consulta marcada para está data.");
-            }
-        }
-        if(!consulta.getMedico().equals(consultaExistente.getMedico())) {
-            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
-                throw new ValidacaoException("Paciente já tem uma consulta marcada para está data.");
-            }
-        }
-        if(consulta.getMedico() == null) {
-            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
-                consulta.setMedico(medicoAleatorio());
-            }
-        }
+//        Consulta consultaExistente = findByIdConsulta(consulta.getIdConsulta());
+//        
+//        if(!isHorarioFuncionamento(consulta.getDataHora().getDayOfWeek(), consulta.getDataHora().toLocalTime())) {
+//            throw new ValidacaoException("Horário fora do funcionamento da clínica.");
+//        }
+//        
+//        if(consulta.getPaciente().getStatus().equals("INATIVO")) {
+//            throw new ValidacaoException("Paciente está inativo.");
+//        }
+//        if(consulta.getMedico().getStatus().equals("INATIVO")) {
+//            throw new ValidacaoException("Médico está inativo.");
+//        }
+//        
+//        if(!consulta.getPaciente().equals(consultaExistente.getPaciente())) {
+//            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
+//                throw new ValidacaoException("Paciente já tem uma consulta marcada para está data.");
+//            }
+//        }
+//        if(!consulta.getMedico().equals(consultaExistente.getMedico())) {
+//            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
+//                throw new ValidacaoException("Paciente já tem uma consulta marcada para está data.");
+//            }
+//        }
+//        if(consulta.getMedico() == null) {
+//            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
+//                consulta.setMedico(medicoAleatorio());
+//            }
+//        }
         
         
         
@@ -107,15 +108,15 @@ public class ConsultaService {
   
     }
     
-    public void deletarConsulta(int id) throws ValidacaoException {
+    public Consulta cancelarConsulta(Consulta consulta) throws ValidacaoException {
 
-        if(id <= 0) {
-            throw new ValidacaoException("Número de caracteres inválido.");
-        }
+//        if(id <= 0) {
+//            throw new ValidacaoException("Número de caracteres inválido.");
+//        }
         
         try {
             ConsultaRepository consultaRepository = new ConsultaRepository();
-            consultaRepository.deletarConsulta(id);
+            return consultaRepository.cancelarConsulta(consulta);
         } catch (SQLException ex) {
             throw new ValidacaoException("Erro Interno de Servidor");
         }
@@ -124,9 +125,9 @@ public class ConsultaService {
     
     public Consulta findByIdConsulta(int id) throws ValidacaoException {
 
-        if(id <= 0) {
-            throw new ValidacaoException("Número de caracteres inválido.");
-        }
+//        if(id <= 0) {
+//            throw new ValidacaoException("Número de caracteres inválido.");
+//        }
             
         try {
             ConsultaRepository consultaRepository = new ConsultaRepository();

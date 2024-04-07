@@ -4,6 +4,7 @@
  */
 package br.unipar.clinica2.interfaces;
 
+import Enum.StatusConsultaEnum;
 import br.unipar.clinica2.Exception.CampoPreenchidoException;
 import br.unipar.clinica2.Exception.ValidacaoException;
 import br.unipar.clinica2.model.Consulta;
@@ -28,7 +29,7 @@ public interface ConsultaWebService {
     Consulta atualizarConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException;
     
     @WebMethod
-    void deletarConsulta(int id) throws ValidacaoException;
+    Consulta cancelarConsulta(Consulta consulta) throws ValidacaoException;
     
     @WebMethod
     Consulta findByIdConsulta(int id) throws ValidacaoException;
