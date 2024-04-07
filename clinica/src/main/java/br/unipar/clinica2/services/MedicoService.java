@@ -19,40 +19,40 @@ public class MedicoService {
     
      public Medico inserirmedico(Medico medico) throws ValidacaoException, CampoPreenchidoException {
 
-//        if(medico.getCrm() == null) {
-//            throw new CampoPreenchidoException("CRM");
-//        }        
-//        if(medico.getNome().length() <= 3) {
-//        throw new ValidacaoException("Nome deve possuir"
-//                + " mais do que 3 caracteres.");
-//        }
-//        if(medico.getNome() == null) {
-//            throw new CampoPreenchidoException("nome");
-//        }
-//        if(medico.getEmail().length() <= 12) {
-//            throw new ValidacaoException("Email deve possuir"
-//                   + " mais do que 12 caracteres.");
-//        }
-//        if(medico.getEmail() == null) {
-//            throw new CampoPreenchidoException("email");
-//        }
-//        if(medico.getTelefone().length() <= 8) {
-//            throw new ValidacaoException("Telefone deve possuir"
-//                   + " mais do que 8 caracteres.");
-//        }
-//        if(medico.getTelefone() == null) {
-//            throw new CampoPreenchidoException("telefone");
-//        }
-//        if(medico.getCpf().length() <= 10) {
-//            throw new ValidacaoException("CPF deve possuir"
-//                   + " mais do que 10 caracteres.");
-//        }
-//        if(medico.getCpf() == null) {
-//            throw new CampoPreenchidoException("CPF");
-//        }
-//        if(medico.getEndereco() == null) {
-//            throw new CampoPreenchidoException("endereço");
-//        }
+        if(medico.getCrm() == null) {
+            throw new CampoPreenchidoException("CRM");
+        }        
+        if(medico.getNome().length() <= 3) {
+        throw new ValidacaoException("Nome deve possuir"
+                + " mais do que 3 caracteres.");
+        }
+        if(medico.getNome() == null) {
+            throw new CampoPreenchidoException("nome");
+        }
+        if(medico.getEmail().length() <= 12) {
+            throw new ValidacaoException("Email deve possuir"
+                   + " mais do que 12 caracteres.");
+        }
+        if(medico.getEmail() == null) {
+            throw new CampoPreenchidoException("email");
+        }
+        if(medico.getTelefone().length() <= 8) {
+            throw new ValidacaoException("Telefone deve possuir"
+                   + " mais do que 8 caracteres.");
+        }
+        if(medico.getTelefone() == null) {
+            throw new CampoPreenchidoException("telefone");
+        }
+        if(medico.getCpf().length() <= 10) {
+            throw new ValidacaoException("CPF deve possuir"
+                   + " mais do que 10 caracteres.");
+        }
+        if(medico.getCpf() == null) {
+            throw new CampoPreenchidoException("CPF");
+        }
+        if(medico.getEndereco() == null) {
+            throw new CampoPreenchidoException("endereço");
+        }
             
         try {     
             MedicoRepository medicoRepository = new MedicoRepository();
@@ -85,14 +85,14 @@ public class MedicoService {
             if(medico.getTelefone() == null) {
                 throw new CampoPreenchidoException("telefone");
             }
-            
-//            Medico medicoExistente = findByIdmedico(medico.getId());
-//            if (!medico.getCrm().equals(medicoExistente.getCrm())) {
-//                throw new ValidacaoException("CRM não pode ser alterado.");
-//            }
-//            if (!medico.getEspecialidade().equals(medicoExistente.getEspecialidade())) {
-//                throw new ValidacaoException("Especialidade não pode ser alterado");
-//            }
+
+            Medico medicoExistente = findByIdmedico(medico.getId());
+            if (medicoExistente != null) {
+                // Restaura os valores originais para esses campos
+                medico.setCrm(medicoExistente.getCrm());
+                medico.setEspecialidade(medicoExistente.getEspecialidade());
+                medico.setEmail(medicoExistente.getEmail());
+            }
              
         try {     
             MedicoRepository medicoRepository = new MedicoRepository();

@@ -13,7 +13,9 @@ import br.unipar.clinica2.model.HorarioFuncionamento;
 import br.unipar.clinica2.model.Medico;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Map;
@@ -42,7 +44,7 @@ public class ConsultaService {
 //            }
 //        }
 //    }
-//    
+    
 //    public boolean isHorarioFuncionamento(DayOfWeek diaSemana, LocalTime horario) {
 //        HorarioFuncionamento intervalo = horarioFuncionamento.get(diaSemana);
 //        return intervalo != null && intervalo.estaNoIntervalo(horario);
@@ -50,19 +52,28 @@ public class ConsultaService {
     
     
     public Consulta inserirConsulta(Consulta consulta) throws ValidacaoException, CampoPreenchidoException {
+        
+//        LocalDateTime horarioAtual = LocalDateTime.now();
+//        LocalDateTime horarioAgendamento = consulta.getDataHora();
+//
+//        long diferencaMinutos = ChronoUnit.MINUTES.between(horarioAtual, horarioAgendamento);
+//
+//        if (diferencaMinutos <= 30) {
+//            throw new ValidacaoException("O agendamento deve ser feito com pelo menos 30 minutos de antecedência.");
+//        }
   
-//        Consulta consultaExistente = findByIdConsulta(consulta.getIdConsulta());
-//        
 //        if(!isHorarioFuncionamento(consulta.getDataHora().getDayOfWeek(), consulta.getDataHora().toLocalTime())) {
 //            throw new ValidacaoException("Horário fora do funcionamento da clínica.");
 //        }
-//        
+    
 //        if(consulta.getPaciente().getStatus().equals("INATIVO")) {
 //            throw new ValidacaoException("Paciente está inativo.");
 //        }
 //        if(consulta.getMedico().getStatus().equals("INATIVO")) {
 //            throw new ValidacaoException("Médico está inativo.");
 //        }
+//        
+//        Consulta consultaExistente = findByIdConsulta(consulta.getIdConsulta());
 //        
 //        if(!consulta.getPaciente().equals(consultaExistente.getPaciente())) {
 //            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
@@ -71,17 +82,16 @@ public class ConsultaService {
 //        }
 //        if(!consulta.getMedico().equals(consultaExistente.getMedico())) {
 //            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
-//                throw new ValidacaoException("Paciente já tem uma consulta marcada para está data.");
+//                throw new ValidacaoException("Médico já tem uma consulta marcada para está data.");
 //            }
 //        }
+//
 //        if(consulta.getMedico() == null) {
 //            if(!consulta.getDataHora().equals(consultaExistente.getDataHora())) {
 //                consulta.setMedico(medicoAleatorio());
 //            }
 //        }
-        
-        
-        
+
         try {
             ConsultaRepository consultaRepository = new ConsultaRepository();
             return consultaRepository.inserirConsulta(consulta);
@@ -109,10 +119,6 @@ public class ConsultaService {
     }
     
     public Consulta cancelarConsulta(Consulta consulta) throws ValidacaoException {
-
-//        if(id <= 0) {
-//            throw new ValidacaoException("Número de caracteres inválido.");
-//        }
         
         try {
             ConsultaRepository consultaRepository = new ConsultaRepository();
@@ -124,10 +130,6 @@ public class ConsultaService {
     }
     
     public Consulta findByIdConsulta(int id) throws ValidacaoException {
-
-//        if(id <= 0) {
-//            throw new ValidacaoException("Número de caracteres inválido.");
-//        }
             
         try {
             ConsultaRepository consultaRepository = new ConsultaRepository();

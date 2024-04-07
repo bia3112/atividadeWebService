@@ -57,14 +57,6 @@ public class PacienteService {
             throw new CampoPreenchidoException("endereço");
         }
         
-//        Paciente pacienteExistente = findByIdPaciente(paciente.getId());
-//        if (!paciente.getCpf().equals(pacienteExistente.getCpf())) {
-//            throw new ValidacaoException("CRM não pode ser alterado.");
-//        }
-//        if (!paciente.getEmail().equals(pacienteExistente.getEmail())) {
-//            throw new ValidacaoException("E-mail não pode ser alterado.");
-//        }
-        
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();
             return pacienteRepository.inserirPaciente(paciente);
@@ -85,13 +77,11 @@ public class PacienteService {
                    + " mais do que 8 caracteres.");
         }
         
-//        Paciente pacienteExixtente = findByIdPaciente(paciente.getId());
-//        if(!pacienteExixtente.getEmail().equals(paciente.getEmail())) {
-//            throw new ValidacaoException("Não é permitido alterar o email.");
-//        }
-//        if(!pacienteExixtente.getCpf().equals(paciente.getCpf())) {
-//            throw new ValidacaoException("Não é permitido alterar o CPF.");
-//        }
+        Paciente pacienteExistente = findByIdPaciente(paciente.getId());
+            if (pacienteExistente != null) {
+                paciente.setCpf(pacienteExistente.getCpf());
+                paciente.setEmail(pacienteExistente.getEmail());
+            }
         
         try {
             PacienteRepository pacienteRepository = new PacienteRepository();

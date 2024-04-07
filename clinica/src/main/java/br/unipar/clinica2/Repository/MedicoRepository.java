@@ -96,7 +96,7 @@ public class MedicoRepository {
 
             conn = new ConnectionFactory().getConnection();
             pstmt = conn.prepareStatement(INSERT);
-
+            
             pstmt.setString(1, medico.getNome());
             pstmt.setString(2, medico.getEmail());
             pstmt.setString(3, medico.getTelefone());
